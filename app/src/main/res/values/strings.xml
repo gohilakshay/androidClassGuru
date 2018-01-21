@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">ClassGuru</string>
+    <string name="etUsername">etUsername</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="title_activity_home_activity">Home_activity</string>
+</resources>
