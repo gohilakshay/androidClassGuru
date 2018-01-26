@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -30,6 +31,11 @@ import java.net.URL;
 import java.net.URLEncoder;
 
 public class Home_activity extends AppCompatActivity {
+
+    String globalid;
+    String globalpermissin;
+    String globaldbname;
+
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
 
@@ -58,8 +64,11 @@ public class Home_activity extends AppCompatActivity {
         setContentView(R.layout.activity_home_activity);
         Intent data = getIntent();
         String id = data.getStringExtra("id");
+            globalid = id;
         String permission = data.getStringExtra("permission");
+            globalpermissin = permission;
         String dbname = data.getStringExtra("dbname");
+            globaldbname = dbname;
         Profile_Activity profile_activity = new Profile_Activity(this);
 
         tvname = (TextView)findViewById(R.id.tvName);
@@ -93,6 +102,21 @@ public class Home_activity extends AppCompatActivity {
                 mDrawerLayout.openDrawer(Gravity.LEFT);
             }
         });
+
+    }
+
+    public void OnLogout(MenuItem item) {
+        Intent intent = new Intent(Home_activity.this,MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+    public void OnFee(MenuItem item){
+        Intent intent = new Intent(Home_activity.this,FeeDetails.class);
+        intent.putExtra("id",globalid);
+        intent.putExtra("permission",globalpermissin);
+        intent.putExtra("dbname",globaldbname);
+        startActivity(intent);
+        finish();
     }
 
     /**
@@ -219,5 +243,6 @@ public class Home_activity extends AppCompatActivity {
         protected void onProgressUpdate(Void... values) {
             super.onProgressUpdate(values);
         }
+
     }
 }
