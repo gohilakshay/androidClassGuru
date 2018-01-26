@@ -12,14 +12,15 @@
 
     <android.support.design.widget.NavigationView
 
+        android:id="@+id/navSideBar"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_gravity="start"
         android:background="@color/white"
+        app:headerLayout="@layout/header"
         app:itemIconTint="@color/darkgrey"
         app:itemTextColor="@color/darkgrey"
-        app:headerLayout="@layout/header"
-        app:menu="@menu/drawermenu"
-        android:layout_gravity="start">
+        app:menu="@menu/drawermenu">
 
     </android.support.design.widget.NavigationView>
 

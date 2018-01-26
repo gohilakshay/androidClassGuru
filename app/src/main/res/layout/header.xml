@@ -13,16 +13,18 @@
         android:layout_height="75dp" />
 
     <TextView
+        android:id="@+id/tvSideName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginVertical="0dp"
         android:text="Akshay Gohil"
         android:textColor="@color/white"
-        android:textStyle="bold"
-        android:layout_marginVertical="0dp"
         android:textSize="20dp"
-        android:layout_marginTop="5dp" />
+        android:textStyle="bold" />
 
     <TextView
+        android:id="@+id/tvSideNumb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="7208121247"

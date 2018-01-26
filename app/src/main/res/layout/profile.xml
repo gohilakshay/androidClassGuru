@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -13,6 +14,11 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="265dp">
+            <!--<ImageView
+
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_navigation"/>-->
             <ImageView
                 android:layout_marginTop="32dp"
                 android:layout_gravity="center"
@@ -39,6 +45,18 @@
                 android:text="7208121247"
                 android:textColor="@color/white" />
         </LinearLayout>
+        <android.support.v7.widget.CardView
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+
+                android:id="@+id/iv_nav"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_navigation" />
+        </android.support.v7.widget.CardView>
         <android.support.v7.widget.CardView
             android:layout_marginTop="200dp"
             android:layout_centerHorizontal="true"
@@ -245,6 +263,58 @@
                     android:textSize="20dp"
                     android:textStyle="bold" />
             </TableRow>
+            <TableRow
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:textColor="#4a4a4a"
+                    android:textSize="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Gender"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:id="@+id/tvGender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Male"
+                    android:textAlignment="center"
+                    android:textColor="#4a4a4a"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+            </TableRow>
+            <TableRow
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:textColor="#4a4a4a"
+                    android:textSize="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="DOB"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:id="@+id/tvBirth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="29/4/1995"
+                    android:textAlignment="center"
+                    android:textColor="#4a4a4a"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+            </TableRow>
             <!--<TableRow
             android:padding="10dp"
                 android:layout_width="match_parent"
@@ -270,6 +340,32 @@
                     android:textSize="20dp"
                     android:textStyle="bold" />
             </TableRow>-->
+            <TableRow
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:textColor="#4a4a4a"
+                    android:textSize="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Course Type"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:id="@+id/tvCourseType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Regular"
+                    android:textAlignment="center"
+                    android:textColor="#4a4a4a"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+            </TableRow>
             <TableRow
                 android:padding="10dp"
                 android:layout_width="match_parent"
@@ -308,15 +404,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Subjects"
+                    android:text="Standard"
                     android:textAlignment="center" />
 
                 <TextView
-                    android:id="@+id/tvSubject"
+                    android:id="@+id/tvStandard"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Sicence"
+                    android:text="10th"
                     android:textAlignment="center"
                     android:textColor="#4a4a4a"
                     android:textSize="20dp"

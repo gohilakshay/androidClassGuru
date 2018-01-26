@@ -87,27 +87,26 @@ public class backgroundWorker extends AsyncTask<String,Void,String> {
             String id;
             JSONObject reader = new JSONObject(result);
             String checkResult = reader.getString("result");
-            String dbname = reader.getString("dbname");
-            JSONObject reader1 = new JSONObject(checkResult);
-            String permission = reader1.getString("permission");
-            if(reader1.getString("stud_ID").matches("")){
-                id = reader1.getString("t_ID");
-            }
-            else if(reader1.getString("t_ID").matches("")){
-                id = reader1.getString("stud_ID");
-            }else{
-                id = "Not Found";
-            }
-            if(checkResult!=null && !checkResult.equals("Not Valid User") && !checkResult.equals("Database not Selected") && !checkResult.equals("No Input Found")){
-                /*String permission = gv.getPermission();
-                String id = gv.getId();*/
 
+            if(checkResult!=null && !checkResult.equals("Not Valid User") && !checkResult.equals("Database not Selected") && !checkResult.equals("No Input Found")){
+                String dbname = reader.getString("dbname");
+                JSONObject reader1 = new JSONObject(checkResult);
+                String permission = reader1.getString("permission");
+                if(reader1.getString("stud_ID").matches("")){
+                    id = reader1.getString("t_ID");
+                }
+                else if(reader1.getString("t_ID").matches("")){
+                    id = reader1.getString("stud_ID");
+                }else{
+                    id = "Not Found";
+                }
 
                 Intent intent = new Intent(context, Home_activity.class);
                 intent.putExtra("id",id);
                 intent.putExtra("permission",permission);
                 intent.putExtra("dbname",dbname);
                 context.startActivity(intent);
+
 
             }else{
                 alertDialog.setMessage("Sorry Enter a valid username and password !!");
