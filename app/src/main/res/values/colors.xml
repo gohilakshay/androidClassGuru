@@ -5,4 +5,7 @@
     <color name="white">#FFFFFF</color>
     <color name="colorAccent">#FF4081</color>
     <color name="darkgrey">#6c6c6c</color>
+    <color name="startblue">#2fb9e7</color>
+    <color name="endyellow">#fbfce4</color>
+    <color name="black">#000000</color>
 </resources>

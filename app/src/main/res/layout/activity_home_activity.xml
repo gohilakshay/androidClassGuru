@@ -6,8 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/drawer"
-
     tools:context="in.classguru.classguru.Home_activity">
+
+<include layout="@layout/profile" />
 
     <android.support.design.widget.NavigationView
 
@@ -16,6 +17,7 @@
         android:background="@color/white"
         app:itemIconTint="@color/darkgrey"
         app:itemTextColor="@color/darkgrey"
+        app:headerLayout="@layout/header"
         app:menu="@menu/drawermenu"
         android:layout_gravity="start">
 

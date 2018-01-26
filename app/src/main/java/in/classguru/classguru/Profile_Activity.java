@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
-import android.provider.Settings;
+import android.widget.TextView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,35 +23,34 @@ import java.net.URL;
 import java.net.URLEncoder;
 
 /**
- * Created by Akshay on 1/21/2018.
+ * Created by a2z on 1/25/2018.
  */
 
-public class backgroundWorker extends AsyncTask<String,Void,String> {
-
+public class Profile_Activity extends AsyncTask<String,Void,String> {
 
     Context context;
     AlertDialog alertDialog;
-    backgroundWorker (Context ctx){
+    Profile_Activity (Context ctx){
         context = ctx;
-
     }
     @Override
     protected String doInBackground(String... params) {
         String type = params[0];
-        String login_url = "https://classes.classguru.in/class/api/select_user.php";
-        if(type.equals("login")){
+        String id = params[1];
+        String permission = params[2];
+        String dbname = params[3];
+        String login_url = "https://classes.classguru.in/class/api/student_details.php";
+        if(type.equals("student")){
             try {
-                String user_name = params[1];
-                String pass_word = params[2];
-                URL url = new URL(login_url);
-                HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
+                URL profile_url = new URL(login_url);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) profile_url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.setDoOutput(true);
                 httpURLConnection.setDoInput(true);
                 OutputStream outputStream = httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
-                String post_data = URLEncoder.encode("username","UTF-8")+"="+URLEncoder.encode(user_name,"UTF-8")+"&"
-                        +URLEncoder.encode("password","UTF-8")+"="+URLEncoder.encode(pass_word,"UTF-8");
+                String post_data = URLEncoder.encode("userId","UTF-8")+"="+URLEncoder.encode(id,"UTF-8")+"&"
+                        +URLEncoder.encode("dbname","UTF-8")+"="+URLEncoder.encode(dbname,"UTF-8");
                 bufferedWriter.write(post_data);
                 bufferedWriter.flush();
                 bufferedWriter.close();
@@ -67,59 +66,47 @@ public class backgroundWorker extends AsyncTask<String,Void,String> {
                 inputStream.close();
                 httpURLConnection.disconnect();
                 return result;
+
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
         }
+
         return null;
     }
+
     @Override
     protected void onPreExecute() {
         alertDialog = new AlertDialog.Builder(context).create();
-        alertDialog.setTitle("Login Status");
+        super.onPreExecute();
     }
-
+    /*private String name;*/
     @Override
     protected void onPostExecute(String result) {
+
         try {
-            String id;
             JSONObject reader = new JSONObject(result);
-            String checkResult = reader.getString("result");
-            String dbname = reader.getString("dbname");
-            JSONObject reader1 = new JSONObject(checkResult);
-            String permission = reader1.getString("permission");
-            if(reader1.getString("stud_ID").matches("")){
-                id = reader1.getString("t_ID");
-            }
-            else if(reader1.getString("t_ID").matches("")){
-                id = reader1.getString("stud_ID");
-            }else{
-                id = "Not Found";
-            }
-            if(checkResult!=null && !checkResult.equals("Not Valid User") && !checkResult.equals("Database not Selected") && !checkResult.equals("No Input Found")){
-                /*String permission = gv.getPermission();
-                String id = gv.getId();*/
-
-
+            String checkResult = reader.getString("student_details");
+            /*if(checkResult!=null && !checkResult.equals("Not Valid User") && !checkResult.equals("Database not Selected") && !checkResult.equals("No Input Found")){
                 Intent intent = new Intent(context, Home_activity.class);
-                intent.putExtra("id",id);
-                intent.putExtra("permission",permission);
-                intent.putExtra("dbname",dbname);
                 context.startActivity(intent);
-
             }else{
                 alertDialog.setMessage("Sorry Enter a valid username and password !!");
                 alertDialog.show();
-            }
+            }*/
+
+            alertDialog.setMessage(checkResult);
+            alertDialog.show();
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-
     }
+
+
 
     @Override
     protected void onProgressUpdate(Void... values) {
