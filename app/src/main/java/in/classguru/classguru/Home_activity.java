@@ -20,7 +20,7 @@ public class Home_activity extends MainActivity {
         String permission = data.getStringExtra("permission");
         String dbname = data.getStringExtra("dbname");
         Profile_Activity profile_activity = new Profile_Activity(this);
-        
+
         profile_activity.execute("student",id,permission,dbname);
         /*mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer);
         mToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.open,R.string.close);
