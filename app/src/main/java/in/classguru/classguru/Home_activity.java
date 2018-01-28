@@ -126,6 +126,14 @@ public class Home_activity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+    public void OnAttend(MenuItem item){
+        Intent intent = new Intent(Home_activity.this,Attendance_activity.class);
+        intent.putExtra("id",globalid);
+        intent.putExtra("permission",globalpermissin);
+        intent.putExtra("dbname",globaldbname);
+        startActivity(intent);
+        finish();
+    }
     /**
      * Created by a2z on 1/25/2018.
      */
