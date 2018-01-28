@@ -25,7 +25,9 @@
             android:name=".Home_activity"
             android:label="@string/title_activity_home_activity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".FeeDetails"></activity>
+        <activity android:name=".FeeDetails" />
+        <activity android:name=".FeeDetail_activity" />
+        <activity android:name=".Fee_activity"></activity>
     </application>
 
 </manifest>

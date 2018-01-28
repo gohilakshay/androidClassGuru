@@ -111,14 +111,21 @@ public class Home_activity extends AppCompatActivity {
         finish();
     }
     public void OnFee(MenuItem item){
-        Intent intent = new Intent(Home_activity.this,FeeDetails.class);
+        Intent intent = new Intent(Home_activity.this,Fee_activity.class);
         intent.putExtra("id",globalid);
         intent.putExtra("permission",globalpermissin);
         intent.putExtra("dbname",globaldbname);
         startActivity(intent);
         finish();
     }
-
+    public void OnProfile(MenuItem item){
+        Intent intent = new Intent(Home_activity.this,Home_activity.class);
+        intent.putExtra("id",globalid);
+        intent.putExtra("permission",globalpermissin);
+        intent.putExtra("dbname",globaldbname);
+        startActivity(intent);
+        finish();
+    }
     /**
      * Created by a2z on 1/25/2018.
      */

@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="in.classguru.classguru.FeeDetails">
+    tools:context="in.classguru.classguru.Fee_activity">
 
     <RelativeLayout
         android:padding="10dp"
@@ -56,7 +56,9 @@
                     android:textStyle="bold"/>
             </TableRow>
             <TableRow android:padding="10dp">
+
                 <TextView
+                    android:id="@+id/tv_Option"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -64,31 +66,35 @@
                     android:layout_alignParentTop="true"
                     android:layout_weight="0.25"
                     android:text="100000" />
+
                 <TextView
-                    android:layout_weight="0.25"
+                    android:id="@+id/tv_Type"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/textView"
                     android:layout_toEndOf="@+id/textView"
                     android:layout_toRightOf="@+id/textView"
+                    android:layout_weight="0.25"
                     android:text="100000" />
 
                 <TextView
-                    android:layout_weight="0.25"
+                    android:id="@+id/tv_Total"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/textView3"
                     android:layout_toEndOf="@+id/textView3"
                     android:layout_toRightOf="@+id/textView3"
+                    android:layout_weight="0.25"
                     android:text="100000" />
 
                 <TextView
-                    android:layout_weight="0.25"
+                    android:id="@+id/tv_Discount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/textView4"
                     android:layout_toEndOf="@+id/textView4"
                     android:layout_toRightOf="@+id/textView4"
+                    android:layout_weight="0.25"
                     android:text="100000" />
             </TableRow>
 
@@ -133,7 +139,9 @@
                     android:textStyle="bold"/>
             </TableRow>
             <TableRow android:padding="10dp">
+
                 <TextView
+                    android:id="@+id/tv_Final"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -141,31 +149,35 @@
                     android:layout_alignParentTop="true"
                     android:layout_weight="0.25"
                     android:text="100000" />
+
                 <TextView
-                    android:layout_weight="0.25"
+                    android:id="@+id/tv_Received"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/textView"
                     android:layout_toEndOf="@+id/textView"
                     android:layout_toRightOf="@+id/textView"
+                    android:layout_weight="0.25"
                     android:text="100000" />
 
                 <TextView
-                    android:layout_weight="0.25"
+                    android:id="@+id/tv_Balance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/textView3"
                     android:layout_toEndOf="@+id/textView3"
                     android:layout_toRightOf="@+id/textView3"
+                    android:layout_weight="0.25"
                     android:text="100000" />
 
                 <TextView
-                    android:layout_weight="0.25"
+                    android:id="@+id/tv_AmpInstall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/textView4"
                     android:layout_toEndOf="@+id/textView4"
                     android:layout_toRightOf="@+id/textView4"
+                    android:layout_weight="0.25"
                     android:text="100000" />
             </TableRow>
         </TableLayout>
@@ -182,12 +194,10 @@
             android:layout_height="match_parent">
             <TableRow>
                 <TextView
-                    android:layout_weight="0.25"
+                    android:layout_weight="1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/textView4"
-                    android:layout_toEndOf="@+id/textView4"
-                    android:layout_toRightOf="@+id/textView4"
+
                     android:text="Working on layouts" />
             </TableRow>
         </TableLayout>
