@@ -28,7 +28,9 @@
         <activity android:name=".FeeDetails" />
         <activity android:name=".FeeDetail_activity" />
         <activity android:name=".Fee_activity" />
-        <activity android:name=".Attendance_activity"></activity>
+        <activity android:name=".Attendance_activity" />
+        <activity android:name=".Test_activity" />
+        <activity android:name=".Assignment_activity"></activity>
     </application>
 
 </manifest>

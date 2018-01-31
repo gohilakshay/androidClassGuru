@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TableRow android:padding="10dp">
+
+                <TextView
+
+                    android:id="@+id/tv_uploadId"
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:text="Upload \n ID"
+                    android:textAlignment="center"
+                    android:textStyle="bold" />
+
+                <TextView
+
+                    android:id="@+id/tv_fileName"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="File \n Name"
+                    android:textAlignment="center"
+                    android:textStyle="bold" />
+
+                <TextView
+
+                    android:id="@+id/tv_Desc"
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Description"
+                    android:textAlignment="center"
+                    android:textStyle="bold" />
+
+                <TextView
+
+                    android:id="@+id/tv_Faculty"
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Faculty"
+                    android:textAlignment="center"
+                    android:textStyle="bold" />
+
+                <TextView
+
+                    android:id="@+id/tv_UploadDate"
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Upload Date"
+                    android:textAlignment="center"
+                    android:textStyle="bold" />
+
+            </TableRow>
+        </TableLayout>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight=".15">
+
+        <ListView
+
+            android:id="@+id/lv_assign"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+</LinearLayout>

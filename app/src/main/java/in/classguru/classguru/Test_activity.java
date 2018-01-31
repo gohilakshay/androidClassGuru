@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TableRow;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -33,29 +32,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 import in.classguru.classguru.models.AttendanceModel;
+import in.classguru.classguru.models.TestModel;
 
-public class Attendance_activity extends Home_activity {
+public class Test_activity extends Home_activity {
 
-    public ListView lv_attend;
+
+    public ListView lv_test;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_attendance_activity);
-        Attendance_fetch attendance_fetch = new Attendance_fetch(this);
-        attendance_fetch.execute("student",globalid,globalpermissin,globaldbname);
+        setContentView(R.layout.activity_test_activity);
+        Test_fetch test_fetch = new Test_fetch(this);
+        test_fetch.execute("student",globalid,globalpermissin,globaldbname);
 
-        lv_attend = (ListView)findViewById(R.id.lv_attend);
+        lv_test = (ListView)findViewById(R.id.lv_test);
     }
+    public class Test_fetch extends AsyncTask<String,Void,List<TestModel>>{
 
-    public class Attendance_fetch extends AsyncTask<String,Void,List<AttendanceModel>>{
         Context context;
         android.app.AlertDialog alertDialog;
-        Attendance_fetch (Context ctx){
+        Test_fetch (Context ctx){
             context = ctx;
         }
+
         @Override
-        protected List<AttendanceModel> doInBackground(String... params) {
+        protected List<TestModel> doInBackground(String... params) {
             String type = params[0];
             String id = params[1];
             String permission = params[2];
@@ -83,29 +85,44 @@ public class Attendance_activity extends Home_activity {
                     while ((line = bufferedReader.readLine()) != null){
                         result += line;
                     }
-                    String fullattend="";
-                    String[] separated = new String[0];
+
+                    String[] separatedStud = new String[0];
+                    String[] separatedMarks = new String[0];
                     JSONObject reader = new JSONObject(result);
                     //String checkResult = reader.getString("std_attendance");
-                    reader.getJSONArray("std_attendance");
-                    List<AttendanceModel> attendList = new ArrayList<>();
-                    for(int i=0;i<reader.getJSONArray("std_attendance").length();i++){
-                        AttendanceModel attendanceModel = new AttendanceModel();
+                    /*reader.getJSONArray("std_attendance");*/
+                    List<TestModel> testList = new ArrayList<>();
+                    JSONArray fulltest = reader.getJSONArray("std_test");
 
-                        fullattend = reader.getJSONArray("std_attendance").getString(i);
-                        if(!fullattend.equals("Match not found")) {
-                            separated = fullattend.split(",");
-                            attendanceModel.setAttendance(separated[0]);
-                            attendanceModel.setDate(separated[1]);
-                            attendList.add(attendanceModel);
+                    for (int i=0;i<fulltest.length();i++){
+                        JSONObject finalObject = fulltest.getJSONObject(i);
+                        TestModel testModel = new TestModel();
+                        testModel.setTv_testDate(finalObject.getString("test_date"));
+                        testModel.setTv_testBatch(finalObject.getString("batch_id"));
+
+                        String studIds = finalObject.getString("stud_id");
+                        String marks = finalObject.getString("marks_obtained");
+
+                        separatedStud = studIds.split(",");
+                        separatedMarks = marks.split(",");
+                        for(int j=0;j<separatedStud.length;j++){
+                            if(separatedStud[j].equals(globalid)){
+                                testModel.setTv_Obtain(separatedMarks[j]);
+                            }
+
                         }
-                        /*attendanceModel.setAttendance();*/
+                        /*testModel.setTv_Obtain(globalid);*/
+
+                        testModel.setTv_Total(finalObject.getString("total_marks"));
+                        testModel.setTv_Passing(finalObject.getString("passing_marks"));
+                        testModel.setTv_Subject(finalObject.getString("subject_name"));
+                        testList.add(testModel);
                     }
 
                     bufferedReader.close();
                     inputStream.close();
                     httpURLConnection.disconnect();
-                    return attendList;
+                    return testList;
 
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
@@ -116,42 +133,37 @@ public class Attendance_activity extends Home_activity {
                 }
 
             }else{
-                List<AttendanceModel> attendList = new ArrayList<>();
-                return attendList;
+                List<TestModel> testList = new ArrayList<>();
+                return testList;
             }
             return null;
         }
 
         @Override
         protected void onPreExecute() {
-            alertDialog = new android.app.AlertDialog.Builder(context).create();
             super.onPreExecute();
         }
 
         @Override
-        protected void onPostExecute(List<AttendanceModel> result) {
+        protected void onPostExecute(List<TestModel> result) {
             super.onPostExecute(result);
-            //TODO need to set data to the list
-            AttendAdapter attendAdapter = new AttendAdapter(getApplicationContext(),R.layout.attendance_layout,result);
-            lv_attend.setAdapter(attendAdapter);
-             /*alertDialog.setMessage(result);
-            alertDialog.show();*/
+            TestAdapter testAdapter = new TestAdapter(getApplicationContext(),R.layout.test_layout,result);
+            lv_test.setAdapter(testAdapter);
         }
 
         @Override
         protected void onProgressUpdate(Void... values) {
             super.onProgressUpdate(values);
         }
+
     }
-
-
-    public class AttendAdapter extends ArrayAdapter{
-        private  List<AttendanceModel> attendanceModelList;
+    public class TestAdapter extends ArrayAdapter {
+        private  List<TestModel> testModelList;
         private  int resource;
         private LayoutInflater inflater;
-        public AttendAdapter(@NonNull Context context, int resource, @NonNull List<AttendanceModel> objects) {
+        public TestAdapter(@NonNull Context context, int resource, @NonNull List<TestModel> objects) {
             super(context, resource, objects);
-            attendanceModelList = objects;
+            testModelList = objects;
             this.resource = resource;
             inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         }
@@ -162,12 +174,25 @@ public class Attendance_activity extends Home_activity {
             if(convertView == null){
                 convertView = inflater.inflate(resource,null);
             }
-            TextView tv_attend;
-            TextView tv_date;
-            tv_attend = (TextView)convertView.findViewById(R.id.tv_Attend);
-            tv_date = (TextView)convertView.findViewById(R.id.tv_Date);
-            tv_attend.setText(attendanceModelList.get(position).getAttendance());
-            tv_date.setText(attendanceModelList.get(position).getDate());
+            TextView tv_testDate;
+            TextView tv_testBatch;
+            TextView tv_Obtain;
+            TextView tv_Total;
+            TextView tv_Passing;
+            TextView tv_Subject;
+
+            tv_testDate = (TextView)convertView.findViewById(R.id.tv_testDate);
+            tv_testBatch = (TextView)convertView.findViewById(R.id.tv_testBatch);
+            tv_Obtain = (TextView)convertView.findViewById(R.id.tv_Obtain);
+            tv_Total = (TextView)convertView.findViewById(R.id.tv_Total);
+            tv_Passing = (TextView)convertView.findViewById(R.id.tv_Passing);
+            tv_Subject = (TextView)convertView.findViewById(R.id.tv_Subject);
+            tv_testDate.setText(testModelList.get(position).getTv_testDate());
+            tv_testBatch.setText(testModelList.get(position).getTv_testBatch());
+            tv_Obtain.setText(testModelList.get(position).getTv_Obtain());
+            tv_Total.setText(testModelList.get(position).getTv_Total());
+            tv_Passing.setText(testModelList.get(position).getTv_Passing());
+            tv_Subject.setText(testModelList.get(position).getTv_Subject());
             return convertView;
 
         }

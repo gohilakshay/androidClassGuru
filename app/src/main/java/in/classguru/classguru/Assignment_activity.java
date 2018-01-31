@@ -2,16 +2,14 @@ package in.classguru.classguru;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TableRow;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -32,30 +30,32 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
-import in.classguru.classguru.models.AttendanceModel;
+import in.classguru.classguru.models.AssignModel;
+import in.classguru.classguru.models.TestModel;
 
-public class Attendance_activity extends Home_activity {
+public class Assignment_activity extends Home_activity {
 
-    public ListView lv_attend;
+    public ListView lv_assign;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_attendance_activity);
-        Attendance_fetch attendance_fetch = new Attendance_fetch(this);
-        attendance_fetch.execute("student",globalid,globalpermissin,globaldbname);
+        setContentView(R.layout.activity_assignment_activity);
+        Assign_fetch assign_fetch = new Assign_fetch(this);
+        assign_fetch.execute("student",globalid,globalpermissin,globaldbname);
+        lv_assign = (ListView)findViewById(R.id.lv_assign);
 
-        lv_attend = (ListView)findViewById(R.id.lv_attend);
     }
+    public class Assign_fetch extends AsyncTask<String,Void,List<AssignModel>> {
 
-    public class Attendance_fetch extends AsyncTask<String,Void,List<AttendanceModel>>{
         Context context;
         android.app.AlertDialog alertDialog;
-        Attendance_fetch (Context ctx){
+        Assign_fetch (Context ctx){
             context = ctx;
         }
+
         @Override
-        protected List<AttendanceModel> doInBackground(String... params) {
+        protected List<AssignModel> doInBackground(String... params) {
             String type = params[0];
             String id = params[1];
             String permission = params[2];
@@ -83,29 +83,26 @@ public class Attendance_activity extends Home_activity {
                     while ((line = bufferedReader.readLine()) != null){
                         result += line;
                     }
-                    String fullattend="";
-                    String[] separated = new String[0];
                     JSONObject reader = new JSONObject(result);
-                    //String checkResult = reader.getString("std_attendance");
-                    reader.getJSONArray("std_attendance");
-                    List<AttendanceModel> attendList = new ArrayList<>();
-                    for(int i=0;i<reader.getJSONArray("std_attendance").length();i++){
-                        AttendanceModel attendanceModel = new AttendanceModel();
 
-                        fullattend = reader.getJSONArray("std_attendance").getString(i);
-                        if(!fullattend.equals("Match not found")) {
-                            separated = fullattend.split(",");
-                            attendanceModel.setAttendance(separated[0]);
-                            attendanceModel.setDate(separated[1]);
-                            attendList.add(attendanceModel);
-                        }
-                        /*attendanceModel.setAttendance();*/
+                    List<AssignModel> assignList = new ArrayList<>();
+                    JSONArray fulltest = reader.getJSONArray("assignment");
+
+                    for (int i=0;i<fulltest.length();i++){
+                        JSONObject finalObject = fulltest.getJSONObject(i);
+                        AssignModel assignModel = new AssignModel();
+                        assignModel.setTv_uploadId(finalObject.getString("upload_ID"));
+                        assignModel.setTv_fileName(finalObject.getString("filename"));
+                        assignModel.setTv_Desc(finalObject.getString("discription"));
+                        assignModel.setTv_UploadDate(finalObject.getString("date"));
+                        assignModel.setTv_Faculty(finalObject.getString("facultyname"));
+                        assignList.add(assignModel);
                     }
 
                     bufferedReader.close();
                     inputStream.close();
                     httpURLConnection.disconnect();
-                    return attendList;
+                    return assignList;
 
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
@@ -116,42 +113,37 @@ public class Attendance_activity extends Home_activity {
                 }
 
             }else{
-                List<AttendanceModel> attendList = new ArrayList<>();
-                return attendList;
+                List<AssignModel> assignList = new ArrayList<>();
+                return assignList;
             }
             return null;
         }
 
         @Override
         protected void onPreExecute() {
-            alertDialog = new android.app.AlertDialog.Builder(context).create();
             super.onPreExecute();
         }
 
         @Override
-        protected void onPostExecute(List<AttendanceModel> result) {
+        protected void onPostExecute(List<AssignModel> result) {
             super.onPostExecute(result);
-            //TODO need to set data to the list
-            AttendAdapter attendAdapter = new AttendAdapter(getApplicationContext(),R.layout.attendance_layout,result);
-            lv_attend.setAdapter(attendAdapter);
-             /*alertDialog.setMessage(result);
-            alertDialog.show();*/
+            Assignment_activity.AssignAdapter assignAdapter = new Assignment_activity.AssignAdapter(getApplicationContext(),R.layout.assignment_layout,result);
+            lv_assign.setAdapter(assignAdapter);
         }
 
         @Override
         protected void onProgressUpdate(Void... values) {
             super.onProgressUpdate(values);
         }
+
     }
-
-
-    public class AttendAdapter extends ArrayAdapter{
-        private  List<AttendanceModel> attendanceModelList;
+    public class AssignAdapter extends ArrayAdapter {
+        private  List<AssignModel> assignModelList;
         private  int resource;
         private LayoutInflater inflater;
-        public AttendAdapter(@NonNull Context context, int resource, @NonNull List<AttendanceModel> objects) {
+        public AssignAdapter(@NonNull Context context, int resource, @NonNull List<AssignModel> objects) {
             super(context, resource, objects);
-            attendanceModelList = objects;
+            assignModelList = objects;
             this.resource = resource;
             inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         }
@@ -162,12 +154,18 @@ public class Attendance_activity extends Home_activity {
             if(convertView == null){
                 convertView = inflater.inflate(resource,null);
             }
-            TextView tv_attend;
-            TextView tv_date;
-            tv_attend = (TextView)convertView.findViewById(R.id.tv_Attend);
-            tv_date = (TextView)convertView.findViewById(R.id.tv_Date);
-            tv_attend.setText(attendanceModelList.get(position).getAttendance());
-            tv_date.setText(attendanceModelList.get(position).getDate());
+
+            TextView tv_uploadId = (TextView)convertView.findViewById(R.id.tv_uploadId);
+            TextView tv_fileName = (TextView)convertView.findViewById(R.id.tv_fileName);
+            TextView tv_desc = (TextView)convertView.findViewById(R.id.tv_Desc);
+            TextView tv_facultyName = (TextView)convertView.findViewById(R.id.tv_Faculty);
+            TextView tv_update = (TextView)convertView.findViewById(R.id.tv_UploadDate);
+
+            tv_uploadId.setText(assignModelList.get(position).getTv_uploadId());
+            tv_fileName.setText(assignModelList.get(position).getTv_fileName());
+            tv_desc.setText(assignModelList.get(position).getTv_Desc());
+            tv_facultyName.setText(assignModelList.get(position).getTv_Faculty());
+            tv_update.setText(assignModelList.get(position).getTv_UploadDate());
             return convertView;
 
         }
