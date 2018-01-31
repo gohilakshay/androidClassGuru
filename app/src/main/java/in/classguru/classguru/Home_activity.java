@@ -105,51 +105,7 @@ public class Home_activity extends AppCompatActivity {
 
     }
 
-    public void OnLogout(MenuItem item) {
-        Intent intent = new Intent(Home_activity.this,MainActivity.class);
-        startActivity(intent);
-        finish();
-    }
-    public void OnFee(MenuItem item){
-        Intent intent = new Intent(Home_activity.this,Fee_activity.class);
-        intent.putExtra("id",globalid);
-        intent.putExtra("permission",globalpermissin);
-        intent.putExtra("dbname",globaldbname);
-        startActivity(intent);
-        finish();
-    }
-    public void OnProfile(MenuItem item){
-        Intent intent = new Intent(Home_activity.this,Home_activity.class);
-        intent.putExtra("id",globalid);
-        intent.putExtra("permission",globalpermissin);
-        intent.putExtra("dbname",globaldbname);
-        startActivity(intent);
-        finish();
-    }
-    public void OnAttend(MenuItem item){
-        Intent intent = new Intent(Home_activity.this,Attendance_activity.class);
-        intent.putExtra("id",globalid);
-        intent.putExtra("permission",globalpermissin);
-        intent.putExtra("dbname",globaldbname);
-        startActivity(intent);
-        finish();
-    }
-    public void OnTest(MenuItem item){
-        Intent intent = new Intent(Home_activity.this,Test_activity.class);
-        intent.putExtra("id",globalid);
-        intent.putExtra("permission",globalpermissin);
-        intent.putExtra("dbname",globaldbname);
-        startActivity(intent);
-        finish();
-    }
-    public void OnAssign(MenuItem item){
-        Intent intent = new Intent(Home_activity.this,Assignment_activity.class);
-        intent.putExtra("id",globalid);
-        intent.putExtra("permission",globalpermissin);
-        intent.putExtra("dbname",globaldbname);
-        startActivity(intent);
-        finish();
-    }
+
     /**
      * Created by a2z on 1/25/2018.
      */
@@ -275,5 +231,50 @@ public class Home_activity extends AppCompatActivity {
             super.onProgressUpdate(values);
         }
 
+    }
+
+    public void OnLogout(MenuItem item) {
+        Intent intent = new Intent(Home_activity.this,MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+    public void OnFee(MenuItem item){
+        Intent intent = new Intent(Home_activity.this,Fee_activity.class);
+        intent.putExtra("id",globalid);
+        intent.putExtra("permission",globalpermissin);
+        intent.putExtra("dbname",globaldbname);
+        startActivity(intent);
+        finish();
+    }
+    public void OnProfile(MenuItem item){
+        Intent intent = new Intent(Home_activity.this,Home_activity.class);
+        intent.putExtra("id",globalid);
+        intent.putExtra("permission",globalpermissin);
+        intent.putExtra("dbname",globaldbname);
+        startActivity(intent);
+        finish();
+    }
+    public void OnAttend(MenuItem item){
+        Intent intent = new Intent(Home_activity.this,Attendance_activity.class);
+        intent.putExtra("id",globalid);
+        intent.putExtra("permission",globalpermissin);
+        intent.putExtra("dbname",globaldbname);
+        startActivity(intent);
+        finish();
+    }
+    public void OnTest(MenuItem item){
+        Intent intent = new Intent(Home_activity.this,Test_activity.class);
+        intent.putExtra("id",globalid);
+        intent.putExtra("permission",globalpermissin);
+        intent.putExtra("dbname",globaldbname);
+        startActivity(intent);
+        finish();
+    }public void OnAssign(MenuItem item){
+        Intent intent = new Intent(Home_activity.this,Assignment_activity.class);
+        intent.putExtra("id",globalid);
+        intent.putExtra("permission",globalpermissin);
+        intent.putExtra("dbname",globaldbname);
+        startActivity(intent);
+        finish();
     }
 }
