@@ -4,9 +4,12 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -38,6 +41,8 @@ public class Test_activity extends Home_activity {
 
 
     public ListView lv_test;
+    public DrawerLayout mDrawerLayout;
+    public ActionBarDrawerToggle mToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +52,19 @@ public class Test_activity extends Home_activity {
         test_fetch.execute("student",globalid,globalpermissin,globaldbname);
 
         lv_test = (ListView)findViewById(R.id.lv_test);
+
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.testDrawer);
+        mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
+        mDrawerLayout.addDrawerListener(mToggle);
+        mToggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(mToggle.onOptionsItemSelected(item)){
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
     public class Test_fetch extends AsyncTask<String,Void,List<TestModel>>{
 

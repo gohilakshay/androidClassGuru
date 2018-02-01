@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:theme="@style/AppTheme.NoActionBar"
+    android:id="@+id/feeDrawer"
     tools:context="in.classguru.classguru.Fee_activity">
 <include layout="@layout/fee_layout" />
     <android.support.design.widget.NavigationView

@@ -3,6 +3,8 @@ package in.classguru.classguru;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -34,6 +36,8 @@ public class Fee_activity extends Home_activity {
     public TextView tv_received;
     public TextView tv_balance;
     public TextView tv_ampintall;
+    public DrawerLayout mDrawerLayout;
+    public ActionBarDrawerToggle mToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +54,20 @@ public class Fee_activity extends Home_activity {
         Fee_Activity_work fee_activity = new Fee_Activity_work(this);
         fee_activity.execute("student",globalid,globalpermissin,globaldbname);
 
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.feeDrawer);
+        mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
+        mDrawerLayout.addDrawerListener(mToggle);
+        mToggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(mToggle.onOptionsItemSelected(item)){
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public class Fee_Activity_work extends AsyncTask<String,Void,String> {

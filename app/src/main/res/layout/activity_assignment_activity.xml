@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/assignDrawer"
     tools:context="in.classguru.classguru.Assignment_activity">
 <include layout="@layout/assignment_layout" />
     <android.support.design.widget.NavigationView

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/attendDrawer"
     tools:context="in.classguru.classguru.Attendance_activity">
     <include layout="@layout/attendance_layout" />
     <android.support.design.widget.NavigationView
