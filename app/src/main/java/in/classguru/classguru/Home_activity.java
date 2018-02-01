@@ -9,11 +9,16 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Layout;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -39,6 +44,7 @@ public class Home_activity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
 
+
     private TextView tvname;
     private TextView tvbatch;
     private TextView tvtiming;
@@ -61,6 +67,19 @@ public class Home_activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+
+        // Create default options which will be used for every
+        //  displayImage(...) call if no options will be passed to this method
+        DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
+           .cacheInMemory(true)
+                .cacheOnDisk(true)
+           .build();
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getApplicationContext())
+           .defaultDisplayImageOptions(defaultOptions)
+           .build();
+        ImageLoader.getInstance().init(config); // Do it on Application start
+
+
         setContentView(R.layout.activity_home_activity);
         Intent data = getIntent();
         String id = data.getStringExtra("id");
@@ -113,6 +132,9 @@ public class Home_activity extends AppCompatActivity {
     public class Profile_Activity extends AsyncTask<String,Void,String> {
         Context context;
         android.app.AlertDialog alertDialog;
+        public ImageView im_profile;
+        public ImageView iv_sProfile;
+
         Profile_Activity (Context ctx){
             context = ctx;
         }
@@ -203,6 +225,9 @@ public class Home_activity extends AppCompatActivity {
                     String standard = finalresult.getString("standard_name");
                     tvstandard.setText(standard);
 
+                    String profile = finalresult.getString("stud_profile");
+
+
                     String batch_details = reader.getString("batch_details");
                     JSONObject batch = new JSONObject(batch_details);
                     String batchname = batch.getString("batch_name");
@@ -214,6 +239,14 @@ public class Home_activity extends AppCompatActivity {
                     JSONObject course = new JSONObject(course_details);
                     String coursename = course.getString("course_name");
                     tvcourse.setText(coursename);
+                    im_profile = (ImageView)findViewById(R.id.iv_profile);
+                    iv_sProfile = (ImageView)findViewById(R.id.iv_sProfile);
+                    if (im_profile != null ){
+                        // Then later, when you want to display image
+                        ImageLoader.getInstance().displayImage("https://classes.classguru.in/class/"+profile, im_profile);
+                        ImageLoader.getInstance().displayImage("https://classes.classguru.in/class/"+profile, iv_sProfile);
+                    }
+
 
                 }
                 else{

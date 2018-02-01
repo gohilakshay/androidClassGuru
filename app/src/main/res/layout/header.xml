@@ -7,10 +7,16 @@
     android:layout_height="160dp"
     android:background="#0891c7"
     android:padding="20dp">
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/iv_sProfile"
         android:src="@drawable/user"
         android:layout_width="75dp"
         android:layout_height="75dp" />
+    <!--<ImageView
+        android:id="@+id/iv_sProfile"
+        android:src="@drawable/user"
+        android:layout_width="75dp"
+        android:layout_height="75dp" />-->
 
     <TextView
         android:id="@+id/tvSideName"
