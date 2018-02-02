@@ -3,13 +3,18 @@ package in.classguru.classguru;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,6 +43,8 @@ public class Fee_activity extends Home_activity {
     public TextView tv_ampintall;
     public DrawerLayout mDrawerLayout;
     public ActionBarDrawerToggle mToggle;
+    public TextView tvSidenumb;
+    public TextView tvSidename;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,10 +58,18 @@ public class Fee_activity extends Home_activity {
         tv_received = (TextView)findViewById(R.id.tv_Received);
         tv_balance = (TextView)findViewById(R.id.tv_Balance);
         tv_ampintall = (TextView)findViewById(R.id.tv_AmpInstall);
+
         Fee_Activity_work fee_activity = new Fee_Activity_work(this);
         fee_activity.execute("student",globalid,globalpermissin,globaldbname);
 
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.feeDrawer);
+        mDrawerLayout = (DrawerLayout)findViewById(R.id.feeDrawer);
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.navSideBar);
+        View nav = navigationView.getHeaderView(0);
+
+        tvSidename = (TextView)nav.findViewById(R.id.tvSideName);
+        tvSidenumb = (TextView)nav.findViewById(R.id.tvSideNumb);
+
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
@@ -73,6 +88,8 @@ public class Fee_activity extends Home_activity {
     public class Fee_Activity_work extends AsyncTask<String,Void,String> {
         Context context;
         android.app.AlertDialog alertDialog;
+        public ImageView ivsprofile;
+
         Fee_Activity_work (Context ctx){
             context = ctx;
         }
@@ -160,6 +177,13 @@ public class Fee_activity extends Home_activity {
                         tv_balance.setText(balance);
                     String amtpinstall = finalresult.getString("amountper_installment");
                         tv_ampintall.setText(amtpinstall);
+
+                    tvSidename.setText(globalname);
+                    tvSidenumb.setText(globalnumb);
+                    ivsprofile = (ImageView)findViewById(R.id.iv_sProfile);
+
+                        // Then later, when you want to display image
+                        ImageLoader.getInstance().displayImage("https://classes.classguru.in/class/"+globalurl, ivsprofile);
 
                 }
                 else{

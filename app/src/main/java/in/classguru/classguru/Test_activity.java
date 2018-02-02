@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,8 +14,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -43,6 +47,8 @@ public class Test_activity extends Home_activity {
     public ListView lv_test;
     public DrawerLayout mDrawerLayout;
     public ActionBarDrawerToggle mToggle;
+    public TextView tvSidenumb;
+    public TextView tvSidename;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +60,12 @@ public class Test_activity extends Home_activity {
         lv_test = (ListView)findViewById(R.id.lv_test);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.testDrawer);
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.navSideBar);
+        View nav = navigationView.getHeaderView(0);
+
+        tvSidename = (TextView)nav.findViewById(R.id.tvSideName);
+        tvSidenumb = (TextView)nav.findViewById(R.id.tvSideNumb);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
@@ -167,6 +179,14 @@ public class Test_activity extends Home_activity {
             super.onPostExecute(result);
             TestAdapter testAdapter = new TestAdapter(getApplicationContext(),R.layout.test_layout,result);
             lv_test.setAdapter(testAdapter);
+
+            tvSidename.setText(globalname);
+            tvSidenumb.setText(globalnumb);
+            ImageView ivsprofile = (ImageView)findViewById(R.id.iv_sProfile);
+
+            // Then later, when you want to display image
+            ImageLoader.getInstance().displayImage("https://classes.classguru.in/class/"+globalurl, ivsprofile);
+
         }
 
         @Override

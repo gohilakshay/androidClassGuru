@@ -40,6 +40,10 @@ public class Home_activity extends AppCompatActivity {
     String globalid;
     String globalpermissin;
     String globaldbname;
+    String globalname;
+    String globalnumb;
+    String globalurl;
+
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
@@ -213,9 +217,12 @@ public class Home_activity extends AppCompatActivity {
                     String scontact = finalresult.getString("stud_contact");
                     tvScontact.setText(scontact);
                     tvSidenumb.setText(scontact);
+                    globalnumb = scontact;
                     String fullname = stud_name + " " + surname;
                     tvfullname.setText(fullname);
                     tvSidename.setText(fullname);
+                    globalname = fullname;
+
                     String gender = finalresult.getString("stud_gender");
                     tvgender.setText(gender);
                     String dob = finalresult.getString("stud_dob");
@@ -226,7 +233,7 @@ public class Home_activity extends AppCompatActivity {
                     tvstandard.setText(standard);
 
                     String profile = finalresult.getString("stud_profile");
-
+                    globalurl = profile;
 
                     String batch_details = reader.getString("batch_details");
                     JSONObject batch = new JSONObject(batch_details);
@@ -242,6 +249,7 @@ public class Home_activity extends AppCompatActivity {
                     im_profile = (ImageView)findViewById(R.id.iv_profile);
                     iv_sProfile = (ImageView)findViewById(R.id.iv_sProfile);
                     if (im_profile != null ){
+
                         // Then later, when you want to display image
                         ImageLoader.getInstance().displayImage("https://classes.classguru.in/class/"+profile, im_profile);
                         ImageLoader.getInstance().displayImage("https://classes.classguru.in/class/"+profile, iv_sProfile);
