@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+            <TableLayout
+                android:stretchColumns="*"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <TableRow android:layout_weight="9">
+
+                    <TextView
+                        android:id="@+id/tv_payMode"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+
+                        android:text="Payment \n Mode"
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_payDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+
+                        android:text="Payment \n Date"
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_chqPayDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+
+                        android:text="Cheque \n Date"
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_bankName"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+
+                        android:text="Bank \n Name"
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_chqNo"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+
+                        android:text="Cheque \n No."
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_trancId"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+
+                        android:text="Transaction \n ID"
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_recievedPay"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+
+                        android:text="Received \n "
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_recentPay"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+
+                        android:text="Paid \n Recently"
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_balance_fee"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+
+                        android:text="Balance \n "
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
+                </TableRow>
+            </TableLayout>
+</LinearLayout>
+

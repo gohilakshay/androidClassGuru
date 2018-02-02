@@ -3,19 +3,26 @@ package in.classguru.classguru;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -30,6 +37,11 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
+
+import in.classguru.classguru.models.AssignModel;
+import in.classguru.classguru.models.FeeModal;
 
 public class Fee_activity extends Home_activity {
     AlertDialog alertDialog;
@@ -45,6 +57,7 @@ public class Fee_activity extends Home_activity {
     public ActionBarDrawerToggle mToggle;
     public TextView tvSidenumb;
     public TextView tvSidename;
+    public ListView lv_feeShow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +71,8 @@ public class Fee_activity extends Home_activity {
         tv_received = (TextView)findViewById(R.id.tv_Received);
         tv_balance = (TextView)findViewById(R.id.tv_Balance);
         tv_ampintall = (TextView)findViewById(R.id.tv_AmpInstall);
+
+        lv_feeShow = (ListView)findViewById(R.id.lv_feeShow);
 
         Fee_Activity_work fee_activity = new Fee_Activity_work(this);
         fee_activity.execute("student",globalid,globalpermissin,globaldbname);
@@ -157,9 +172,10 @@ public class Fee_activity extends Home_activity {
             try {
                 if(!result.equals("faculty")) {
                     JSONObject reader = new JSONObject(result);
-                    String checkResult = reader.getString("student_fees");
 
-                    JSONObject finalresult = new JSONObject(checkResult);
+                    JSONArray fulltest = reader.getJSONArray("student_fees");
+                    JSONObject finalresult = fulltest.getJSONObject(0);
+
 
                     String install_option = finalresult.getString("installment_option");
                         tv_option.setText(install_option);
@@ -181,7 +197,29 @@ public class Fee_activity extends Home_activity {
                     tvSidename.setText(globalname);
                     tvSidenumb.setText(globalnumb);
                     ivsprofile = (ImageView)findViewById(R.id.iv_sProfile);
+                    List<FeeModal> feeModalList = new ArrayList<>();
 
+
+                    for (int i=0;i<fulltest.length();i++){
+                        JSONObject finalresult1 = fulltest.getJSONObject(i);
+                        FeeModal feeModal = new FeeModal();
+                        feeModal.setPay_mode(finalresult1.getString("payment_mode"));
+                        feeModal.setPay_date(finalresult1.getString("paydate"));
+                        feeModal.setChq_date(finalresult1.getString("chq_date"));
+                        feeModal.setBank_name(finalresult1.getString("bank_name"));
+                        feeModal.setChq_no(finalresult1.getString("chq_no"));
+                        feeModal.setTransc_id(finalresult1.getString("transc_id"));
+                        feeModal.setReceived(finalresult1.getString("recieved_fee"));
+                        if(finalresult1.has(("paid_fee"))) {
+                            feeModal.setPaid_rec(finalresult1.getString("paid_fee"));
+                        }else{
+                            feeModal.setPaid_rec("-");
+                        }
+                        feeModal.setBalance(finalresult1.getString("balance_fee"));
+                        feeModalList.add(feeModal);
+                    }
+                    Fee_activity.FeeAdapter feeAdapter = new Fee_activity.FeeAdapter(getApplicationContext(),R.layout.fee_detail_layout,feeModalList);
+                    lv_feeShow.setAdapter(feeAdapter);
                         // Then later, when you want to display image
                         ImageLoader.getInstance().displayImage("https://classes.classguru.in/class/"+globalurl, ivsprofile);
 
@@ -193,6 +231,48 @@ public class Fee_activity extends Home_activity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+        }
+    }
+    public class FeeAdapter extends ArrayAdapter {
+        private List<FeeModal> feeModelList;
+        private  int resource;
+        private LayoutInflater inflater;
+        public FeeAdapter(@NonNull Context context, int resource, @NonNull List<FeeModal> objects) {
+            super(context, resource, objects);
+            feeModelList = objects;
+            this.resource = resource;
+            inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        }
+
+        @NonNull
+        @Override
+        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+            if(convertView == null){
+                convertView = inflater.inflate(resource,null);
+            }
+
+
+            TextView tv_paymode = (TextView)convertView.findViewById(R.id.tv_payMode);
+            TextView tv_paydate = (TextView)convertView.findViewById(R.id.tv_payDate);
+            TextView tv_chqdate = (TextView)convertView.findViewById(R.id.tv_chqPayDate);
+            TextView tv_bankname = (TextView)convertView.findViewById(R.id.tv_bankName);
+            TextView tv_chq_no = (TextView)convertView.findViewById(R.id.tv_chqNo);
+            TextView tv_trancId = (TextView)convertView.findViewById(R.id.tv_trancId);
+            TextView tv_received = (TextView)convertView.findViewById(R.id.tv_recievedPay);
+            TextView tv_recent = (TextView)convertView.findViewById(R.id.tv_recentPay);
+            TextView tv_balance = (TextView)convertView.findViewById(R.id.tv_balance_fee);
+
+            tv_paymode.setText(feeModelList.get(position).getPay_mode());
+            tv_paydate.setText(feeModelList.get(position).getPay_date());
+            tv_chqdate.setText(feeModelList.get(position).getChq_date());
+            tv_bankname.setText(feeModelList.get(position).getBank_name());
+            tv_chq_no.setText(feeModelList.get(position).getChq_no());
+            tv_trancId.setText(feeModelList.get(position).getTransc_id());
+            tv_received.setText(feeModelList.get(position).getReceived());
+            tv_recent.setText(feeModelList.get(position).getPaid_rec());
+            tv_balance.setText(feeModelList.get(position).getBalance());
+            return convertView;
+
         }
     }
 
