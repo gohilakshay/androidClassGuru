@@ -162,7 +162,7 @@ public class Attendance_activity extends Home_activity {
         protected void onPostExecute(List<AttendanceModel> result) {
             super.onPostExecute(result);
             //TODO need to set data to the list
-            AttendAdapter attendAdapter = new AttendAdapter(getApplicationContext(),R.layout.attendance_layout,result);
+            AttendAdapter attendAdapter = new AttendAdapter(getApplicationContext(),R.layout.attendance_viewlayout,result);
             lv_attend.setAdapter(attendAdapter);
              /*alertDialog.setMessage(result);
             alertDialog.show();*/

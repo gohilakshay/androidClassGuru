@@ -161,7 +161,7 @@ public class Assignment_activity extends Home_activity {
         @Override
         protected void onPostExecute(List<AssignModel> result) {
             super.onPostExecute(result);
-            Assignment_activity.AssignAdapter assignAdapter = new Assignment_activity.AssignAdapter(getApplicationContext(),R.layout.assignment_layout,result);
+            Assignment_activity.AssignAdapter assignAdapter = new Assignment_activity.AssignAdapter(getApplicationContext(),R.layout.assignt_viewlayout,result);
             lv_assign.setAdapter(assignAdapter);
 
             tvSidename.setText(globalname);

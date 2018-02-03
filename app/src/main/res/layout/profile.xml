@@ -170,6 +170,7 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent">
         <TableLayout
+            android:paddingHorizontal="20dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -180,50 +181,52 @@
                 android:padding="10dp">
 
                 <TextView
-                    android:textColor="#4a4a4a"
-                    android:textSize="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Name"
-                    android:textAlignment="center" />
+                    android:textAlignment="gravity"
+                    android:textColor="#4a4a4a"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tvName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="3"
                     android:text="Akshay"
-                    android:textAlignment="center"
+                    android:textAlignment="gravity"
                     android:textColor="#4a4a4a"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
+                    android:textSize="15sp"
+                     />
             </TableRow>
             <TableRow
-
+                android:padding="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:textColor="#4a4a4a"
-                    android:textSize="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Father"
-                    android:textAlignment="center" />
+                    android:textAlignment="gravity"
+                    android:textColor="#4a4a4a"
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/tvFather"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="3"
                     android:text="Yogesh"
-                    android:textAlignment="center"
+                    android:textAlignment="gravity"
                     android:textColor="#4a4a4a"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
+                    android:textSize="15sp"
+                    />
             </TableRow>
             <TableRow
                 android:padding="10dp"
@@ -232,24 +235,25 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:textColor="#4a4a4a"
-                    android:textSize="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Mother"
-                    android:textAlignment="center" />
+                    android:textAlignment="gravity"
+                    android:textColor="#4a4a4a"
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/tvMother"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="3"
                     android:text="Neeta"
-                    android:textAlignment="center"
+                    android:textAlignment="gravity"
                     android:textColor="#4a4a4a"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
+                    android:textSize="15sp"
+                    />
             </TableRow>
             <TableRow
                 android:padding="10dp"
@@ -258,24 +262,24 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:textColor="#4a4a4a"
-                    android:textSize="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Contact P"
-                    android:textAlignment="center" />
+                    android:textAlignment="gravity"
+                    android:textColor="#4a4a4a"
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/tvContact"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="3"
                     android:text="9029307960"
-                    android:textAlignment="center"
+                    android:textAlignment="gravity"
                     android:textColor="#4a4a4a"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
+                    android:textSize="15sp"/>
             </TableRow>
             <TableRow
                 android:padding="10dp"
@@ -284,24 +288,24 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:textColor="#4a4a4a"
-                    android:textSize="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Gender"
-                    android:textAlignment="center" />
+                    android:textAlignment="gravity"
+                    android:textColor="#4a4a4a"
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/tvGender"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="3"
                     android:text="Male"
-                    android:textAlignment="center"
+                    android:textAlignment="gravity"
                     android:textColor="#4a4a4a"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
+                    android:textSize="15sp"/>
             </TableRow>
             <TableRow
                 android:padding="10dp"
@@ -310,24 +314,24 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:textColor="#4a4a4a"
-                    android:textSize="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="DOB"
-                    android:textAlignment="center" />
+                    android:textAlignment="gravity"
+                    android:textColor="#4a4a4a"
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/tvBirth"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="3"
                     android:text="29/4/1995"
-                    android:textAlignment="center"
+                    android:textAlignment="gravity"
                     android:textColor="#4a4a4a"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
+                    android:textSize="15sp"/>
             </TableRow>
             <!--<TableRow
             android:padding="10dp"
@@ -337,22 +341,23 @@
 
                 <TextView
                     android:textColor="#4a4a4a"
-                    android:textSize="20dp"
+                    android:textSize="15sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Email"
-                    android:textAlignment="center" />
+                    android:gravity="start"
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="3"
                     android:text="leoakshay95@gmail.com"
-                    android:textAlignment="center"
+                    android:gravity="start"
                     android:textColor="#4a4a4a"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
+                    android:textSize="15sp"
+                     />
             </TableRow>-->
             <TableRow
                 android:padding="10dp"
@@ -361,24 +366,24 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:textColor="#4a4a4a"
-                    android:textSize="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Course Type"
-                    android:textAlignment="center" />
+                    android:textAlignment="gravity"
+                    android:textColor="#4a4a4a"
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/tvCourseType"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="3"
                     android:text="Regular"
-                    android:textAlignment="center"
+                    android:textAlignment="gravity"
                     android:textColor="#4a4a4a"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
+                    android:textSize="15sp"/>
             </TableRow>
             <TableRow
                 android:padding="10dp"
@@ -388,23 +393,23 @@
 
                 <TextView
                     android:textColor="#4a4a4a"
-                    android:textSize="20dp"
+                    android:textSize="15sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Course"
-                    android:textAlignment="center" />
+                    android:textAlignment="gravity"
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/tvCourse"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="3"
                     android:text="Xth Sum"
-                    android:textAlignment="center"
+                    android:textAlignment="gravity"
                     android:textColor="#4a4a4a"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
+                    android:textSize="15sp"/>
             </TableRow>
             <TableRow
                 android:padding="10dp"
@@ -414,23 +419,23 @@
 
                 <TextView
                     android:textColor="#4a4a4a"
-                    android:textSize="20dp"
+                    android:textSize="15sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Standard"
-                    android:textAlignment="center" />
+                    android:textAlignment="gravity"
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/tvStandard"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="3"
                     android:text="10th"
-                    android:textAlignment="center"
+                    android:textAlignment="gravity"
                     android:textColor="#4a4a4a"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
+                    android:textSize="15sp"/>
             </TableRow>
 
         </TableLayout>

@@ -177,7 +177,7 @@ public class Test_activity extends Home_activity {
         @Override
         protected void onPostExecute(List<TestModel> result) {
             super.onPostExecute(result);
-            TestAdapter testAdapter = new TestAdapter(getApplicationContext(),R.layout.test_layout,result);
+            TestAdapter testAdapter = new TestAdapter(getApplicationContext(),R.layout.test_viewlayout,result);
             lv_test.setAdapter(testAdapter);
 
             tvSidename.setText(globalname);

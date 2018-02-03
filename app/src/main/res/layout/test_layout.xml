@@ -16,7 +16,6 @@
 
             <TextView
 
-                android:id="@+id/tv_testDate"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:text="Test \n Date"
@@ -25,7 +24,6 @@
 
             <TextView
 
-                android:id="@+id/tv_testBatch"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -35,8 +33,7 @@
 
             <TextView
 
-                android:id="@+id/tv_Obtain"
-                android:layout_width="60dp"
+                android:layout_width="70dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="Obtained \n Marks"
@@ -45,7 +42,6 @@
 
             <TextView
 
-                android:id="@+id/tv_Total"
                 android:layout_width="60dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -55,7 +51,6 @@
 
             <TextView
 
-                android:id="@+id/tv_Passing"
                 android:layout_width="60dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -65,7 +60,6 @@
 
             <TextView
 
-                android:id="@+id/tv_Subject"
                 android:layout_width="60dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
