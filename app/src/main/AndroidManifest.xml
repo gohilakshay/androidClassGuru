@@ -5,8 +5,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-
-
     <application
         android:name=".GlobalVariable"
         android:allowBackup="true"
@@ -27,11 +25,11 @@
             android:name=".Home_activity"
             android:label="@string/title_activity_home_activity"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity android:name=".Fee_activity" />
         <activity android:name=".Attendance_activity" />
         <activity android:name=".Test_activity" />
-        <activity android:name=".Assignment_activity"></activity>
+        <activity android:name=".Assignment_activity" />
+        <activity android:name=".Portion_activity"></activity>
     </application>
 
 </manifest>

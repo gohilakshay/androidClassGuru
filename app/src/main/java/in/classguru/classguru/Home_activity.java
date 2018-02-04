@@ -311,8 +311,17 @@ public class Home_activity extends AppCompatActivity {
         intent.putExtra("dbname",globaldbname);
         startActivity(intent);
         finish();
-    }public void OnAssign(MenuItem item){
+    }
+    public void OnAssign(MenuItem item){
         Intent intent = new Intent(Home_activity.this,Assignment_activity.class);
+        intent.putExtra("id",globalid);
+        intent.putExtra("permission",globalpermissin);
+        intent.putExtra("dbname",globaldbname);
+        startActivity(intent);
+        finish();
+    }
+    public void OnPortion(MenuItem item){
+        Intent intent = new Intent(Home_activity.this,Portion_activity.class);
         intent.putExtra("id",globalid);
         intent.putExtra("permission",globalpermissin);
         intent.putExtra("dbname",globaldbname);
