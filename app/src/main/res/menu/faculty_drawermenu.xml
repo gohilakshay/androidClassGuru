@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/profile" android:title="Profile" android:icon="@drawable/ic_user" />
+    <item android:id="@+id/fee" android:title="Salary Details" android:icon="@drawable/ic_wallet"/>
+    <item android:id="@+id/attend" android:title="My Attendance" android:icon="@drawable/ic_attendance" />
+    <item android:id="@+id/test" android:title="Student Attendance" android:icon="@drawable/ic_testdetails"/>
+    <item android:id="@+id/assignment" android:title="Announcement" android:icon="@drawable/ic_assignment" />
+    <item android:id="@+id/portion" android:title="Portion" android:icon="@drawable/ic_assignment" />
+    <!--<item android:id="@+id/t_attend" android:title="Teacher Attendance" android:icon="@drawable/ic_teacher_attend"/>
+    <item android:id="@+id/portion_details" android:title="Portion Details" android:icon="@drawable/ic_testdetails"/>
+    <item android:id="@+id/announcements" android:title="Announcements" android:icon="@drawable/ic_announcement"/>-->
+    <item android:id="@+id/logout" android:icon="@drawable/ic_logout" android:title="Logout"  />
+</menu>

@@ -92,22 +92,40 @@ public class backgroundWorker extends AsyncTask<String,Void,String> {
                 String dbname = reader.getString("dbname");
                 JSONObject reader1 = new JSONObject(checkResult);
                 String permission = reader1.getString("permission");
-                if(reader1.getString("stud_ID").matches("")){
-                    id = reader1.getString("t_ID");
+                if(permission.equals("student")){
+                    if(reader1.getString("stud_ID").matches("")){
+                        id = reader1.getString("t_ID");
+                    }
+                    else if(reader1.getString("t_ID").matches("")){
+                        id = reader1.getString("stud_ID");
+                    }else{
+                        id = "Not Found";
+                    }
+
+                    Intent intent = new Intent(context, Home_activity.class);
+                    intent.putExtra("id",id);
+                    intent.putExtra("permission",permission);
+                    intent.putExtra("dbname",dbname);
+                    context.startActivity(intent);
                 }
-                else if(reader1.getString("t_ID").matches("")){
-                    id = reader1.getString("stud_ID");
-                }else{
-                    id = "Not Found";
+                else{
+                    if(reader1.getString("stud_ID").matches("")){
+                        id = reader1.getString("t_ID");
+                    }
+                    else if(reader1.getString("t_ID").matches("")){
+                        id = reader1.getString("stud_ID");
+                    }else{
+                        id = "Not Found";
+                    }
+
+                    Intent intent = new Intent(context, Faculty_Home_Activity.class);
+                    intent.putExtra("id",id);
+                    intent.putExtra("permission",permission);
+                    intent.putExtra("dbname",dbname);
+                    context.startActivity(intent);
+                    alertDialog.setMessage(permission);
+                    alertDialog.show();
                 }
-
-                Intent intent = new Intent(context, Home_activity.class);
-                intent.putExtra("id",id);
-                intent.putExtra("permission",permission);
-                intent.putExtra("dbname",dbname);
-                context.startActivity(intent);
-
-
             }else{
                 alertDialog.setMessage("Sorry Enter a valid username and password !!");
                 alertDialog.show();

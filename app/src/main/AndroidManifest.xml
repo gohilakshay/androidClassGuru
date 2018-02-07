@@ -29,7 +29,8 @@
         <activity android:name=".Attendance_activity" />
         <activity android:name=".Test_activity" />
         <activity android:name=".Assignment_activity" />
-        <activity android:name=".Portion_activity"></activity>
+        <activity android:name=".Portion_activity" />
+        <activity android:name=".Faculty_Home_Activity"></activity>
     </application>
 
 </manifest>
