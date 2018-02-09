@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/FaSal"
     tools:context="in.classguru.classguru.FacSalaryActivity">
-
+<include layout="@layout/fac_sal_layout" />
     <android.support.design.widget.NavigationView
 
         android:id="@+id/navSideBar"
