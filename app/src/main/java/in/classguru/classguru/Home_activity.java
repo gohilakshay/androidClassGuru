@@ -258,7 +258,7 @@ public class Home_activity extends AppCompatActivity {
 
                 }
                 else{
-                       alertDialog.setMessage("faculty Work in Progress");
+                       alertDialog.setMessage("Please Login Correctly Student");
                        alertDialog.show();
                 }
             } catch (JSONException e) {

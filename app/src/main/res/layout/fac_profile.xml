@@ -22,6 +22,7 @@
                 android:layout_height="30dp"
                 android:src="@drawable/ic_navigation"/>-->
             <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/iv_FacProfile"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_gravity="center"
@@ -37,6 +38,7 @@
                 android:adjustViewBounds="false"
                 android:src="@drawable/ic_user" />-->
             <TextView
+                android:id="@+id/tv_FacFullname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -46,6 +48,7 @@
                 android:textSize="20sp" />
 
             <TextView
+                android:id="@+id/tv_FacNumb"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -55,19 +58,7 @@
 
 
         </LinearLayout>
-        <android.support.v7.widget.CardView
-            app:cardCornerRadius="15dp"
-            android:layout_margin="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/iv_Facnav"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="#4af9fcfd"
-                android:src="@drawable/ic_navigation" />
-        </android.support.v7.widget.CardView>
         <android.support.v7.widget.CardView
             android:layout_marginTop="215dp"
             android:layout_centerHorizontal="true"
@@ -97,7 +88,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="Xth-A"
+                        android:text="--"
                         android:textColor="#4a4a4a"
                         android:textSize="24dp"
                         android:textStyle="bold" />
@@ -120,7 +111,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="Morning"
+                        android:text="--"
                         android:textColor="#4a4a4a"
                         android:textSize="24dp"
                         android:textStyle="bold" />
@@ -143,7 +134,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="2018"
+                        android:text="--"
                         android:textColor="#4a4a4a"
                         android:textSize="24dp"
                         android:textStyle="bold" />
@@ -159,7 +150,7 @@
         android:layout_gravity="center"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="300dp">
+        android:layout_height="250dp">
         <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent">
@@ -185,6 +176,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/tv_FacName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
@@ -210,60 +202,11 @@
                         android:textStyle="bold"/>
 
                     <TextView
+                        android:id="@+id/tv_FacFather"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
                         android:text="Yogesh"
-                        android:textAlignment="gravity"
-                        android:textColor="#4a4a4a"
-                        android:textSize="15sp" />
-                </TableRow>
-                <TableRow
-                    android:padding="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Mother"
-                        android:textAlignment="gravity"
-                        android:textColor="#4a4a4a"
-                        android:textSize="15sp"
-                        android:textStyle="bold"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:text="Neeta"
-                        android:textAlignment="gravity"
-                        android:textColor="#4a4a4a"
-                        android:textSize="15sp" />
-                </TableRow>
-                <TableRow
-                    android:padding="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Contact P"
-                        android:textAlignment="gravity"
-                        android:textColor="#4a4a4a"
-                        android:textSize="15sp"
-                        android:textStyle="bold"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:text="9029307960"
                         android:textAlignment="gravity"
                         android:textColor="#4a4a4a"
                         android:textSize="15sp" />
@@ -285,6 +228,7 @@
                         android:textStyle="bold"/>
 
                     <TextView
+                        android:id="@+id/tv_FacGender"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
@@ -310,6 +254,7 @@
                         android:textStyle="bold"/>
 
                     <TextView
+                        android:id="@+id/tv_FacDob"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
@@ -354,13 +299,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Course Type"
+                        android:text="Qualification"
                         android:textAlignment="gravity"
                         android:textColor="#4a4a4a"
                         android:textSize="15sp"
                         android:textStyle="bold"/>
 
                     <TextView
+                        android:id="@+id/tv_FacQuali"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
@@ -381,11 +327,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Course"
+                        android:text="Joining \n Date"
                         android:textAlignment="gravity"
                         android:textStyle="bold"/>
 
                     <TextView
+                        android:id="@+id/tv_FacJoin"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
@@ -406,11 +353,38 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Standard"
+                        android:text="Salary"
                         android:textAlignment="gravity"
                         android:textStyle="bold"/>
 
                     <TextView
+                        android:id="@+id/tv_FacSalary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:text="1000"
+                        android:textAlignment="gravity"
+                        android:textColor="#4a4a4a"
+                        android:textSize="15sp" />
+                </TableRow>
+                <TableRow
+                    android:padding="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:textColor="#4a4a4a"
+                        android:textSize="15sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="PayStatus"
+                        android:textAlignment="gravity"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/tv_FacPayStatus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="3"

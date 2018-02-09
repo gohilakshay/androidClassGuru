@@ -123,8 +123,6 @@ public class backgroundWorker extends AsyncTask<String,Void,String> {
                     intent.putExtra("permission",permission);
                     intent.putExtra("dbname",dbname);
                     context.startActivity(intent);
-                    alertDialog.setMessage(permission);
-                    alertDialog.show();
                 }
             }else{
                 alertDialog.setMessage("Sorry Enter a valid username and password !!");
