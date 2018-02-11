@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/FaStudAt"
     tools:context="in.classguru.classguru.FacStudAttendActivity">
-
+<include layout="@layout/fac_studattend_layout" />
     <android.support.design.widget.NavigationView
 
         android:id="@+id/navSideBar"

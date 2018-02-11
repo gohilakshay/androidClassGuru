@@ -159,7 +159,7 @@ public class FacSalaryActivity extends Faculty_Home_Activity {
                     facSalaryModel.setTrancID(finalresult.getString("transc_id"));
                     facSalaryModelList.add(facSalaryModel);
                 }
-                FacSalaryActivity.SalaryAdapter salaryAdapter = new FacSalaryActivity.SalaryAdapter(getApplicationContext(),R.layout.fac_sal_layout,facSalaryModelList);
+                FacSalaryActivity.SalaryAdapter salaryAdapter = new FacSalaryActivity.SalaryAdapter(getApplicationContext(),R.layout.facsal_layout,facSalaryModelList);
                 lv_facSalary.setAdapter(salaryAdapter);
                 //String salary = finalresult.getString("salary");
                 //alertDialog.setMessage(salary);

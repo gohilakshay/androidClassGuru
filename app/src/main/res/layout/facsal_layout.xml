@@ -4,65 +4,58 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/tv_FacAmt"
             android:layout_width="80dp"
             android:layout_height="40dp"
             android:padding="10dp"
             android:text="Amt"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/tv_FacPayMode"
             android:layout_width="80dp"
             android:layout_height="40dp"
             android:padding="10dp"
             android:text="PayMode"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="80dp"
-            android:layout_height="40dp"
-            android:padding="10dp"
-            android:text="PayDate"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+    <TextView
+        android:id="@+id/tv_FacpayDate"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:padding="10dp"
+        android:text="PayDate"
+        android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="80dp"
-            android:layout_height="40dp"
-            android:padding="10dp"
-            android:text="ChqNo."
-            android:textSize="16sp"
-            android:textStyle="bold" />
+    <TextView
+        android:id="@+id/tv_FacChqNo"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:padding="10dp"
+        android:text="ChqNo."
+        android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="80dp"
-            android:layout_height="40dp"
-            android:padding="10dp"
-            android:text="ChqDate"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+    <TextView
+        android:id="@+id/tv_FacChqDate"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:padding="10dp"
+        android:text="ChqDate"
+        android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="80dp"
-            android:layout_height="40dp"
-            android:padding="10dp"
-            android:text="BankName"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+    <TextView
+        android:id="@+id/tv_FacBankName"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:padding="10dp"
+        android:text="BankName"
+        android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="80dp"
-            android:layout_height="40dp"
-            android:padding="10dp"
-            android:text="TrancID"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+    <TextView
+        android:id="@+id/tv_FacTrancID"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:padding="10dp"
+        android:text="TrancID"
+        android:textSize="16sp" />
     </LinearLayout>

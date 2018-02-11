@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:padding="10dp"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context="in.classguru.classguru.FacSalaryActivity">
 
     <HorizontalScrollView
         android:layout_width="match_parent"
@@ -18,60 +20,60 @@
             <TableRow>
 
                 <TextView
-                    android:id="@+id/tv_FacAmt"
                     android:layout_width="80dp"
                     android:layout_height="40dp"
                     android:padding="10dp"
                     android:text="Amt"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/tv_FacPayMode"
                     android:layout_width="80dp"
                     android:layout_height="40dp"
                     android:padding="10dp"
                     android:text="PayMode"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/tv_FacpayDate"
                     android:layout_width="80dp"
                     android:layout_height="40dp"
                     android:padding="10dp"
                     android:text="PayDate"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/tv_FacChqNo"
                     android:layout_width="80dp"
                     android:layout_height="40dp"
                     android:padding="10dp"
                     android:text="ChqNo."
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/tv_FacChqDate"
                     android:layout_width="80dp"
                     android:layout_height="40dp"
                     android:padding="10dp"
                     android:text="ChqDate"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/tv_FacBankName"
                     android:layout_width="80dp"
                     android:layout_height="40dp"
                     android:padding="10dp"
                     android:text="BankName"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/tv_FacTrancID"
                     android:layout_width="80dp"
                     android:layout_height="40dp"
                     android:padding="10dp"
                     android:text="TrancID"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
             </TableRow>
         </TableLayout>
 
