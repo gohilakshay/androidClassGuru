@@ -67,14 +67,22 @@ public class FacStudAttendActivity extends Faculty_Home_Activity {
         Ll_StudDetails = (LinearLayout)findViewById(R.id.Ll_StudDetails);
 
         Ll_StudDetails.setVisibility(Ll_StudDetails.INVISIBLE);
-        btn_markStud.setOnClickListener(new View.OnClickListener() {
+        /*btn_markStud.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Ll_StudDetails.setVisibility(Ll_StudDetails.VISIBLE);
 
             }
+        });*/
+        btn_markStud.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Ll_StudDetails.setVisibility(Ll_StudDetails.VISIBLE);
+                FacStudAttend_fetchbatch facStudAttend_fetchbatch = new FacStudAttend_fetchbatch(FacStudAttendActivity.this);
+                String batch_id = spinner.getSelectedItem().toString();
+                facStudAttend_fetchbatch.execute("facultyBatch",batch_id,globaldbname);
+            }
         });
-
         FacStudAttend_fetch facStudAttend_fetch = new FacStudAttend_fetch(this);
         facStudAttend_fetch.execute("faculty",globalid,globalpermissin,globaldbname);
 
@@ -218,5 +226,88 @@ public class FacStudAttendActivity extends Faculty_Home_Activity {
         }
 
 
+    }
+    public class FacStudAttend_fetchbatch extends AsyncTask<String,Void,String>{
+
+        Context context;
+        android.app.AlertDialog alertDialog;
+        FacStudAttend_fetchbatch (Context ctx){
+            context = ctx;
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            String type = params[0];
+            String id = params[1];
+           // String permission = params[2];
+            String dbname = params[2];
+            String login_url = "https://classes.classguru.in/class/api/student_batch_mapping.php";
+            if(type.equals("facultyBatch")){
+                try {
+                    URL profile_url = new URL(login_url);
+                    HttpURLConnection httpURLConnection = (HttpURLConnection) profile_url.openConnection();
+                    httpURLConnection.setRequestMethod("POST");
+                    httpURLConnection.setDoOutput(true);
+                    httpURLConnection.setDoInput(true);
+                    OutputStream outputStream = httpURLConnection.getOutputStream();
+                    BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+                    String post_data = URLEncoder.encode("batch_id","UTF-8")+"="+URLEncoder.encode(id,"UTF-8")+"&"
+                            +URLEncoder.encode("dbname","UTF-8")+"="+URLEncoder.encode(dbname,"UTF-8");
+                    bufferedWriter.write(post_data);
+                    bufferedWriter.flush();
+                    bufferedWriter.close();
+                    outputStream.close();
+                    InputStream inputStream = httpURLConnection.getInputStream();
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream,"iso-8859-1"));
+                    String result="";
+                    String line="";
+                    while ((line = bufferedReader.readLine()) != null){
+                        result += line;
+                    }
+                    bufferedReader.close();
+                    inputStream.close();
+                    httpURLConnection.disconnect();
+                    return result;
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }else{
+                return "faculty";
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            alertDialog = new android.app.AlertDialog.Builder(context).create();
+            super.onPreExecute();
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+            super.onProgressUpdate(values);
+
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            //super.onPostExecute(result);
+            alertDialog.setMessage(result);
+            alertDialog.show();
+            /*try {
+                JSONObject reader = new JSONObject(result);
+                alertDialog.setMessage("sadsadsadasd");
+                alertDialog.show();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }*/
+
+
+
+        }
     }
 }
