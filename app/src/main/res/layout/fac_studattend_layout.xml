@@ -40,18 +40,67 @@
         </TableRow>
     </TableLayout>
 
+
     <LinearLayout
         android:id="@+id/Ll_StudDetails"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="10dp">
+        <View
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:background="#d6d7d7"/>
+<TableLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TableRow>
 
         <TextView
-            android:id="@+id/textView2"
+
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Stud_id"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Studname"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+    </TableRow>
+</TableLayout>
+        <View
+            android:layout_marginTop="10dp"
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:background="#d6d7d7"/>
+
+        <ListView
+            android:layout_weight="5"
+            android:id="@+id/lv_facStudMark"
+            android:layout_width="match_parent"
+            android:layout_height="248dp" />
+
+        <Button
+            android:id="@+id/btn_markAbsent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Akshay" />
+            android:layout_weight="1"
+            android:text="Mark Absent" />
     </LinearLayout>
 
 </LinearLayout>

@@ -4,17 +4,23 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -48,6 +54,8 @@ public class FacStudAttendActivity extends Faculty_Home_Activity {
     static final int DILOG_ID = 0;
     Button btn_markStud;
     LinearLayout Ll_StudDetails;
+    public ListView lv_facStudMark;
+    public Button btn_markAbsent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,16 +72,12 @@ public class FacStudAttendActivity extends Faculty_Home_Activity {
 
         spinner = (Spinner) findViewById(R.id.spinner);
         btn_markStud = (Button)findViewById(R.id.btn_markStud);
+        btn_markAbsent = (Button)findViewById(R.id.btn_markAbsent);
         Ll_StudDetails = (LinearLayout)findViewById(R.id.Ll_StudDetails);
 
         Ll_StudDetails.setVisibility(Ll_StudDetails.INVISIBLE);
-        /*btn_markStud.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Ll_StudDetails.setVisibility(Ll_StudDetails.VISIBLE);
 
-            }
-        });*/
+        lv_facStudMark = (ListView)findViewById(R.id.lv_facStudMark);
         btn_markStud.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -92,6 +96,15 @@ public class FacStudAttendActivity extends Faculty_Home_Activity {
         day_x = cal.get(Calendar.DAY_OF_MONTH);
 
         showDialogOnClick();
+
+        btn_markAbsent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MarkAbset_post markAbset_post = new MarkAbset_post(FacStudAttendActivity.this);
+                markAbset_post.execute("hello");
+            }
+        });
+
 
     }
     @Override
@@ -296,18 +309,135 @@ public class FacStudAttendActivity extends Faculty_Home_Activity {
         @Override
         protected void onPostExecute(String result) {
             //super.onPostExecute(result);
-            alertDialog.setMessage(result);
-            alertDialog.show();
-            /*try {
+            String dateSelect = day_x +"/"+month_x+"/"+year_x;
+            try {
                 JSONObject reader = new JSONObject(result);
-                alertDialog.setMessage("sadsadsadasd");
-                alertDialog.show();
+                String reader1 = reader.getString("stud_details");
+                if(reader1.equals("student batch id not found")){
+                    alertDialog.setMessage("No students in selected Batch");
+                    alertDialog.show();
+                }else{
+                    JSONArray fulltest = reader.getJSONArray("stud_details");
+                    List<FacStudAttendModel> facStudAttendModelList = new ArrayList<>();
+
+                    for (int i=0;i<fulltest.length();i++){
+                        JSONObject finalresult = fulltest.getJSONObject(i);
+                        FacStudAttendModel facStudAttendModel = new FacStudAttendModel();
+                        facStudAttendModel.setStudid(finalresult.getString("stud_ID"));
+                        facStudAttendModel.setStudName(finalresult.getString("stud_name") +" "+ finalresult.getString("stud_surname"));
+                        facStudAttendModelList.add(facStudAttendModel);
+                    }
+
+                    FacStudAttendActivity.FacStudAttendMarkAdapter facStudAttendMarkAdapter = new FacStudAttendActivity.FacStudAttendMarkAdapter(getApplicationContext(),R.layout.facstudattend_mark_layout,facStudAttendModelList);
+                    lv_facStudMark.setAdapter(facStudAttendMarkAdapter);
+
+                }
             } catch (JSONException e) {
                 e.printStackTrace();
-            }*/
+            }
+        }
+    }
+    public class FacStudAttendMarkAdapter extends ArrayAdapter{
+        private List<FacStudAttendModel> facStudAttendModelList;
+        private  int resource;
+        private LayoutInflater inflater;
+
+        public FacStudAttendMarkAdapter(@NonNull Context context, int resource, @NonNull List<FacStudAttendModel> objects) {
+            super(context, resource, objects);
+            facStudAttendModelList = objects;
+            this.resource = resource;
+            inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        }
+
+        @NonNull
+        @Override
+        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+            if (convertView == null) {
+                convertView = inflater.inflate(resource, null);
+            }
+            TextView tv_stud_id = (TextView)convertView.findViewById(R.id.tv_studMark_id);
+            TextView tv_stud_name = (TextView)convertView.findViewById(R.id.tv_studMark_name);
+
+            CheckBox cb_StudAttend = (CheckBox)convertView.findViewById(R.id.cb_StudAttend);
+
+            tv_stud_id.setText(facStudAttendModelList.get(position).getStudid());
+            tv_stud_name.setText(facStudAttendModelList.get(position).getStudName());
+            cb_StudAttend.setTag(facStudAttendModelList.get(position).getStudid());
+
+            return convertView;
+        }
+    }
 
 
+    public class MarkAbset_post extends AsyncTask<String,Void,String>{
+        Context context;
+        android.app.AlertDialog alertDialog;
+        MarkAbset_post (Context ctx){
+            context = ctx;
+        }
 
+        @Override
+        protected String doInBackground(String... params) {
+            String type = params[0];
+            //String id = params[1];
+            // String permission = params[2];
+            // String dbname = params[2];
+            String login_url = "https://classes.classguru.in/class/api/student_batch_mapping.php";
+            if(type.equals("facultyBatch")){
+                /*try {
+                    URL profile_url = new URL(login_url);
+                    HttpURLConnection httpURLConnection = (HttpURLConnection) profile_url.openConnection();
+                    httpURLConnection.setRequestMethod("POST");
+                    httpURLConnection.setDoOutput(true);
+                    httpURLConnection.setDoInput(true);
+                    OutputStream outputStream = httpURLConnection.getOutputStream();
+                    BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+                    String post_data = URLEncoder.encode("batch_id","UTF-8")+"="+URLEncoder.encode(id,"UTF-8")+"&"
+                            +URLEncoder.encode("dbname","UTF-8")+"="+URLEncoder.encode(dbname,"UTF-8");
+                    bufferedWriter.write(post_data);
+                    bufferedWriter.flush();
+                    bufferedWriter.close();
+                    outputStream.close();
+                    InputStream inputStream = httpURLConnection.getInputStream();
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream,"iso-8859-1"));
+                    String result="";
+                    String line="";
+                    while ((line = bufferedReader.readLine()) != null){
+                        result += line;
+                    }
+                    bufferedReader.close();
+                    inputStream.close();
+                    httpURLConnection.disconnect();
+                    return result;
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }*/
+                return "Stud";
+            }else{
+                return "faculty";
+            }
+            //return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+            super.onProgressUpdate(values);
+        }
+
+        @Override
+        protected void onPreExecute() {
+            alertDialog = new android.app.AlertDialog.Builder(context).create();
+            super.onPreExecute();
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            alertDialog.setMessage("No students in selected Batch");
+            alertDialog.show();
+            super.onPostExecute(result);
         }
     }
 }

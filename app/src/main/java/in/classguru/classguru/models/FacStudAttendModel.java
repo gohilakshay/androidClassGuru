@@ -5,32 +5,23 @@ package in.classguru.classguru.models;
  */
 
 public class FacStudAttendModel {
-    String Facbatchid;
-    String Facbatchname;
+    String studid;
 
-    public String getFacbatchid() {
-        return Facbatchid;
+    public String getStudid() {
+        return studid;
     }
 
-    public void setFacbatchid(String facbatchid) {
-        Facbatchid = facbatchid;
+    public void setStudid(String studid) {
+        this.studid = studid;
     }
 
-    public String getFacbatchname() {
-        return Facbatchname;
+    public String getStudName() {
+        return studName;
     }
 
-    public void setFacbatchname(String facbatchname) {
-        Facbatchname = facbatchname;
+    public void setStudName(String studName) {
+        this.studName = studName;
     }
 
-    public String getFacbatchtiming() {
-        return Facbatchtiming;
-    }
-
-    public void setFacbatchtiming(String facbatchtiming) {
-        Facbatchtiming = facbatchtiming;
-    }
-
-    String Facbatchtiming;
+    String studName;
 }
