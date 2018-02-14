@@ -56,6 +56,7 @@ public class FacStudAttendActivity extends Faculty_Home_Activity {
     LinearLayout Ll_StudDetails;
     public ListView lv_facStudMark;
     public Button btn_markAbsent;
+    public CheckBox cb_studAttend;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -358,11 +359,11 @@ public class FacStudAttendActivity extends Faculty_Home_Activity {
             TextView tv_stud_id = (TextView)convertView.findViewById(R.id.tv_studMark_id);
             TextView tv_stud_name = (TextView)convertView.findViewById(R.id.tv_studMark_name);
 
-            CheckBox cb_StudAttend = (CheckBox)convertView.findViewById(R.id.cb_StudAttend);
+            cb_studAttend = (CheckBox)convertView.findViewById(R.id.cb_StudAttend);
 
             tv_stud_id.setText(facStudAttendModelList.get(position).getStudid());
             tv_stud_name.setText(facStudAttendModelList.get(position).getStudName());
-            cb_StudAttend.setTag(facStudAttendModelList.get(position).getStudid());
+            cb_studAttend.setTag(facStudAttendModelList.get(position).getStudid());
 
             return convertView;
         }
@@ -435,7 +436,8 @@ public class FacStudAttendActivity extends Faculty_Home_Activity {
 
         @Override
         protected void onPostExecute(String result) {
-            alertDialog.setMessage("No students in selected Batch");
+            String gettag = (String) cb_studAttend.getTag();
+            alertDialog.setMessage(gettag);
             alertDialog.show();
             super.onPostExecute(result);
         }
