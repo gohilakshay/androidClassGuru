@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/FaAn"
     tools:context="in.classguru.classguru.FacAnnouncActivity">
-
+<include layout="@layout/fac_announc_layout" />
     <android.support.design.widget.NavigationView
 
         android:id="@+id/navSideBar"

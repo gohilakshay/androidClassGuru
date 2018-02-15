@@ -1,15 +1,18 @@
 package in.classguru.classguru;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.os.Bundle;
+import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CheckedTextView;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -57,6 +61,7 @@ public class FacStudAttendActivity extends Faculty_Home_Activity {
     public ListView lv_facStudMark;
     public Button btn_markAbsent;
     public CheckBox cb_studAttend;
+    public String batch_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,8 +89,8 @@ public class FacStudAttendActivity extends Faculty_Home_Activity {
             public void onClick(View view) {
                 Ll_StudDetails.setVisibility(Ll_StudDetails.VISIBLE);
                 FacStudAttend_fetchbatch facStudAttend_fetchbatch = new FacStudAttend_fetchbatch(FacStudAttendActivity.this);
-                String batch_id = spinner.getSelectedItem().toString();
-                facStudAttend_fetchbatch.execute("facultyBatch",batch_id,globaldbname);
+                batch_id = spinner.getSelectedItem().toString();
+                facStudAttend_fetchbatch.execute("facultyBatch", batch_id,globaldbname);
             }
         });
         FacStudAttend_fetch facStudAttend_fetch = new FacStudAttend_fetch(this);
@@ -101,8 +106,30 @@ public class FacStudAttendActivity extends Faculty_Home_Activity {
         btn_markAbsent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MarkAbset_post markAbset_post = new MarkAbset_post(FacStudAttendActivity.this);
-                markAbset_post.execute("hello");
+               // MarkAbset_post markAbset_post = new MarkAbset_post(FacStudAttendActivity.this);
+               // markAbset_post.execute("hello");
+                List<String> studAbsentList = new ArrayList<>();
+                List<String> studlist = new ArrayList<>();
+                for(int i=0;i<lv_facStudMark.getChildCount();i++){
+                    View view1 = (View)lv_facStudMark.getChildAt(i);
+                    CheckBox check = (CheckBox) view1.findViewById(R.id.cb_StudAttend);
+                    if(check.isChecked()){
+                        studAbsentList.add(check.getTag().toString());
+                        studlist.add(check.getTag().toString());
+                    }else{
+                        studlist.add(check.getTag().toString());
+                    }
+                }
+                String idsAbsent = android.text.TextUtils.join(",", studAbsentList);
+                String studIds = android.text.TextUtils.join(",",studlist);
+                String attendDate = year_x+"-"+month_x+"-"+day_x;
+                 MarkAbset_post markAbset_post = new MarkAbset_post(FacStudAttendActivity.this);
+                 markAbset_post.execute("markAttend",batch_id,attendDate,studIds,idsAbsent,globaldbname);
+
+                /*new AlertDialog.Builder( FacStudAttendActivity.this )
+                .setMessage(batch_id)
+                .show();*/
+
             }
         });
 
@@ -380,12 +407,14 @@ public class FacStudAttendActivity extends Faculty_Home_Activity {
         @Override
         protected String doInBackground(String... params) {
             String type = params[0];
-            //String id = params[1];
-            // String permission = params[2];
-            // String dbname = params[2];
-            String login_url = "https://classes.classguru.in/class/api/student_batch_mapping.php";
-            if(type.equals("facultyBatch")){
-                /*try {
+            String batch_id = params[1];
+             String attendDate = params[2];
+             String studIds = params[3];
+             String idsAbsent = params[4];
+             String dbname = params[5];
+            String login_url = "https://classes.classguru.in/class/api/FacmarkStudAttend.php";
+            if(type.equals("markAttend")){
+                try {
                     URL profile_url = new URL(login_url);
                     HttpURLConnection httpURLConnection = (HttpURLConnection) profile_url.openConnection();
                     httpURLConnection.setRequestMethod("POST");
@@ -393,8 +422,11 @@ public class FacStudAttendActivity extends Faculty_Home_Activity {
                     httpURLConnection.setDoInput(true);
                     OutputStream outputStream = httpURLConnection.getOutputStream();
                     BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
-                    String post_data = URLEncoder.encode("batch_id","UTF-8")+"="+URLEncoder.encode(id,"UTF-8")+"&"
-                            +URLEncoder.encode("dbname","UTF-8")+"="+URLEncoder.encode(dbname,"UTF-8");
+                    String post_data = URLEncoder.encode("batch_id","UTF-8")+"="+URLEncoder.encode(batch_id,"UTF-8")+"&"
+                            +URLEncoder.encode("dbname","UTF-8")+"="+URLEncoder.encode(dbname,"UTF-8")+"&"
+                            +URLEncoder.encode("attendDate","UTF-8")+"="+URLEncoder.encode(attendDate,"UTF-8")+"&"
+                            +URLEncoder.encode("studIds","UTF-8")+"="+URLEncoder.encode(studIds,"UTF-8")+"&"
+                            +URLEncoder.encode("idsAbsent","UTF-8")+"="+URLEncoder.encode(idsAbsent,"UTF-8");
                     bufferedWriter.write(post_data);
                     bufferedWriter.flush();
                     bufferedWriter.close();
@@ -415,7 +447,7 @@ public class FacStudAttendActivity extends Faculty_Home_Activity {
                     e.printStackTrace();
                 } catch (IOException e) {
                     e.printStackTrace();
-                }*/
+                }
                 return "Stud";
             }else{
                 return "faculty";
@@ -436,9 +468,23 @@ public class FacStudAttendActivity extends Faculty_Home_Activity {
 
         @Override
         protected void onPostExecute(String result) {
-            String gettag = (String) cb_studAttend.getTag();
-            alertDialog.setMessage(gettag);
-            alertDialog.show();
+
+            if(result.equals("New record created successfully")){
+                alertDialog.setMessage("Attendance marked successfully");
+                alertDialog.show();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        startActivity(getIntent());
+
+                    }
+                }, 5000);
+            }else{
+                alertDialog.setMessage("Error Occured");
+                alertDialog.show();
+            }
+
             super.onPostExecute(result);
         }
     }
