@@ -141,10 +141,13 @@ public class FacAttendActivity extends Faculty_Home_Activity {
                 for(int i=0;i<fulltest.length();i++){
                     FacAttendModel facAttendModel = new FacAttendModel();
                     String attend = fulltest.getString(i);
-                    String[] separated = attend.split(",");
-                    facAttendModel.setAttend(separated[0]);
-                    facAttendModel.setAttendDate(separated[1]);
-                    facAttendModelList.add(facAttendModel);
+                    if(!attend.equals("teacher id not found")){
+                        String[] separated = attend.split(",");
+                        facAttendModel.setAttend(separated[0]);
+                        facAttendModel.setAttendDate(separated[1]);
+                        facAttendModelList.add(facAttendModel);
+                    }
+
                 }
                 FacAttendActivity.FacAttendAdapter facAttendAdapter = new FacAttendActivity.FacAttendAdapter(getApplicationContext(),R.layout.facattend_layout,facAttendModelList);
                 lv_facAttend.setAdapter(facAttendAdapter);
