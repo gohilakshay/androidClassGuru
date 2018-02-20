@@ -92,7 +92,7 @@ public class Test_activity extends Home_activity {
             String id = params[1];
             String permission = params[2];
             String dbname = params[3];
-            String login_url = "https://classes.classguru.in/class/api/student_details.php";
+            String login_url = "https://classes.classguru.in/api/student_details.php";
             if(permission.equals("student")){
                 try {
                     URL profile_url = new URL(login_url);
@@ -185,7 +185,7 @@ public class Test_activity extends Home_activity {
             ImageView ivsprofile = (ImageView)findViewById(R.id.iv_sProfile);
 
             // Then later, when you want to display image
-            ImageLoader.getInstance().displayImage("https://classes.classguru.in/class/"+globalurl, ivsprofile);
+            ImageLoader.getInstance().displayImage("https://classes.classguru.in/"+globalurl, ivsprofile);
 
         }
 

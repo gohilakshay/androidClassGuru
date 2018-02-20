@@ -135,7 +135,7 @@ public class Faculty_Home_Activity extends AppCompatActivity {
             String id = params[1];
             String permission = params[2];
             String dbname = params[3];
-            String login_url = "https://classes.classguru.in/class/api/teacher_details.php";
+            String login_url = "https://classes.classguru.in/api/teacher_details.php";
             if(permission.equals("faculty")){
                 try {
                     URL profile_url = new URL(login_url);
