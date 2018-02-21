@@ -7,6 +7,8 @@
     android:id="@+id/FaPor"
     tools:context="in.classguru.classguru.FacPortionActivity">
 
+    <include layout="@layout/fac_portion_layout" />
+
     <android.support.design.widget.NavigationView
 
         android:id="@+id/navSideBar"

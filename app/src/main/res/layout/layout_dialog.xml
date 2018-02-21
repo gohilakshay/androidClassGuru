@@ -5,37 +5,42 @@
     android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/editText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/et_portionName"
+        android:layout_width="110dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="34dp"
         android:ems="10"
-        android:hint="@string/app_name"
-        android:inputType="textPersonName" />
+        android:hint="Total Topics"
+        android:inputType="numberDecimal" />
 
     <EditText
-        android:id="@+id/editText2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText"
-        android:layout_alignStart="@+id/editText"
-        android:layout_below="@+id/editText"
-        android:layout_marginTop="52dp"
+        android:id="@+id/et_portionDate"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_alignLeft="@+id/et_portionName"
+        android:layout_alignStart="@+id/et_portionName"
+        android:layout_below="@+id/et_portionName"
+        android:layout_marginTop="28dp"
         android:ems="10"
-        android:hint="@string/app_name"
-        android:inputType="textPersonName" />
+        android:hint="Remain Topics"
+        android:inputType="numberDecimal" />
 
-    <EditText
-        android:id="@+id/editText3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_alignStart="@+id/editText2"
-        android:layout_below="@+id/editText2"
-        android:layout_marginTop="49dp"
-        android:ems="10"
-        android:hint="@string/app_name"
-        android:inputType="textPersonName" />
+    <Spinner
+        android:id="@+id/portionSubjSpinner"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_alignTop="@+id/et_portionDate"
+        android:layout_toLeftOf="@+id/et_portionDate"
+        android:layout_toStartOf="@+id/et_portionDate" />
+
+    <Spinner
+        android:id="@+id/portionBatchSpinner"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_alignTop="@+id/et_portionName"
+        android:layout_toLeftOf="@+id/et_portionName"
+        android:layout_toStartOf="@+id/et_portionName" />
 </RelativeLayout>

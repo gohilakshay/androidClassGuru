@@ -438,7 +438,7 @@ public class FacAnnouncActivity extends Faculty_Home_Activity {
         @Override
         protected void onPostExecute(String result) {
 
-            if(result.equals("New record created successfully")){
+            if(result.equals("  New record created successfully")){
                 alertDialog.setMessage("Notice Added successfully");
                 alertDialog.show();
                 new Handler().postDelayed(new Runnable() {
@@ -450,7 +450,7 @@ public class FacAnnouncActivity extends Faculty_Home_Activity {
                     }
                 }, 500);
             }else{
-                alertDialog.setMessage("Error Occured");
+                alertDialog.setMessage("Error Occured"+result);
                 alertDialog.show();
             }
 
