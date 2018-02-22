@@ -43,4 +43,24 @@ public class PortionModel {
     }
 
     String batch;
+
+    public String getPortionId() {
+        return portionId;
+    }
+
+    public void setPortionId(String portionId) {
+        this.portionId = portionId;
+    }
+
+    String portionId;
+
+    public String getTotalTopics() {
+        return totalTopics;
+    }
+
+    public void setTotalTopics(String totalTopics) {
+        this.totalTopics = totalTopics;
+    }
+
+    String totalTopics;
 }

@@ -1,6 +1,7 @@
 package in.classguru.classguru;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -11,6 +12,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +23,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -46,6 +49,7 @@ public class FacPortionActivity extends Faculty_Home_Activity implements portion
 
     private Button btn_addPortion;
     public ListView lv_viewPortion;
+    public Button btn_updatePortion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,9 +75,17 @@ public class FacPortionActivity extends Faculty_Home_Activity implements portion
         });
 
         lv_viewPortion = (ListView)findViewById(R.id.lv_ViewPortion);
+        //btn_updatePortion = (Button)findViewById(R.id.btn_updatePortion);
 
         Fac_Portion_fetch fac_portion_fetch = new Fac_Portion_fetch(this);
         fac_portion_fetch.execute("PortionView");
+
+        /*btn_updatePortion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(), "text", Toast.LENGTH_SHORT).show();
+            }
+        });*/
 
         /*LinearLayout Ll_portionView = (LinearLayout)findViewById(R.id.Ll_portionView);
         EditText t = new EditText(this);
@@ -280,6 +292,8 @@ public class FacPortionActivity extends Faculty_Home_Activity implements portion
                     PortionModel portionModel = new PortionModel();
                     portionModel.setBatch(finalresult.getString("batch"));
                     portionModel.setSubject(finalresult.getString("subject_name"));
+                    portionModel.setPortionId(finalresult.getString("portion_ID"));
+                    portionModel.setTotalTopics(finalresult.getString("no_of_topics"));
                     portionModelList.add(portionModel);
                 }
 
@@ -308,14 +322,39 @@ public class FacPortionActivity extends Faculty_Home_Activity implements portion
             if(convertView == null){
                 convertView = inflater.inflate(resource,null);
             }
+            final String totalTopics = portionModelList.get(position).getTotalTopics();
+            final String portion_id = portionModelList.get(position).getPortionId();
 
             TextView tv_batch = (TextView)convertView.findViewById(R.id.tv_PortionBatchView);
             TextView tv_subject = (TextView)convertView.findViewById(R.id.tv_PortionSubjView);
 
+            LinearLayout Ll_facPortionView = (LinearLayout)convertView.findViewById(R.id.Ll_facPortionView);
+            final Button btn = new Button(FacPortionActivity.this);
+            //EditText t = new EditText(FacPortionActivity.this);
+            final int index = position;
+            btn.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+            btn.setText("Update");
+            btn.setId(position);
+            btn.setTag(portionModelList.get(position).getPortionId());
+            btn.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Log.i("TAG", "The index is" + btn.getTag());
+                    Intent intent = new Intent(FacPortionActivity.this,FacPortionUpdateActivity.class);
+                    intent.putExtra("id",globalid);
+                    intent.putExtra("permission",globalpermissin);
+                    intent.putExtra("dbname",globaldbname);
+                    intent.putExtra("portion_id",portion_id);
+                    intent.putExtra("total_topics",totalTopics);
+                    startActivity(intent);
+                    finish();
+                }
+            });
+            Ll_facPortionView.addView(btn);
 
             tv_batch.setText(portionModelList.get(position).getBatch());
             tv_subject.setText(portionModelList.get(position).getSubject());
 
+            //btn_updatePortion.setTag(portionModelList.get(position).getBatch());
 
             return convertView;
 

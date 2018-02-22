@@ -35,7 +35,8 @@
         <activity android:name=".FacAttendActivity" />
         <activity android:name=".FacStudAttendActivity" />
         <activity android:name=".FacAnnouncActivity" />
-        <activity android:name=".FacPortionActivity"></activity>
+        <activity android:name=".FacPortionActivity" />
+        <activity android:name=".FacPortionUpdateActivity"></activity>
     </application>
 
 </manifest>
