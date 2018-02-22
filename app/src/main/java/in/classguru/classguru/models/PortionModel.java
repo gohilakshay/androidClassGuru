@@ -33,4 +33,14 @@ public class PortionModel {
     }
 
     String completed;
+
+    public String getBatch() {
+        return batch;
+    }
+
+    public void setBatch(String batch) {
+        this.batch = batch;
+    }
+
+    String batch;
 }
