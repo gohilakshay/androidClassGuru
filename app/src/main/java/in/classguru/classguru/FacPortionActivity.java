@@ -80,20 +80,6 @@ public class FacPortionActivity extends Faculty_Home_Activity implements portion
         Fac_Portion_fetch fac_portion_fetch = new Fac_Portion_fetch(this);
         fac_portion_fetch.execute("PortionView");
 
-        /*btn_updatePortion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "text", Toast.LENGTH_SHORT).show();
-            }
-        });*/
-
-        /*LinearLayout Ll_portionView = (LinearLayout)findViewById(R.id.Ll_portionView);
-        EditText t = new EditText(this);
-        t.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-        t.setHint("Text");
-        Ll_portionView.addView(t);*/
-
-
     }
 
     public void openDialog(){
