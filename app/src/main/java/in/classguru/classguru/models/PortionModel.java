@@ -63,4 +63,14 @@ public class PortionModel {
     }
 
     String totalTopics;
+
+    public String getRemainTopics() {
+        return remainTopics;
+    }
+
+    public void setRemainTopics(String remainTopics) {
+        this.remainTopics = remainTopics;
+    }
+
+    String remainTopics;
 }

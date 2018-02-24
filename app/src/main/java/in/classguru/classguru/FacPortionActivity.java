@@ -51,6 +51,7 @@ public class FacPortionActivity extends Faculty_Home_Activity implements portion
     public ListView lv_viewPortion;
     public Button btn_updatePortion;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,7 +106,6 @@ public class FacPortionActivity extends Faculty_Home_Activity implements portion
 
         String[] splitBatch = portionBatchSelect.split(" ");
         AddPortion_post addPortion_post = new AddPortion_post(this);
-
         addPortion_post.execute("FacPortionAdd",portiontotal,portionremain,splitBatch[0],portionSubjSelect);
 
     }
@@ -280,6 +280,7 @@ public class FacPortionActivity extends Faculty_Home_Activity implements portion
                     portionModel.setSubject(finalresult.getString("subject_name"));
                     portionModel.setPortionId(finalresult.getString("portion_ID"));
                     portionModel.setTotalTopics(finalresult.getString("no_of_topics"));
+                    portionModel.setRemainTopics(finalresult.getString("remained_topics"));
                     portionModelList.add(portionModel);
                 }
 
@@ -310,6 +311,9 @@ public class FacPortionActivity extends Faculty_Home_Activity implements portion
             }
             final String totalTopics = portionModelList.get(position).getTotalTopics();
             final String portion_id = portionModelList.get(position).getPortionId();
+            final String remainTopics = portionModelList.get(position).getRemainTopics();
+           // final String batch_id = portionModelList.get(position).getBatch();
+            final String subject = portionModelList.get(position).getSubject();
 
             TextView tv_batch = (TextView)convertView.findViewById(R.id.tv_PortionBatchView);
             TextView tv_subject = (TextView)convertView.findViewById(R.id.tv_PortionSubjView);
@@ -324,13 +328,16 @@ public class FacPortionActivity extends Faculty_Home_Activity implements portion
             btn.setTag(portionModelList.get(position).getPortionId());
             btn.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    Log.i("TAG", "The index is" + btn.getTag());
+                    /*Log.i("TAG", "The index is" + batch_id_portion);*/
                     Intent intent = new Intent(FacPortionActivity.this,FacPortionUpdateActivity.class);
                     intent.putExtra("id",globalid);
                     intent.putExtra("permission",globalpermissin);
                     intent.putExtra("dbname",globaldbname);
                     intent.putExtra("portion_id",portion_id);
                     intent.putExtra("total_topics",totalTopics);
+                    intent.putExtra("remainTopics",remainTopics);
+                    /*intent.putExtra("batch_id",batch_id_portion);*/
+                    intent.putExtra("subject",subject);
                     startActivity(intent);
                     finish();
                 }
@@ -339,12 +346,28 @@ public class FacPortionActivity extends Faculty_Home_Activity implements portion
 
             tv_batch.setText(portionModelList.get(position).getBatch());
             tv_subject.setText(portionModelList.get(position).getSubject());
-
+            tv_batch.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Log.i("TAG", "The index is" + portion_id);
+                    openViewDialog(portion_id);
+                }
+            });
             //btn_updatePortion.setTag(portionModelList.get(position).getBatch());
 
             return convertView;
 
         }
+    }
+    public void openViewDialog(String portion_id){
+        FacPortionViewDialog facPortionViewDialog = new FacPortionViewDialog();
+        Bundle args1 = new Bundle();
+        args1.putString("globaldbname", globaldbname);
+        args1.putString("globalid", globalid);
+        args1.putString("globalpermissin", globalpermissin);
+        args1.putString("portion_ID", portion_id);
+        facPortionViewDialog.setArguments(args1);
+        facPortionViewDialog.show(getSupportFragmentManager(),"View Portion");
     }
 
 }
