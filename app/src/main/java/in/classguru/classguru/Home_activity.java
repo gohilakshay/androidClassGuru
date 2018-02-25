@@ -1,6 +1,8 @@
 package in.classguru.classguru;
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.design.widget.NavigationView;
@@ -15,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -142,6 +145,8 @@ public class Home_activity extends AppCompatActivity {
         Profile_Activity (Context ctx){
             context = ctx;
         }
+
+        private ProgressDialog dialog = new ProgressDialog(Home_activity.this);
         @Override
         protected String doInBackground(String... params) {
             String type = params[0];
@@ -192,6 +197,8 @@ public class Home_activity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             alertDialog = new android.app.AlertDialog.Builder(context).create();
+            this.dialog.setMessage("Please wait");
+            this.dialog.show();
             super.onPreExecute();
         }
         /*private String name;*/
@@ -199,6 +206,9 @@ public class Home_activity extends AppCompatActivity {
         protected void onPostExecute(String result) {
             try {
                 if(!result.equals("faculty")) {
+                    if (dialog.isShowing()) {
+                        dialog.dismiss();
+                    }
                     JSONObject reader = new JSONObject(result);
                     String checkResult = reader.getString("student_details");
 
@@ -276,9 +286,30 @@ public class Home_activity extends AppCompatActivity {
     }
 
     public void OnLogout(MenuItem item) {
-        Intent intent = new Intent(Home_activity.this,MainActivity.class);
-        startActivity(intent);
-        finish();
+        AlertDialog.Builder builder=new AlertDialog.Builder(Home_activity.this); //Home is name of the activity
+        builder.setMessage("Do you want to exit?");
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+
+                finish();
+                Intent i=new Intent();
+                i.putExtra("finish", true);
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // To clean up all activities
+                finish();
+
+            }
+        });
+
+        builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.cancel();
+            }
+        });
+
+        AlertDialog alert=builder.create();
+        alert.show();
     }
     public void OnFee(MenuItem item){
         Intent intent = new Intent(Home_activity.this,Fee_activity.class);

@@ -50,6 +50,8 @@ public class FacPortionActivity extends Faculty_Home_Activity implements portion
     private Button btn_addPortion;
     public ListView lv_viewPortion;
     public Button btn_updatePortion;
+    public TextView tv_sName;
+    public TextView tv_sNumb;
 
 
     @Override
@@ -59,6 +61,10 @@ public class FacPortionActivity extends Faculty_Home_Activity implements portion
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.navSideBar);
         View nav = navigationView.getHeaderView(0);
+
+        tv_sName = (TextView)nav.findViewById(R.id.tvSideName);
+        tv_sNumb = (TextView)nav.findViewById(R.id.tvSideNumb);
+
         mDrawerLayout = (DrawerLayout)findViewById(R.id.FaPor);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
         mDrawerLayout.addDrawerListener(mToggle);
@@ -286,6 +292,10 @@ public class FacPortionActivity extends Faculty_Home_Activity implements portion
 
                 FacPortionActivity.FacPortionAdapter facPortionAdapter = new FacPortionActivity.FacPortionAdapter(getApplicationContext(),R.layout.fac_portionview_layout,portionModelList);
                 lv_viewPortion.setAdapter(facPortionAdapter);
+
+                tv_sName.setText(globalname);
+                tv_sNumb.setText(globalnumb);
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -347,6 +357,14 @@ public class FacPortionActivity extends Faculty_Home_Activity implements portion
             tv_batch.setText(portionModelList.get(position).getBatch());
             tv_subject.setText(portionModelList.get(position).getSubject());
             tv_batch.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Log.i("TAG", "The index is" + portion_id);
+                    openViewDialog(portion_id);
+                }
+            });
+
+            tv_subject.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Log.i("TAG", "The index is" + portion_id);

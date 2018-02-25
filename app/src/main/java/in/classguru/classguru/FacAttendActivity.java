@@ -13,8 +13,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,6 +46,8 @@ public class FacAttendActivity extends Faculty_Home_Activity {
     public DrawerLayout mDrawerLayout;
     public ActionBarDrawerToggle mToggle;
     public ListView lv_facAttend;
+    public TextView tv_sName;
+    public TextView tv_sNumb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +66,25 @@ public class FacAttendActivity extends Faculty_Home_Activity {
 
         Fac_attend_fetch fac_attend_fetch = new Fac_attend_fetch(this);
         fac_attend_fetch.execute("faculty",globalid,globalpermissin,globaldbname);
+
+        tv_sName = (TextView)nav.findViewById(R.id.tvSideName);
+        tv_sNumb = (TextView)nav.findViewById(R.id.tvSideNumb);
+
+        DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
+                .cacheInMemory(true)
+                .cacheOnDisk(true)
+                .build();
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getApplicationContext())
+                .defaultDisplayImageOptions(defaultOptions)
+                .build();
+        ImageLoader.getInstance().init(config); // Do it on Application start
+
+        ImageView im_sFacProfile = (ImageView)findViewById(R.id.iv_sProfile);
+
+        if (im_sFacProfile != null ){
+            // Then later, when you want to display image
+            ImageLoader.getInstance().displayImage("https://classes.classguru.in/"+globalurl, im_sFacProfile);
+        }
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -151,6 +177,9 @@ public class FacAttendActivity extends Faculty_Home_Activity {
                 }
                 FacAttendActivity.FacAttendAdapter facAttendAdapter = new FacAttendActivity.FacAttendAdapter(getApplicationContext(),R.layout.facattend_layout,facAttendModelList);
                 lv_facAttend.setAdapter(facAttendAdapter);
+
+                tv_sName.setText(globalname);
+                tv_sNumb.setText(globalnumb);
 
             } catch (JSONException e) {
                 e.printStackTrace();

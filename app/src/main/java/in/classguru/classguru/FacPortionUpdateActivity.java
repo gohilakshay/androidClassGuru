@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Handler;
+import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
@@ -19,6 +20,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -49,11 +51,22 @@ public class FacPortionUpdateActivity extends Faculty_Home_Activity {
     String total_topicsString;
     public DrawerLayout mDrawerLayout;
     public ActionBarDrawerToggle mToggle;
+    public TextView tv_sName;
+    public TextView tv_sNumb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fac_portion_update);
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.navSideBar);
+        View nav = navigationView.getHeaderView(0);
+
+        tv_sName = (TextView)nav.findViewById(R.id.tvSideName);
+        tv_sNumb = (TextView)nav.findViewById(R.id.tvSideNumb);
+
+        tv_sName.setText(globalname);
+        tv_sNumb.setText(globalnumb);
 
         mDrawerLayout = (DrawerLayout)findViewById(R.id.FacPortiondrawer);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
@@ -77,6 +90,7 @@ public class FacPortionUpdateActivity extends Faculty_Home_Activity {
         remainTopics = remainTop;
         String subj = data.getStringExtra("subject");
         subject = subj;
+
 
         TableLayout Tl_portionView = (TableLayout)findViewById(R.id.Ll_portionUpdateView);
         for(int i=1;i < total_topics*2 ; i++){

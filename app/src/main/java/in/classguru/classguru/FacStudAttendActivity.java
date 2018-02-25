@@ -62,6 +62,8 @@ public class FacStudAttendActivity extends Faculty_Home_Activity {
     public Button btn_markAbsent;
     public CheckBox cb_studAttend;
     public String batch_id;
+    public TextView tv_sName;
+    public TextView tv_sNumb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +72,10 @@ public class FacStudAttendActivity extends Faculty_Home_Activity {
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.navSideBar);
         View nav = navigationView.getHeaderView(0);
+
+        tv_sName = (TextView)nav.findViewById(R.id.tvSideName);
+        tv_sNumb = (TextView)nav.findViewById(R.id.tvSideNumb);
+
         mDrawerLayout = (DrawerLayout)findViewById(R.id.FaStudAt);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
         mDrawerLayout.addDrawerListener(mToggle);
@@ -258,8 +264,10 @@ public class FacStudAttendActivity extends Faculty_Home_Activity {
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),R.layout.support_simple_spinner_dropdown_item,facStudAttendModelList);
                 adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
                 spinner.setAdapter(adapter);
-                /*alertDialog.setMessage(reader1.getString("batch_name"));
-                alertDialog.show();*/
+
+                tv_sName.setText(globalname);
+                tv_sNumb.setText(globalnumb);
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -469,7 +477,7 @@ public class FacStudAttendActivity extends Faculty_Home_Activity {
         @Override
         protected void onPostExecute(String result) {
 
-            if(result.equals("New record created successfully")){
+            if(result.equals("  New record created successfully")){
                 alertDialog.setMessage("Attendance marked successfully");
                 alertDialog.show();
                 new Handler().postDelayed(new Runnable() {
@@ -479,7 +487,7 @@ public class FacStudAttendActivity extends Faculty_Home_Activity {
                         startActivity(getIntent());
 
                     }
-                }, 5000);
+                }, 500);
             }else{
                 alertDialog.setMessage("Error Occured");
                 alertDialog.show();

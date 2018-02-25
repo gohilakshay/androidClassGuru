@@ -9,14 +9,20 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -43,6 +49,8 @@ public class FacSalaryActivity extends Faculty_Home_Activity {
     public DrawerLayout mDrawerLayout;
     public ActionBarDrawerToggle mToggle;
     public ListView lv_facSalary;
+    public TextView tv_sName;
+    public TextView tv_sNumb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +59,6 @@ public class FacSalaryActivity extends Faculty_Home_Activity {
 
         lv_facSalary = (ListView)findViewById(R.id.lv_facSal);
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.navSideBar);
-        View nav = navigationView.getHeaderView(0);
         mDrawerLayout = (DrawerLayout)findViewById(R.id.FaSal);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
         mDrawerLayout.addDrawerListener(mToggle);
@@ -62,6 +68,33 @@ public class FacSalaryActivity extends Faculty_Home_Activity {
 
         Fac_Salary_fetch fac_salary_fetch = new Fac_Salary_fetch(this);
         fac_salary_fetch.execute("faculty",globalid,globalpermissin,globaldbname);
+
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.navSideBar);
+        View nav = navigationView.getHeaderView(0);
+
+        tv_sName = (TextView)nav.findViewById(R.id.tvSideName);
+        tv_sNumb = (TextView)nav.findViewById(R.id.tvSideNumb);
+
+        DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
+                .cacheInMemory(true)
+                .cacheOnDisk(true)
+                .build();
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getApplicationContext())
+                .defaultDisplayImageOptions(defaultOptions)
+                .build();
+        ImageLoader.getInstance().init(config); // Do it on Application start
+
+        ImageView im_sFacProfile = (ImageView)findViewById(R.id.iv_sProfile);
+
+
+
+
+
+        if (im_sFacProfile != null ){
+            // Then later, when you want to display image
+            ImageLoader.getInstance().displayImage("https://classes.classguru.in/"+globalurl, im_sFacProfile);
+        }
 
     }
     @Override
@@ -161,6 +194,10 @@ public class FacSalaryActivity extends Faculty_Home_Activity {
                 }
                 FacSalaryActivity.SalaryAdapter salaryAdapter = new FacSalaryActivity.SalaryAdapter(getApplicationContext(),R.layout.facsal_layout,facSalaryModelList);
                 lv_facSalary.setAdapter(salaryAdapter);
+
+                tv_sName.setText(globalname);
+                tv_sNumb.setText(globalnumb);
+
                 //String salary = finalresult.getString("salary");
                 //alertDialog.setMessage(salary);
               //  alertDialog.show();

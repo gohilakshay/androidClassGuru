@@ -1,6 +1,8 @@
 package in.classguru.classguru;
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.Image;
 import android.os.AsyncTask;
@@ -8,6 +10,7 @@ import android.provider.ContactsContract;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -120,14 +123,15 @@ public class Faculty_Home_Activity extends AppCompatActivity {
 
         Context context;
         android.app.AlertDialog alertDialog;
-        /*public ImageView im_profile;
-        public ImageView iv_sProfile;*/
+        public ImageView im_profile;
+        public ImageView iv_sProfile;
         public ImageView im_sFacProfile;
         public ImageView im_facProfile;
 
         FacultyProfile_fetch (Context ctx){
             context = ctx;
         }
+        private ProgressDialog dialog = new ProgressDialog(Faculty_Home_Activity.this);
 
         @Override
         protected String doInBackground(String... params) {
@@ -179,6 +183,8 @@ public class Faculty_Home_Activity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             alertDialog = new android.app.AlertDialog.Builder(context).create();
+            this.dialog.setMessage("Please wait");
+            this.dialog.show();
             super.onPreExecute();
         }
 
@@ -186,6 +192,10 @@ public class Faculty_Home_Activity extends AppCompatActivity {
         protected void onPostExecute(String result) {
             try {
                 if(!result.equals("student")) {
+                    if (dialog.isShowing()) {
+                        dialog.dismiss();
+                    }
+
                     JSONObject reader = new JSONObject(result);
                     String checkResult = reader.getString("t_details");
 
@@ -222,12 +232,13 @@ public class Faculty_Home_Activity extends AppCompatActivity {
                     im_sFacProfile = (ImageView)findViewById(R.id.iv_sProfile);
                     im_facProfile = (ImageView)findViewById(R.id.iv_FacProfile);
 
-                    /*if (im_sFacProfile != null ){
-
+                    if (im_sFacProfile != null ){
                         // Then later, when you want to display image
-                        ImageLoader.getInstance().displayImage("https://classes.classguru.in/class/"+facultyProfile, im_sFacProfile);
-                        ImageLoader.getInstance().displayImage("https://classes.classguru.in/class/"+facultyProfile, im_facProfile);
-                    }*/
+                        ImageLoader.getInstance().displayImage("https://classes.classguru.in/"+facultyProfile, im_sFacProfile);
+                    }
+                    if(im_facProfile != null){
+                        ImageLoader.getInstance().displayImage("https://classes.classguru.in/"+facultyProfile, im_facProfile);
+                    }
                 }else{
                     alertDialog.setMessage("Please Login Correctly Faculty");
                     alertDialog.show();
@@ -244,9 +255,30 @@ public class Faculty_Home_Activity extends AppCompatActivity {
         }
     }
     public void OnFacLogout(MenuItem item) {
-        Intent intent = new Intent(this,MainActivity.class);
-        startActivity(intent);
-        finish();
+        AlertDialog.Builder builder=new AlertDialog.Builder(Faculty_Home_Activity.this); //Home is name of the activity
+        builder.setMessage("Do you want to exit?");
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+
+                finish();
+                Intent i=new Intent();
+                i.putExtra("finish", true);
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // To clean up all activities
+                finish();
+
+            }
+        });
+
+        builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.cancel();
+            }
+        });
+
+        AlertDialog alert=builder.create();
+        alert.show();
     }
     public void OnFacProfile(MenuItem item) {
         Intent intent = new Intent(this,Faculty_Home_Activity.class);
