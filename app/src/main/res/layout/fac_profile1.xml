@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/db_profile_header"
     android:orientation="vertical"
+    android:alpha="0.5"
     android:padding="5dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
