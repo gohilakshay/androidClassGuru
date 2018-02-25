@@ -9,9 +9,9 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+        android:layout_alignLeft="@+id/textView8"
         android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/textView8"
         android:text="Total Topics :" />
 
     <TextView
@@ -19,42 +19,42 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="21dp"
-        android:layout_marginStart="21dp"
-        android:layout_toEndOf="@+id/textView4"
-        android:layout_toRightOf="@+id/textView4"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_toEndOf="@+id/textView8"
+        android:layout_toRightOf="@+id/textView8"
         android:text="10" />
 
     <TextView
         android:id="@+id/tv_remain_portion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="21dp"
-        android:layout_marginStart="21dp"
-        android:layout_toEndOf="@+id/textView8"
-        android:layout_toRightOf="@+id/textView8"
+        android:layout_alignBaseline="@+id/textView8"
+        android:layout_alignBottom="@+id/textView8"
+        android:layout_alignEnd="@+id/tv_total_portion"
+        android:layout_alignRight="@+id/tv_total_portion"
         android:text="10" />
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="37dp"
-        android:layout_marginStart="37dp"
-        android:layout_toEndOf="@+id/tv_total_portion"
-        android:layout_toRightOf="@+id/tv_total_portion"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView4"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="19dp"
         android:text="Remain Topics :" />
 
     <TextView
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView4"
-        android:layout_marginTop="28dp"
+        android:layout_alignLeft="@+id/textView8"
+        android:layout_alignStart="@+id/textView8"
+        android:layout_below="@+id/textView8"
+        android:layout_marginTop="25dp"
         android:text="All Topics :" />
 
     <TextView
@@ -63,26 +63,28 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/textView9"
         android:layout_alignBottom="@+id/textView9"
-        android:layout_alignLeft="@+id/tv_rem_portion"
-        android:layout_alignStart="@+id/tv_rem_portion"
+        android:layout_alignLeft="@+id/tv_total_portion"
+        android:layout_alignStart="@+id/tv_total_portion"
         android:text="TextView" />
 
     <TextView
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+        android:layout_alignLeft="@+id/textView9"
+        android:layout_alignStart="@+id/textView9"
         android:layout_below="@+id/textView9"
-        android:layout_marginTop="34dp"
+        android:layout_marginTop="25dp"
         android:text="Remain Topics :" />
 
     <TextView
         android:id="@+id/tv_rem_portion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView12"
         android:layout_alignBottom="@+id/textView12"
-        android:layout_toEndOf="@+id/tv_total_portion"
-        android:layout_toRightOf="@+id/tv_total_portion"
+        android:layout_alignLeft="@+id/tv_all_portion"
+        android:layout_alignStart="@+id/tv_all_portion"
         android:text="TextView" />
+
 </RelativeLayout>

@@ -146,18 +146,26 @@
 
         </android.support.v7.widget.CardView>
     </RelativeLayout>
-    <LinearLayout
+
+    <android.support.v7.widget.CardView
+        android:layout_width="300dp"
+        android:layout_height="250dp"
         android:layout_gravity="center"
         android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="250dp">
+        app:cardCornerRadius="15dp"
+        app:cardUseCompatPadding="true"
+        app:contentPadding="5sp">
+
         <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent">
+
             <TableLayout
-                android:paddingHorizontal="20dp"
+
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:gravity="end"
+                android:paddingHorizontal="20dp">
 
                 <TableRow
                     android:layout_width="match_parent"
@@ -185,11 +193,12 @@
                         android:textColor="#4a4a4a"
                         android:textSize="15sp" />
                 </TableRow>
+
                 <TableRow
-                    android:padding="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:padding="10dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -199,7 +208,7 @@
                         android:textAlignment="gravity"
                         android:textColor="#4a4a4a"
                         android:textSize="15sp"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tv_FacFather"
@@ -211,11 +220,12 @@
                         android:textColor="#4a4a4a"
                         android:textSize="15sp" />
                 </TableRow>
+
                 <TableRow
-                    android:padding="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:padding="10dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -225,7 +235,7 @@
                         android:textAlignment="gravity"
                         android:textColor="#4a4a4a"
                         android:textSize="15sp"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tv_FacGender"
@@ -237,11 +247,12 @@
                         android:textColor="#4a4a4a"
                         android:textSize="15sp" />
                 </TableRow>
+
                 <TableRow
-                    android:padding="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:padding="10dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -251,7 +262,7 @@
                         android:textAlignment="gravity"
                         android:textColor="#4a4a4a"
                         android:textSize="15sp"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tv_FacDob"
@@ -290,10 +301,10 @@
                          />
                 </TableRow>-->
                 <TableRow
-                    android:padding="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:padding="10dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -303,7 +314,7 @@
                         android:textAlignment="gravity"
                         android:textColor="#4a4a4a"
                         android:textSize="15sp"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tv_FacQuali"
@@ -315,21 +326,22 @@
                         android:textColor="#4a4a4a"
                         android:textSize="15sp" />
                 </TableRow>
+
                 <TableRow
-                    android:padding="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:padding="10dp">
 
                     <TextView
-                        android:textColor="#4a4a4a"
-                        android:textSize="15sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Joining \n Date"
                         android:textAlignment="gravity"
-                        android:textStyle="bold"/>
+                        android:textColor="#4a4a4a"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tv_FacJoin"
@@ -341,21 +353,22 @@
                         android:textColor="#4a4a4a"
                         android:textSize="15sp" />
                 </TableRow>
+
                 <TableRow
-                    android:padding="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:padding="10dp">
 
                     <TextView
-                        android:textColor="#4a4a4a"
-                        android:textSize="15sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Salary"
                         android:textAlignment="gravity"
-                        android:textStyle="bold"/>
+                        android:textColor="#4a4a4a"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tv_FacSalary"
@@ -367,21 +380,22 @@
                         android:textColor="#4a4a4a"
                         android:textSize="15sp" />
                 </TableRow>
+
                 <TableRow
-                    android:padding="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:padding="10dp">
 
                     <TextView
-                        android:textColor="#4a4a4a"
-                        android:textSize="15sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="PayStatus"
                         android:textAlignment="gravity"
-                        android:textStyle="bold"/>
+                        android:textColor="#4a4a4a"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tv_FacPayStatus"
@@ -397,5 +411,5 @@
             </TableLayout>
         </ScrollView>
 
-    </LinearLayout>
+    </android.support.v7.widget.CardView>
 </LinearLayout>
