@@ -7,7 +7,7 @@
     android:id="@+id/Facdrawer"
     tools:context="in.classguru.classguru.Faculty_Home_Activity">
 
-<include layout="@layout/fac_profile" />
+<include layout="@layout/fac_profile1" />
 
     <android.support.design.widget.NavigationView
 

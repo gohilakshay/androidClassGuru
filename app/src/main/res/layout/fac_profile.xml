@@ -16,11 +16,7 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="265dp">
-            <!--<ImageView
 
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/ic_navigation"/>-->
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/iv_FacProfile"
                 android:layout_width="120dp"
@@ -29,14 +25,7 @@
                 android:layout_marginTop="32dp"
                 android:adjustViewBounds="false"
                 android:src="@drawable/ic_user" />
-            <!--<ImageView
-                android:id="@+id/iv_profile"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="32dp"
-                android:adjustViewBounds="false"
-                android:src="@drawable/ic_user" />-->
+
             <TextView
                 android:id="@+id/tv_FacFullname"
                 android:layout_width="wrap_content"
@@ -274,32 +263,7 @@
                         android:textColor="#4a4a4a"
                         android:textSize="15sp" />
                 </TableRow>
-                <!--<TableRow
-                android:padding="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
 
-                    <TextView
-                        android:textColor="#4a4a4a"
-                        android:textSize="15sp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Email"
-                        android:gravity="start"
-                        android:textStyle="bold"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:text="leoakshay95@gmail.com"
-                        android:gravity="start"
-                        android:textColor="#4a4a4a"
-                        android:textSize="15sp"
-                         />
-                </TableRow>-->
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

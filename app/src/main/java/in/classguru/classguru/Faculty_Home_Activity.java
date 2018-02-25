@@ -66,6 +66,7 @@ public class Faculty_Home_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_faculty__home_);
 
         DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
@@ -106,19 +107,19 @@ public class Faculty_Home_Activity extends AppCompatActivity {
         tvFacSideNumb = (TextView)nav.findViewById(R.id.tvSideNumb);
 
 
-        mDrawerLayout = (DrawerLayout)findViewById(R.id.Facdrawer);
+        /*mDrawerLayout = (DrawerLayout)findViewById(R.id.Facdrawer);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
     }
-    @Override
+    /*@Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(mToggle.onOptionsItemSelected(item)){
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
+    }*/
     public class FacultyProfile_fetch extends AsyncTask<String,Void,String>{
 
         Context context;
