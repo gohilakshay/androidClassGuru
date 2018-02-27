@@ -4,19 +4,27 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.media.Image;
 import android.os.AsyncTask;
 import android.provider.ContactsContract;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.NavigationView;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -37,6 +45,11 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 public class Faculty_Home_Activity extends AppCompatActivity {
 
@@ -61,12 +74,17 @@ public class Faculty_Home_Activity extends AppCompatActivity {
     public TextView tv_facpaystatus;
     public TextView tvFacSideName;
     public TextView tvFacSideNumb;
+    public ListView lv_profile;
+    public ImageView profile_image;
+    private Toolbar toolbar;
+    private CollapsingToolbarLayout collapsingToolbarLayout;
+    public ImageView im_facProfile;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
+        //getSupportActionBar().hide();
         setContentView(R.layout.activity_faculty__home_);
 
         DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
@@ -106,20 +124,63 @@ public class Faculty_Home_Activity extends AppCompatActivity {
         tvFacSideName = (TextView)nav.findViewById(R.id.tvSideName);
         tvFacSideNumb = (TextView)nav.findViewById(R.id.tvSideNumb);
 
+        im_facProfile = (ImageView)findViewById(R.id.iv_FacProfile);
 
-        /*mDrawerLayout = (DrawerLayout)findViewById(R.id.Facdrawer);
+        lv_profile = (ListView)findViewById(R.id.lv_profile);
+        profile_image = (ImageView)findViewById(R.id.profile_image);
+        profile_image.setScaleType(ImageView.ScaleType.FIT_XY);
+        profile_image.setColorFilter(Color.argb(255, 118, 118, 188), PorterDuff.Mode.LIGHTEN);
+        mDrawerLayout = (DrawerLayout)findViewById(R.id.Facdrawer);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
+
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar1);
+        collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.CollapsingToolbarLayout1);
+        //setSupportActionBar(toolbar);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        collapsingToolbarLayout.setTitle("ClassGuru");
+
+        collapsingToolbarLayout.setContentScrimColor(ContextCompat.getColor(this,R.color.startblue));
+        ImageView img = (ImageView)findViewById(R.id.iv_nav);
+        img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mDrawerLayout = (DrawerLayout)findViewById(R.id.Facdrawer);
+                mDrawerLayout.openDrawer(Gravity.LEFT);
+            }
+        });
+
+       /* AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.app_bar_layout);
+        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                if (Math.abs(verticalOffset) == appBarLayout.getTotalScrollRange()) {
+                    // If collapsed, then do this
+                    im_facProfile.setVisibility(View.GONE);
+                   // imageViewSmallLogo.setVisibility(View.VISIBLE);
+                } else if (verticalOffset == 0) {
+                    // If expanded, then do this
+                    im_facProfile.setVisibility(View.VISIBLE);
+                   // imageViewSmallLogo.setVisibility(View.GONE);
+                } else {
+                    // Somewhere in between
+                    // Do according to your requirement
+                }
+            }
+
+        });*/
+
     }
-    /*@Override
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(mToggle.onOptionsItemSelected(item)){
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }*/
+    }
     public class FacultyProfile_fetch extends AsyncTask<String,Void,String>{
 
         Context context;
@@ -127,7 +188,7 @@ public class Faculty_Home_Activity extends AppCompatActivity {
         public ImageView im_profile;
         public ImageView iv_sProfile;
         public ImageView im_sFacProfile;
-        public ImageView im_facProfile;
+
 
         FacultyProfile_fetch (Context ctx){
             context = ctx;
@@ -202,26 +263,52 @@ public class Faculty_Home_Activity extends AppCompatActivity {
 
                     JSONObject finalresult = new JSONObject(checkResult);
                     String t_name = finalresult.getString("t_name");
-                    tv_facname.setText(t_name);
+                    //tv_facname.setText(t_name);
                     String t_fathername = finalresult.getString("t_fathername");
-                    tv_facfather.setText(t_fathername);
+                    //tv_facfather.setText(t_fathername);
                     String t_surname = finalresult.getString("t_surname");
                     String t_fullName = t_name+" "+t_surname;
                     tv_fullname.setText(t_fullName);
                     String  t_numb = finalresult.getString("t_contact");
-                    tv_facnumb.setText(t_numb);
+                    //tv_facnumb.setText(t_numb);
                     String t_gender = finalresult.getString("t_gender");
-                    tv_facgender.setText(t_gender);
+                    //tv_facgender.setText(t_gender);
                     String t_dob = finalresult.getString("t_dob");
-                    tv_facdob.setText(t_dob);
+                    //tv_facdob.setText(t_dob);
                     String t_quali = finalresult.getString("qualification");
-                    tv_facqualification.setText(t_quali);
+                    //tv_facqualification.setText(t_quali);
                     String t_join = finalresult.getString("join_date");
-                    tv_facjoin.setText(t_join);
+                    //tv_facjoin.setText(t_join);
                     String t_salary = finalresult.getString("salary");
-                    tv_facsalary.setText(t_salary);
+                    //tv_facsalary.setText(t_salary);
                     String t_paystatus = finalresult.getString("salary_status");
-                    tv_facpaystatus.setText(t_paystatus);
+                    //tv_facpaystatus.setText(t_paystatus);
+
+                    HashMap<String, String> profile = new HashMap<>();
+                    profile.put("Student Name",t_name);
+                    profile.put("Father Name",t_fathername);
+                    profile.put("Gender",t_gender);
+                    profile.put("Date of Birth",t_dob);
+                    profile.put("Qualification",t_quali);
+                    profile.put("Joining Date",t_join);
+                    profile.put("Salary",t_salary);
+                    profile.put("Pay Status",t_paystatus);
+
+                    List<HashMap<String, String>> listItems = new ArrayList<>();
+                    SimpleAdapter adapter = new SimpleAdapter(Faculty_Home_Activity.this, listItems, R.layout.profile_row_layout,
+                            new String[]{"First Line", "Second Line"},
+                            new int[]{R.id.text1, R.id.text2});
+
+                    Iterator it = profile.entrySet().iterator();
+                    while (it.hasNext())
+                    {
+                        HashMap<String, String> resultsMap = new HashMap<>();
+                        Map.Entry pair = (Map.Entry)it.next();
+                        resultsMap.put("First Line", pair.getKey().toString());
+                        resultsMap.put("Second Line", pair.getValue().toString());
+                        listItems.add(resultsMap);
+                    }
+                    lv_profile.setAdapter(adapter);
 
                     tvFacSideName.setText(t_fullName);
                     globalname = t_fullName;
@@ -231,7 +318,7 @@ public class Faculty_Home_Activity extends AppCompatActivity {
                     globalurl=facultyProfile;
 
                     im_sFacProfile = (ImageView)findViewById(R.id.iv_sProfile);
-                    im_facProfile = (ImageView)findViewById(R.id.iv_FacProfile);
+                    //im_facProfile = (ImageView)findViewById(R.id.iv_FacProfile);
 
                     if (im_sFacProfile != null ){
                         // Then later, when you want to display image
@@ -239,6 +326,7 @@ public class Faculty_Home_Activity extends AppCompatActivity {
                     }
                     if(im_facProfile != null){
                         ImageLoader.getInstance().displayImage("https://classes.classguru.in/"+facultyProfile, im_facProfile);
+                        ImageLoader.getInstance().displayImage("https://classes.classguru.in/"+facultyProfile, profile_image);
                     }
                 }else{
                     alertDialog.setMessage("Please Login Correctly Faculty");
