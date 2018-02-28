@@ -9,8 +9,6 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,11 +17,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -108,7 +104,7 @@ public class FacPortionActivity extends Faculty_Home_Activity implements portion
     }
 
     @Override
-    public void applyTexts(String portiontotal, String portionremain,String portionBatchSelect,String portionSubjSelect) {
+    public void applyTexts(String portiontotal, String portionremain, String portionBatchSelect, String portionSubjSelect, String globalPortionid) {
 
         String[] splitBatch = portionBatchSelect.split(" ");
         AddPortion_post addPortion_post = new AddPortion_post(this);

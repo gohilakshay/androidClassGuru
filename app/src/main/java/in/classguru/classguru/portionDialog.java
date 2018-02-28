@@ -1,7 +1,6 @@
 package in.classguru.classguru;
 
 import android.app.AlertDialog;
-import android.app.Application;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -10,13 +9,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatDialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.Spinner;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -29,19 +22,18 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by a2z on 2/21/2018.
  */
 
 public class portionDialog extends AppCompatDialogFragment {
-    private EditText et_portionName;
-    private EditText et_portionDate;
+    private EditText et_totalTopics;
+    private EditText et_remainTopics;
+    private EditText et_totalTopicName;
+    private EditText et_remainTopicName;
     private PortionAddListener listener;
-    public Spinner portionBatchSpinner;
-    public Spinner portionSubjSpinner;
+
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){
@@ -49,6 +41,10 @@ public class portionDialog extends AppCompatDialogFragment {
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view =inflater.inflate(R.layout.layout_dialog,null);
+
+        String globaldbname = getArguments().getString("globaldbname");
+        final String globalPortionid = getArguments().getString("globalid");
+        String globalpermissin = getArguments().getString("globalpermissin");
 
         builder.setView(view)
                 .setTitle("Add Portion")
@@ -61,25 +57,30 @@ public class portionDialog extends AppCompatDialogFragment {
                 .setPositiveButton("add", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        String portiontotal = et_portionName.getText().toString();
-                        String portionremain = et_portionDate.getText().toString();
-                        String portionBatchSelect = portionBatchSpinner.getSelectedItem().toString();
-                        String portionSubjSelect = portionSubjSpinner.getSelectedItem().toString();
-                        listener.applyTexts(portiontotal,portionremain,portionBatchSelect,portionSubjSelect);
+                        String et_totalTopics1 = et_totalTopics.getText().toString();
+                        String et_remainTopics1 = et_remainTopics.getText().toString();
+                        String et_totalTopicName1 = et_totalTopicName.getText().toString();
+                        String et_remainTopicName1 = et_remainTopicName.getText().toString();
+
+                        /*String portionBatchSelect = portionBatchSpinner.getSelectedItem().toString();
+                        String portionSubjSelect = portionSubjSpinner.getSelectedItem().toString();*/
+                        listener.applyTexts(et_totalTopics1,et_remainTopics1,et_totalTopicName1,et_remainTopicName1,globalPortionid);
                     }
                 });
 
-        String globaldbname = getArguments().getString("globaldbname");
-        String globalid = getArguments().getString("globalid");
-        String globalpermissin = getArguments().getString("globalpermissin");
 
-        portionBatchSpinner = (Spinner)view.findViewById(R.id.portionBatchSpinner);
-        portionSubjSpinner = (Spinner)view.findViewById(R.id.portionSubjSpinner);
-        et_portionName = view.findViewById(R.id.et_portionName);
-        et_portionDate = view.findViewById(R.id.et_portionDate);
+
+        /*portionBatchSpinner = (Spinner)view.findViewById(R.id.portionBatchSpinner);
+        portionSubjSpinner = (Spinner)view.findViewById(R.id.portionSubjSpinner);*/
+
+
+        et_totalTopics = view.findViewById(R.id.et_totalTopics);
+        et_remainTopics = view.findViewById(R.id.et_remainTopics);
+        et_totalTopicName = view.findViewById(R.id.et_totalTopicName);
+        et_remainTopicName = view.findViewById(R.id.et_remainTopicName);
 
         FacPortionbatch_fetch facPortionbatch_fetch = new FacPortionbatch_fetch(getContext());
-        facPortionbatch_fetch.execute("faculty",globalid,globalpermissin,globaldbname);
+        facPortionbatch_fetch.execute("faculty",globalPortionid,globalpermissin,globaldbname);
 
         return builder.create();
     }
@@ -96,7 +97,7 @@ public class portionDialog extends AppCompatDialogFragment {
     }
 
     public interface PortionAddListener{
-        void applyTexts(String portiontotal,String portionremain,String portionBatchSelect,String portionSubjSelect);
+        void applyTexts(String portiontotal, String portionremain, String portionBatchSelect, String portionSubjSelect, String globalPortionid);
     }
 
 
@@ -168,33 +169,7 @@ public class portionDialog extends AppCompatDialogFragment {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            JSONObject reader = null;
-            try {
-                reader = new JSONObject(result);
-                JSONArray fulltest = reader.getJSONArray("batch_details");
-                List<String> facStudAttendModelList = new ArrayList<>();
-                facStudAttendModelList.add("Select batch");
-                for(int i =0;i<fulltest.length();i++){
 
-                    JSONObject reader1 = new JSONObject(fulltest.getString(i));
-                    facStudAttendModelList.add(reader1.getString("batch_ID") +" "+reader1.getString("batch_name") );
-                    //  facStudAttendModelList.add(reader1.getString("batch_name"));
-                }
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(context,R.layout.support_simple_spinner_dropdown_item,facStudAttendModelList);
-                adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-                portionBatchSpinner.setAdapter(adapter);
-
-                String fulltest1 = reader.getString("teacher_subject_details");
-                String[] seperated = fulltest1.split(",");
-
-                ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(context,R.layout.support_simple_spinner_dropdown_item,seperated);
-                adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-                portionSubjSpinner.setAdapter(adapter1);
-                /*alertDialog.setMessage(reader1.getString("batch_name"));
-                alertDialog.show();*/
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
 
         }
 

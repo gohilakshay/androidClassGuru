@@ -1,0 +1,166 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="in.classguru.classguru.AddFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:scrollbars="none">
+
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="55dp"
+            android:text="Batch :"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView3"
+            android:layout_marginTop="31dp"
+            android:text="Subject :"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView10"
+            android:layout_marginTop="28dp"
+            android:text="Total Topics :"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:text="Remain Topics :"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/et_remTopicTab"
+            android:layout_marginTop="28dp"
+            android:text="Topics Name :"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView18"
+            android:layout_marginTop="35dp"
+            android:text="Remain Topics :"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/portionBatchSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_above="@+id/textView10"
+            android:layout_alignLeft="@+id/btn_addportionFrag"
+            android:layout_alignStart="@+id/btn_addportionFrag"
+            android:layout_marginLeft="18dp"
+            android:layout_marginStart="18dp" />
+
+        <Spinner
+            android:id="@+id/portionSubjSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_alignBottom="@+id/textView10"
+            android:layout_alignLeft="@+id/portionBatchSpinner"
+            android:layout_alignStart="@+id/portionBatchSpinner" />
+
+        <EditText
+            android:id="@+id/et_totalTopicTab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView13"
+            android:layout_alignBottom="@+id/textView13"
+            android:layout_alignLeft="@+id/portionSubjSpinner"
+            android:layout_alignStart="@+id/portionSubjSpinner"
+            android:ems="10"
+            android:hint="Enter Total Topics "
+            android:inputType="numberDecimal" />
+
+        <EditText
+            android:id="@+id/et_remTopicTab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView17"
+            android:layout_alignBottom="@+id/textView17"
+            android:layout_alignLeft="@+id/et_totalTopicTab"
+            android:layout_alignStart="@+id/et_totalTopicTab"
+            android:ems="10"
+            android:hint="Enter Remain Topics"
+            android:inputType="numberDecimal" />
+
+        <EditText
+            android:id="@+id/et_totalTopicName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView18"
+            android:layout_alignBottom="@+id/textView18"
+            android:layout_alignLeft="@+id/et_remTopicTab"
+            android:layout_alignStart="@+id/et_remTopicTab"
+            android:ems="10"
+            android:hint="Seperate Topics with ( , )"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/et_remTopicName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView19"
+            android:layout_alignBottom="@+id/textView19"
+            android:layout_alignLeft="@+id/et_totalTopicName"
+            android:layout_alignStart="@+id/et_totalTopicName"
+            android:ems="10"
+            android:hint="Seperate Topics with ( , )"
+            android:inputType="textPersonName" />
+
+        <Button
+            android:id="@+id/btn_addportionFrag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="16dp"
+            android:text="Add Portion" />
+    </RelativeLayout>
+
+</FrameLayout>

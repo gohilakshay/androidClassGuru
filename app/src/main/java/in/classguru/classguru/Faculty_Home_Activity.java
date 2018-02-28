@@ -417,5 +417,12 @@ public class Faculty_Home_Activity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-
+    public void OnPortionTab(MenuItem item){
+        Intent intent = new Intent(this,FacPortionTabActivity.class);
+        intent.putExtra("id",globalid);
+        intent.putExtra("permission",globalpermissin);
+        intent.putExtra("dbname",globaldbname);
+        startActivity(intent);
+        finish();
+    }
 }

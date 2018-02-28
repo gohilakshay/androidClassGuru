@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatDialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -60,9 +59,9 @@ public class FacPortionViewDialog extends AppCompatDialogFragment {
 
         FacPortion_fetch facPortion_fetch = new FacPortion_fetch(getContext());
         facPortion_fetch.execute("FacPortionView",globalid,globalpermissin,globaldbname,portion_ID);
-        tv_total = (TextView)view.findViewById(R.id.tv_total_portion);
+        tv_total = (TextView)view.findViewById(R.id.tv_PortionBatchView);
         tv_remain = (TextView)view.findViewById(R.id.tv_remain_portion);
-        tv_all_portion = (TextView)view.findViewById(R.id.tv_all_portion);
+        tv_all_portion = (TextView)view.findViewById(R.id.tv_allPortion);
         tv_rem_portion = (TextView)view.findViewById(R.id.tv_rem_portion);
 
         return builder.create();

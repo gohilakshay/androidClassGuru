@@ -30,19 +30,22 @@
         <activity android:name=".Test_activity" />
         <activity android:name=".Assignment_activity" />
         <activity android:name=".Portion_activity" />
-        <activity android:name=".Faculty_Home_Activity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".Faculty_Home_Activity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".FacSalaryActivity" />
         <activity android:name=".FacAttendActivity" />
         <activity android:name=".FacStudAttendActivity" />
         <activity android:name=".FacAnnouncActivity" />
         <activity android:name=".FacPortionActivity" />
         <activity android:name=".FacPortionUpdateActivity" />
-        <activity android:name=".FacAnnounceAddActivity"></activity>
+        <activity android:name=".FacAnnounceAddActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <activity android:name=".FacPortionTabActivity"></activity>
     </application>
 
 </manifest>
