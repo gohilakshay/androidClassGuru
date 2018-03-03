@@ -33,9 +33,9 @@
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/textView8"
                 android:layout_alignParentTop="true"
-                android:layout_alignStart="@+id/textView8"
+                android:layout_toLeftOf="@+id/tv_PortionBatchView"
+                android:layout_toStartOf="@+id/tv_PortionBatchView"
                 android:text="Batch Name :"
                 android:textStyle="bold" />
 
@@ -64,11 +64,9 @@
                 android:id="@+id/textView8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
+                android:layout_alignEnd="@+id/textView9"
+                android:layout_alignRight="@+id/textView9"
                 android:layout_below="@+id/textView4"
-                android:layout_marginLeft="16dp"
-                android:layout_marginStart="16dp"
                 android:layout_marginTop="19dp"
                 android:text="Subject Name :"
                 android:textStyle="bold" />
@@ -77,10 +75,10 @@
                 android:id="@+id/textView9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/textView8"
-                android:layout_alignStart="@+id/textView8"
+                android:layout_alignEnd="@+id/textView12"
+                android:layout_alignRight="@+id/textView12"
                 android:layout_below="@+id/textView8"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="28dp"
                 android:text="All Topics :"
                 android:textStyle="bold" />
 
@@ -98,8 +96,6 @@
                 android:id="@+id/textView12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/textView9"
-                android:layout_alignStart="@+id/textView9"
                 android:layout_below="@+id/textView9"
                 android:layout_marginTop="25dp"
                 android:text="Remain Topics :"
@@ -119,10 +115,10 @@
                 android:id="@+id/tv_tot"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/textView12"
-                android:layout_alignStart="@+id/textView12"
+                android:layout_alignEnd="@+id/textView11"
+                android:layout_alignRight="@+id/textView11"
                 android:layout_below="@+id/textView12"
-                android:layout_marginTop="28dp"
+                android:layout_marginTop="29dp"
                 android:text="Total Topics :"
                 android:textStyle="bold" />
 
@@ -140,10 +136,10 @@
                 android:id="@+id/textView11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/tv_tot"
-                android:layout_alignStart="@+id/tv_tot"
+                android:layout_alignEnd="@+id/textView12"
+                android:layout_alignRight="@+id/textView12"
                 android:layout_below="@+id/tv_tot"
-                android:layout_marginTop="23dp"
+                android:layout_marginTop="24dp"
                 android:text="Completed :"
                 android:textStyle="bold" />
 

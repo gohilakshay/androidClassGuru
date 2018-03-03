@@ -15,9 +15,12 @@
         app:cardUseCompatPadding="true">
 
         <RelativeLayout
+            android:id="@+id/Rl_PortionView"
+
             android:padding="10dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            >
 
             <!--<TextView
                 android:id="@+id/tv_PortionBatchView"
@@ -36,10 +39,11 @@
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/textView8"
+                android:layout_alignEnd="@+id/textView12"
                 android:layout_alignParentTop="true"
-                android:layout_alignStart="@+id/textView8"
+                android:layout_alignRight="@+id/textView12"
                 android:text="Batch Name :"
+                android:textAlignment="textEnd"
                 android:textStyle="bold" />
 
             <TextView
@@ -47,10 +51,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_toEndOf="@+id/textView8"
-                android:layout_toRightOf="@+id/textView8"
+                android:layout_marginLeft="22dp"
+                android:layout_marginStart="22dp"
+                android:layout_toEndOf="@+id/textView4"
+                android:layout_toRightOf="@+id/textView4"
                 android:text="10" />
 
             <TextView
@@ -67,24 +71,24 @@
                 android:id="@+id/textView8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
+                android:layout_alignEnd="@+id/textView4"
+                android:layout_alignRight="@+id/textView4"
                 android:layout_below="@+id/textView4"
-                android:layout_marginLeft="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="19dp"
+                android:layout_marginTop="21dp"
                 android:text="Subject Name :"
+                android:textAlignment="textEnd"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textView9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/textView8"
-                android:layout_alignStart="@+id/textView8"
+                android:layout_alignEnd="@+id/textView12"
+                android:layout_alignRight="@+id/textView12"
                 android:layout_below="@+id/textView8"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="26dp"
                 android:text="All Topics :"
+                android:textAlignment="textEnd"
                 android:textStyle="bold" />
 
             <TextView
@@ -101,11 +105,10 @@
                 android:id="@+id/textView12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/textView9"
-                android:layout_alignStart="@+id/textView9"
                 android:layout_below="@+id/textView9"
                 android:layout_marginTop="25dp"
                 android:text="Remain Topics :"
+                android:textAlignment="textEnd"
                 android:textStyle="bold" />
 
             <TextView
@@ -122,11 +125,12 @@
                 android:id="@+id/tv_tot"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/textView12"
-                android:layout_alignStart="@+id/textView12"
+                android:layout_alignEnd="@+id/textView11"
+                android:layout_alignRight="@+id/textView11"
                 android:layout_below="@+id/textView12"
                 android:layout_marginTop="28dp"
                 android:text="Total Topics :"
+                android:textAlignment="textEnd"
                 android:textStyle="bold" />
 
             <TextView
@@ -143,11 +147,12 @@
                 android:id="@+id/textView11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/tv_tot"
-                android:layout_alignStart="@+id/tv_tot"
-                android:layout_below="@+id/tv_tot"
-                android:layout_marginTop="23dp"
+                android:layout_alignBaseline="@+id/tv_completedPortionView"
+                android:layout_alignBottom="@+id/tv_completedPortionView"
+                android:layout_alignEnd="@+id/textView12"
+                android:layout_alignRight="@+id/textView12"
                 android:text="Completed :"
+                android:textAlignment="textEnd"
                 android:textStyle="bold" />
 
             <TextView
@@ -156,8 +161,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/tv_totalTopicsPortion"
                 android:layout_alignStart="@+id/tv_totalTopicsPortion"
-                android:layout_alignTop="@+id/textView11"
+                android:layout_below="@+id/tv_totalTopicsPortion"
+                android:layout_marginTop="20dp"
                 android:text="TextView" />
+
         </RelativeLayout>
 
     </android.support.v7.widget.CardView>

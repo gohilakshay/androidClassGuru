@@ -265,7 +265,7 @@ public class FacPortionTabActivity extends Faculty_Home_Activity implements AddF
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            if(result.equals(" added infoupdated info  ")){
+            if(result.equals(" updated info  ")){
                 alertDialog.setMessage("Portion Updated successfully");
                 alertDialog.show();
                 new Handler().postDelayed(new Runnable() {

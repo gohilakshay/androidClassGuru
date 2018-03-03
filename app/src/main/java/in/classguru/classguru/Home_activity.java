@@ -312,10 +312,13 @@ public class Home_activity extends AppCompatActivity {
         alert.show();
     }
     public void OnFee(MenuItem item){
-        Intent intent = new Intent(Home_activity.this,Fee_activity.class);
+        Intent intent = new Intent(Home_activity.this,Fee_tabedActivity.class);
         intent.putExtra("id",globalid);
         intent.putExtra("permission",globalpermissin);
         intent.putExtra("dbname",globaldbname);
+        intent.putExtra("globalname",globalname);
+        intent.putExtra("globalnumb",globalnumb);
+        intent.putExtra("globalurl",globalurl);
         startActivity(intent);
         finish();
     }
@@ -359,4 +362,5 @@ public class Home_activity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
 }

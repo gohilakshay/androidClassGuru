@@ -402,7 +402,7 @@ public class Faculty_Home_Activity extends AppCompatActivity {
         finish();
     }
     public void OnFacAnnounc(MenuItem item) {
-        Intent intent = new Intent(this,FacAnnouncActivity.class);
+        Intent intent = new Intent(this,Fac_Announc_tabbActivity.class);
         intent.putExtra("id",globalid);
         intent.putExtra("permission",globalpermissin);
         intent.putExtra("dbname",globaldbname);
@@ -410,14 +410,6 @@ public class Faculty_Home_Activity extends AppCompatActivity {
         finish();
     }
     public void OnFacPortion(MenuItem item) {
-        Intent intent = new Intent(this,FacPortionActivity.class);
-        intent.putExtra("id",globalid);
-        intent.putExtra("permission",globalpermissin);
-        intent.putExtra("dbname",globaldbname);
-        startActivity(intent);
-        finish();
-    }
-    public void OnPortionTab(MenuItem item){
         Intent intent = new Intent(this,FacPortionTabActivity.class);
         intent.putExtra("id",globalid);
         intent.putExtra("permission",globalpermissin);
@@ -425,4 +417,13 @@ public class Faculty_Home_Activity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
+    /*public void OnFacAnnouncTab(MenuItem item){
+        Intent intent = new Intent(this,Fac_Announc_tabbActivity.class);
+        intent.putExtra("id",globalid);
+        intent.putExtra("permission",globalpermissin);
+        intent.putExtra("dbname",globaldbname);
+        startActivity(intent);
+        finish();
+    }*/
 }

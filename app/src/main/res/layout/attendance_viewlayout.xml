@@ -17,8 +17,7 @@
             android:layout_alignParentTop="true"
             android:layout_weight="1"
             android:text="Date"
-            android:textAlignment="center"
-            />
+            android:textAlignment="viewStart" />
 
         <TextView
             android:id="@+id/tv_Attend"
@@ -29,8 +28,7 @@
             android:layout_alignParentTop="true"
             android:layout_weight="1"
             android:text="Attendance"
-            android:textAlignment="center"
-            />
+            android:textAlignment="viewStart" />
 
     </RelativeLayout>
 </LinearLayout>

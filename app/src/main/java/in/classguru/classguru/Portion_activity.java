@@ -157,7 +157,7 @@ public class Portion_activity extends Home_activity {
         protected void onPostExecute(List<PortionModel> result) {
             super.onPostExecute(result);
            // Assignment_activity.AssignAdapter assignAdapter = new Assignment_activity.AssignAdapter(getApplicationContext(),R.layout.assignt_viewlayout,result);
-            Portion_activity.PortionAdapter portionAdapter = new Portion_activity.PortionAdapter(getApplicationContext(),R.layout.portion_layout,result);
+            Portion_activity.PortionAdapter portionAdapter = new Portion_activity.PortionAdapter(getApplicationContext(),R.layout.portion_listview_layout,result);
 
             lv_portion.setAdapter(portionAdapter);
 

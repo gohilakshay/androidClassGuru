@@ -106,6 +106,7 @@
                 android:textStyle="bold" />
 
             <ListView
+                android:scrollbars="vertical"
                 android:layout_marginTop="10dp"
                 android:id="@+id/lv_profile"
                 android:layout_width="match_parent"
@@ -120,83 +121,6 @@
         </RelativeLayout>
     </android.support.v4.widget.NestedScrollView>
 
-    <!--<de.hdodenhof.circleimageview.CircleImageView
-        android:layout_marginBottom="-55dp"
-        android:layout_marginTop="-100dp"
-        android:id="@+id/iv_FacProfile"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
-        android:layout_gravity="center"
-        android:adjustViewBounds="false"
-        android:elevation="8dp"
-        android:src="@drawable/ic_user"
-        app:civ_border_color="@color/white"
-        app:civ_border_width="3dp" />-->
-        <!--<LinearLayout
 
-            android:elevation="4dp"
-            android:layout_weight="1.5"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-                <ImageView
-                    android:id="@+id/profile_image"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:cropToPadding="true" />
-        </LinearLayout>
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_marginBottom="-55dp"
-            android:layout_marginTop="-75dp"
-            android:id="@+id/iv_FacProfile"
-            android:layout_width="130dp"
-            android:layout_height="130dp"
-            android:layout_gravity="center"
-            android:adjustViewBounds="false"
-            android:elevation="8dp"
-            android:src="@drawable/ic_user"
-            app:civ_border_color="@color/white"
-            app:civ_border_width="3dp" />
-
-        <RelativeLayout
-            android:layout_weight="1"
-            android:background="@color/white"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
-                <TextView
-                    android:id="@+id/tv_FacFullname"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="70dp"
-                    android:fontFamily="@font/allerta_stencil"
-                    android:text="User Name"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tv_FacNumb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv_FacFullname"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="10dp"
-                    android:text="7208121247"
-                    android:textColor="#c4c4c4"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-                <ListView
-                    android:layout_below="@+id/tv_FacNumb"
-                    android:layout_marginTop="11dp"
-                    android:padding="10dp"
-                    android:id="@+id/lv_profile"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                </ListView>
-
-        </RelativeLayout>-->
 </android.support.design.widget.CoordinatorLayout>
 

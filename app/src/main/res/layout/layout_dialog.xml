@@ -47,11 +47,12 @@
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="37dp"
+        android:layout_marginTop="41dp"
+        android:layout_toLeftOf="@+id/et_totalTopicName"
+        android:layout_toStartOf="@+id/et_totalTopicName"
         android:text="Topics :"
+        android:textAlignment="viewEnd"
         android:textSize="16sp"
         android:textStyle="bold" />
 
@@ -59,11 +60,12 @@
         android:id="@+id/textView20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView5"
-        android:layout_marginTop="54dp"
+        android:layout_alignEnd="@+id/textView5"
+        android:layout_alignRight="@+id/textView5"
+        android:layout_below="@+id/et_totalTopics"
+        android:layout_marginTop="44dp"
         android:text="Remain :"
+        android:textAlignment="viewEnd"
         android:textSize="16sp"
         android:textStyle="bold" />
 
@@ -76,6 +78,7 @@
         android:layout_below="@+id/textView20"
         android:layout_marginTop="54dp"
         android:text="Topics Name :"
+        android:textAlignment="viewEnd"
         android:textSize="16sp"
         android:textStyle="bold" />
 
@@ -87,7 +90,10 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView22"
         android:layout_marginTop="61dp"
+        android:layout_toLeftOf="@+id/et_totalTopicName"
+        android:layout_toStartOf="@+id/et_totalTopicName"
         android:text="Completed :"
+        android:textAlignment="viewEnd"
         android:textSize="16sp"
         android:textStyle="bold" />
 
@@ -97,8 +103,10 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/textView5"
         android:layout_alignBottom="@+id/textView5"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
+        android:layout_alignEnd="@+id/et_remainTopics"
+        android:layout_alignLeft="@+id/et_remainTopics"
+        android:layout_alignRight="@+id/et_remainTopics"
+        android:layout_alignStart="@+id/et_remainTopics"
         android:ems="10"
         android:hint="Enter Total Topic"
         android:inputType="numberDecimal" />
@@ -109,8 +117,8 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/textView20"
         android:layout_alignBottom="@+id/textView20"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
+        android:layout_alignLeft="@+id/et_totalTopicName"
+        android:layout_alignStart="@+id/et_totalTopicName"
         android:ems="10"
         android:hint="Enter Remain Topic"
         android:inputType="numberDecimal" />
@@ -121,10 +129,12 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/textView22"
         android:layout_alignBottom="@+id/textView22"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
+        android:layout_marginLeft="18dp"
+        android:layout_marginStart="18dp"
+        android:layout_toEndOf="@+id/textView22"
+        android:layout_toRightOf="@+id/textView22"
         android:ems="10"
-        android:hint="Topics seperated with ( , )"
+        android:hint="Seperate with ( , )"
         android:inputType="textPersonName" />
 
     <EditText
@@ -133,9 +143,11 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/textView23"
         android:layout_alignBottom="@+id/textView23"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
+        android:layout_alignEnd="@+id/et_totalTopicName"
+        android:layout_alignLeft="@+id/et_totalTopicName"
+        android:layout_alignRight="@+id/et_totalTopicName"
+        android:layout_alignStart="@+id/et_totalTopicName"
         android:ems="10"
-        android:hint="Topics seperated with ( , )"
+        android:hint="Seperated with ( , )"
         android:inputType="textPersonName" />
 </RelativeLayout>

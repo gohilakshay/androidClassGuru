@@ -3,14 +3,15 @@ package in.classguru.classguru;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Handler;
-import android.support.design.widget.NavigationView;
 import android.os.Bundle;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.view.MenuItem;
+import android.os.Handler;
+import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -37,7 +38,24 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class FacAnnounceAddActivity extends Faculty_Home_Activity {
+
+/**
+ * A simple {@link Fragment} subclass.
+ * Activities that contain this fragment must implement the
+ * {@link AnnouncAddFragment.OnFragmentInteractionListener} interface
+ * to handle interaction events.
+ * Use the {@link AnnouncAddFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class AnnouncAddFragment extends Fragment {
+    // TODO: Rename parameter arguments, choose names that match
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
+
+    // TODO: Rename and change types of parameters
+    private String mParam1;
+    private String mParam2;
 
     TextView et_datepicker1;
     int year_x,month_x,day_x;
@@ -50,96 +68,125 @@ public class FacAnnounceAddActivity extends Faculty_Home_Activity {
     public TextView tv_sName;
     public TextView tv_sNumb;
 
+    private OnFragmentInteractionListener mListener;
+
+    public AnnouncAddFragment() {
+        // Required empty public constructor
+    }
+
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @param param1 Parameter 1.
+     * @param param2 Parameter 2.
+     * @return A new instance of fragment AnnouncViewFragment.
+     */
+    // TODO: Rename and change types and number of parameters
+    public static AnnouncAddFragment newInstance(String param1, String param2) {
+        AnnouncAddFragment fragment = new AnnouncAddFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fac_announce_add);
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
+    }
 
-        tv_title = (EditText)findViewById(R.id.et_NotTitle);
-        tv_description = (EditText)findViewById(R.id.et_notDesc);
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.navSideBar);
-        View nav = navigationView.getHeaderView(0);
-
-        tv_sName = (TextView)nav.findViewById(R.id.tvSideName);
-        tv_sNumb = (TextView)nav.findViewById(R.id.tvSideNumb);
-
-        mDrawerLayout = (DrawerLayout)findViewById(R.id.FaAnAdd);
-        mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
-        mDrawerLayout.addDrawerListener(mToggle);
-        mToggle.syncState();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View rootView = inflater.inflate(R.layout.fac_announc_add_layout, container, false);
         final Calendar cal = Calendar.getInstance();
         year_x = cal.get(Calendar.YEAR);
         month_x = cal.get(Calendar.MONTH);
         day_x = cal.get(Calendar.DAY_OF_MONTH);
+        et_datepicker1 = (TextView)rootView.findViewById(R.id.et_datepicker1);
+        tv_title = (EditText)rootView.findViewById(R.id.et_NotTitle);
+        tv_description = (EditText)rootView.findViewById(R.id.et_notDesc);
+        spinner2 = (Spinner)rootView.findViewById(R.id.spinner2);
         showDialogOnClick();
 
-        spinner2 = (Spinner)findViewById(R.id.spinner2);
-        /*FacAnnouncActivity.FacAnnouncbatch_fetch facAnnouncbatch_fetch = new FacAnnouncActivity.FacAnnouncbatch_fetch(this);
-        facAnnouncbatch_fetch.execute("faculty",globalid,globalpermissin,globaldbname);*/
-        FacAnnounceAddActivity.FacAnnouncbatch_fetch facAnnouncbatch_fetch = new FacAnnounceAddActivity.FacAnnouncbatch_fetch(this);
-        facAnnouncbatch_fetch.execute("faculty",globalid,globalpermissin,globaldbname);
-
-        btn_facAddAnnounc = (Button)findViewById(R.id.btn_FacAddAnnounc);
+        FacAnnouncbatch_fetch facAnnouncbatch_fetch = new FacAnnouncbatch_fetch(getContext());
+        facAnnouncbatch_fetch.execute("faculty",mParam1,mParam2);
+        btn_facAddAnnounc = (Button)rootView.findViewById(R.id.btn_FacAddAnnounc);
         btn_facAddAnnounc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 batch_id = spinner2.getSelectedItem().toString();
                 String[] batchSeperate = batch_id.split(" ");
                 String batch_newId = batchSeperate[0];
-                // new AlertDialog.Builder( FacAnnouncActivity.this ).setTitle("Hi").setMessage(batch_newId).show();
                 String title = tv_title.getText().toString();
                 String description = tv_description.getText().toString();
                 String date = year_x+"-"+month_x+"-"+day_x;
-                FacAnnounceAddActivity.AddAnnoc_post addAnnoc_post = new FacAnnounceAddActivity.AddAnnoc_post(FacAnnounceAddActivity.this);
-                addAnnoc_post.execute("FacAnnouncAdd",title,description,date,batch_newId,globaldbname);
+                AddAnnoc_post addAnnoc_post = new AddAnnoc_post(getContext());
+                addAnnoc_post.execute("FacAnnouncAdd",title,description,date,batch_newId,mParam1);
             }
         });
+        return rootView;
     }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if(mToggle.onOptionsItemSelected(item)){
-            return true;
+
+    // TODO: Rename method, update argument and hook method into UI event
+    public void onButtonPressed(Uri uri) {
+        if (mListener != null) {
+            mListener.onFragmentInteraction(uri);
         }
-        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+
+    /**
+     * This interface must be implemented by activities that contain this
+     * fragment to allow an interaction in this fragment to be communicated
+     * to the activity and potentially other fragments contained in that
+     * activity.
+     * <p>
+     * See the Android Training lesson <a href=
+     * "http://developer.android.com/training/basics/fragments/communicating.html"
+     * >Communicating with Other Fragments</a> for more information.
+     */
+    public interface OnFragmentInteractionListener {
+        // TODO: Update argument type and name
+        void onFragmentInteraction(Uri uri);
     }
 
     public void showDialogOnClick(){
-        et_datepicker1 = (TextView)findViewById(R.id.et_datepicker1);
+
 
         et_datepicker1.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        showDialog(DILOG_ID);
+                        getActivity().showDialog(DILOG_ID);
 
                     }
                 }
         );
     }
-    @Override
-    protected Dialog onCreateDialog(int id){
-        if(id == DILOG_ID){
-            return new DatePickerDialog(this, dpickerListner ,year_x,month_x,day_x);
-        }
-        else{
-            return null;
-        }
-    }
-    private DatePickerDialog.OnDateSetListener dpickerListner = new DatePickerDialog.OnDateSetListener() {
-        @Override
-        public void onDateSet(DatePicker datePicker, int year, int monthOfYear, int dayofMonth) {
-            year_x = year;
-            month_x = monthOfYear + 1;
-            day_x = dayofMonth;
-            // et_datepicker1.setText(year_x +"/"+month_x+"/"+day_x);
-            et_datepicker1.setText(day_x +"/"+month_x+"/"+year_x);
-        }
-    };
-
-
 
     public class FacAnnouncbatch_fetch extends AsyncTask<String,Void,String> {
         Context context;
@@ -152,10 +199,9 @@ public class FacAnnounceAddActivity extends Faculty_Home_Activity {
         protected String doInBackground(String... params) {
             String type = params[0];
             String id = params[1];
-            String permission = params[2];
-            String dbname = params[3];
+            String dbname = params[2];
             String login_url = "https://classes.classguru.in/api/teacher_details.php";
-            if(permission.equals("faculty")){
+            if(type.equals("faculty")){
                 try {
                     URL profile_url = new URL(login_url);
                     HttpURLConnection httpURLConnection = (HttpURLConnection) profile_url.openConnection();
@@ -219,14 +265,13 @@ public class FacAnnounceAddActivity extends Faculty_Home_Activity {
                     facStudAttendModelList.add(reader1.getString("batch_ID") +" "+reader1.getString("batch_name") );
                     //  facStudAttendModelList.add(reader1.getString("batch_name"));
                 }
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),R.layout.support_simple_spinner_dropdown_item,facStudAttendModelList);
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext().getApplicationContext(),R.layout.support_simple_spinner_dropdown_item,facStudAttendModelList);
                 adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
                 spinner2.setAdapter(adapter);
                 /*alertDialog.setMessage(reader1.getString("batch_name"));
                 alertDialog.show();*/
 
-                tv_sName.setText(globalname);
-                tv_sNumb.setText(globalnumb);
+
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -264,11 +309,11 @@ public class FacAnnounceAddActivity extends Faculty_Home_Activity {
                     OutputStream outputStream = httpURLConnection.getOutputStream();
                     BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
                     String post_data = URLEncoder.encode("batch_id","UTF-8")+"="+URLEncoder.encode(batch_id,"UTF-8")+"&"
-                            +URLEncoder.encode("dbname","UTF-8")+"="+URLEncoder.encode(dbname,"UTF-8")+"&"
+                            +URLEncoder.encode("dbname","UTF-8")+"="+URLEncoder.encode(mParam2,"UTF-8")+"&"
                             +URLEncoder.encode("date","UTF-8")+"="+URLEncoder.encode(date,"UTF-8")+"&"
                             +URLEncoder.encode("description","UTF-8")+"="+URLEncoder.encode(description,"UTF-8")+"&"
                             +URLEncoder.encode("title","UTF-8")+"="+URLEncoder.encode(title,"UTF-8")+"&"
-                            +URLEncoder.encode("t_ID","UTF-8")+"="+URLEncoder.encode(globalid,"UTF-8");
+                            +URLEncoder.encode("t_ID","UTF-8")+"="+URLEncoder.encode(mParam1,"UTF-8");
                     bufferedWriter.write(post_data);
                     bufferedWriter.flush();
                     bufferedWriter.close();
@@ -315,18 +360,21 @@ public class FacAnnounceAddActivity extends Faculty_Home_Activity {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-
-                        startActivity(getIntent());
+                        getActivity().finish();
+                        startActivity(getActivity().getIntent());
 
                     }
                 }, 500);
+
             }else{
                 alertDialog.setMessage("Error Occured"+result);
                 alertDialog.show();
+
             }
 
             super.onPostExecute(result);
         }
 
     }
+
 }

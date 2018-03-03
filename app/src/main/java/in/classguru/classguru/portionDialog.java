@@ -7,9 +7,14 @@ import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatDialogFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -22,6 +27,10 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
+
+import in.classguru.classguru.models.PortionModel;
 
 /**
  * Created by a2z on 2/21/2018.
@@ -47,7 +56,7 @@ public class portionDialog extends AppCompatDialogFragment {
         String globalpermissin = getArguments().getString("globalpermissin");
 
         builder.setView(view)
-                .setTitle("Add Portion")
+                .setTitle("Update Portion")
                 .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -79,9 +88,10 @@ public class portionDialog extends AppCompatDialogFragment {
         et_totalTopicName = view.findViewById(R.id.et_totalTopicName);
         et_remainTopicName = view.findViewById(R.id.et_remainTopicName);
 
-        FacPortionbatch_fetch facPortionbatch_fetch = new FacPortionbatch_fetch(getContext());
-        facPortionbatch_fetch.execute("faculty",globalPortionid,globalpermissin,globaldbname);
-
+        /*FacPortionbatch_fetch facPortionbatch_fetch = new FacPortionbatch_fetch(getContext());
+        facPortionbatch_fetch.execute("faculty",globalPortionid,globalpermissin,globaldbname);*/
+        Fac_Portion_fetch fac_portion_fetch = new Fac_Portion_fetch(getContext());
+        fac_portion_fetch.execute("PortionView",globalPortionid,globaldbname);
         return builder.create();
     }
 
@@ -103,10 +113,11 @@ public class portionDialog extends AppCompatDialogFragment {
 
 
 
-    public class FacPortionbatch_fetch extends AsyncTask<String,Void,String> {
+    public class Fac_Portion_fetch extends AsyncTask<String,Void,String> {
         Context context;
         android.app.AlertDialog alertDialog;
-        FacPortionbatch_fetch (Context ctx){
+
+        Fac_Portion_fetch(Context ctx) {
             context = ctx;
         }
 
@@ -114,10 +125,9 @@ public class portionDialog extends AppCompatDialogFragment {
         protected String doInBackground(String... params) {
             String type = params[0];
             String id = params[1];
-            String permission = params[2];
-            String dbname = params[3];
-            String login_url = "https://classes.classguru.in/api/teacher_details.php";
-            if(permission.equals("faculty")){
+            String db = params[2];
+            String login_url = "https://classes.classguru.in/api/addFacPortion.php";
+            if (type.equals("PortionView")) {
                 try {
                     URL profile_url = new URL(login_url);
                     HttpURLConnection httpURLConnection = (HttpURLConnection) profile_url.openConnection();
@@ -126,17 +136,18 @@ public class portionDialog extends AppCompatDialogFragment {
                     httpURLConnection.setDoInput(true);
                     OutputStream outputStream = httpURLConnection.getOutputStream();
                     BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
-                    String post_data = URLEncoder.encode("userId","UTF-8")+"="+URLEncoder.encode(id,"UTF-8")+"&"
-                            +URLEncoder.encode("dbname","UTF-8")+"="+URLEncoder.encode(dbname,"UTF-8");
+                    String post_data = URLEncoder.encode("portionId", "UTF-8") + "=" + URLEncoder.encode(id, "UTF-8") + "&"
+                            + URLEncoder.encode("dbname", "UTF-8") + "=" + URLEncoder.encode(db, "UTF-8")+ "&"
+                            + URLEncoder.encode("view", "UTF-8") + "=" + URLEncoder.encode("123", "UTF-8");
                     bufferedWriter.write(post_data);
                     bufferedWriter.flush();
                     bufferedWriter.close();
                     outputStream.close();
                     InputStream inputStream = httpURLConnection.getInputStream();
-                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream,"iso-8859-1"));
-                    String result="";
-                    String line="";
-                    while ((line = bufferedReader.readLine()) != null){
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
+                    String result = "";
+                    String line = "";
+                    while ((line = bufferedReader.readLine()) != null) {
                         result += line;
                     }
                     bufferedReader.close();
@@ -150,10 +161,10 @@ public class portionDialog extends AppCompatDialogFragment {
                     e.printStackTrace();
                 }
 
-            }else{
+            } else {
                 return "faculty";
             }
-            return null;
+            return "Fail";
         }
 
         @Override
@@ -163,16 +174,25 @@ public class portionDialog extends AppCompatDialogFragment {
 
         @Override
         protected void onPreExecute() {
-            alertDialog = new android.app.AlertDialog.Builder(context).create();
             super.onPreExecute();
         }
+
         @Override
         protected void onPostExecute(String result) {
+            //Log.i("TAG",result);
+            try {
+                JSONObject reader = new JSONObject(result);
+                JSONObject test = new JSONObject(reader.getString("portion_details"));
+                Log.i("TAG","heya"+test.getString("portion_ID"));
+                et_totalTopics.setText(test.getString("no_of_topics"));
+                et_remainTopics.setText(test.getString("remained_topics"));
+                et_totalTopicName.setText(test.getString("syllabus"));
+                et_remainTopicName.setText(test.getString("complete_syllabus"));
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
             super.onPostExecute(result);
-
-
         }
-
-
     }
 }

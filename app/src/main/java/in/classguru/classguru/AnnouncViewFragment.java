@@ -1,23 +1,17 @@
 package in.classguru.classguru;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -31,7 +25,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -39,7 +32,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
-import in.classguru.classguru.models.PortionModel;
+import in.classguru.classguru.models.FacNoticeModel;
 
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
@@ -47,12 +40,12 @@ import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link ViewFragment.OnFragmentInteractionListener} interface
+ * {@link AnnouncViewFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link ViewFragment#newInstance} factory method to
+ * Use the {@link AnnouncViewFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ViewFragment extends Fragment {
+public class AnnouncViewFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -63,9 +56,9 @@ public class ViewFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
-    public ListView viewFacPortion;
+    public ListView lv_facnotice;
 
-    public ViewFragment() {
+    public AnnouncViewFragment() {
         // Required empty public constructor
     }
 
@@ -75,11 +68,11 @@ public class ViewFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment ViewFragment.
+     * @return A new instance of fragment AnnouncViewFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ViewFragment newInstance(String param1, String param2) {
-        ViewFragment fragment = new ViewFragment();
+    public static AnnouncViewFragment newInstance(String param1, String param2) {
+        AnnouncViewFragment fragment = new AnnouncViewFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -93,18 +86,17 @@ public class ViewFragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
-
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_view, container, false);
-        viewFacPortion = (ListView)rootView.findViewById(R.id.viewFacPortion);
+        View rootView = inflater.inflate(R.layout.fragment_announc_view, container, false);
+        lv_facnotice = (ListView)rootView.findViewById(R.id.lv_annoinView);
+        Fac_announc_fetch fac_announc_fetch = new Fac_announc_fetch(getContext());
+        fac_announc_fetch.execute("facultyAnnounce",mParam1,mParam2);
         // Inflate the layout for this fragment
-        Fac_Portion_fetch fac_portion_fetch = new Fac_Portion_fetch(getContext());
-        fac_portion_fetch.execute("PortionView",mParam1,mParam2);
         return rootView;
     }
 
@@ -147,11 +139,10 @@ public class ViewFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
-    public class Fac_Portion_fetch extends AsyncTask<String,Void,String> {
+    public class Fac_announc_fetch extends AsyncTask<String,Void,String> {
         Context context;
         android.app.AlertDialog alertDialog;
-
-        Fac_Portion_fetch(Context ctx) {
+        Fac_announc_fetch (Context ctx){
             context = ctx;
         }
 
@@ -159,9 +150,9 @@ public class ViewFragment extends Fragment {
         protected String doInBackground(String... params) {
             String type = params[0];
             String id = params[1];
-            String db = params[2];
+            String dbname = params[2];
             String login_url = "https://classes.classguru.in/api/teacher_details.php";
-            if (type.equals("PortionView")) {
+            if(type.equals("facultyAnnounce")){
                 try {
                     URL profile_url = new URL(login_url);
                     HttpURLConnection httpURLConnection = (HttpURLConnection) profile_url.openConnection();
@@ -170,17 +161,17 @@ public class ViewFragment extends Fragment {
                     httpURLConnection.setDoInput(true);
                     OutputStream outputStream = httpURLConnection.getOutputStream();
                     BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
-                    String post_data = URLEncoder.encode("userId", "UTF-8") + "=" + URLEncoder.encode(id, "UTF-8") + "&"
-                            + URLEncoder.encode("dbname", "UTF-8") + "=" + URLEncoder.encode(db, "UTF-8");
+                    String post_data = URLEncoder.encode("userId","UTF-8")+"="+URLEncoder.encode(id,"UTF-8")+"&"
+                            +URLEncoder.encode("dbname","UTF-8")+"="+URLEncoder.encode(dbname,"UTF-8");
                     bufferedWriter.write(post_data);
                     bufferedWriter.flush();
                     bufferedWriter.close();
                     outputStream.close();
                     InputStream inputStream = httpURLConnection.getInputStream();
-                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
-                    String result = "";
-                    String line = "";
-                    while ((line = bufferedReader.readLine()) != null) {
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream,"iso-8859-1"));
+                    String result="";
+                    String line="";
+                    while ((line = bufferedReader.readLine()) != null){
                         result += line;
                     }
                     bufferedReader.close();
@@ -194,58 +185,59 @@ public class ViewFragment extends Fragment {
                     e.printStackTrace();
                 }
 
-            } else {
+            }else{
                 return "faculty";
             }
-            return "Fail";
-        }
-
-        @Override
-        protected void onProgressUpdate(Void... values) {
-            super.onProgressUpdate(values);
+            return null;
         }
 
         @Override
         protected void onPreExecute() {
+            alertDialog = new android.app.AlertDialog.Builder(context).create();
             super.onPreExecute();
         }
-
+        @Override
+        protected void onProgressUpdate(Void... values) {
+            super.onProgressUpdate(values);
+        }
         @Override
         protected void onPostExecute(String result) {
-            //Log.i("TAG",result);
+            /*alertDialog.setMessage(result);
+            alertDialog.show();*/
+            super.onPostExecute(result);
+
             try {
                 JSONObject reader = new JSONObject(result);
-                JSONArray fulltest = reader.getJSONArray("teacher_portion");
-                List<PortionModel> portionModelList = new ArrayList<>();
+                JSONArray fulltest = reader.getJSONArray("teacher_notice");
+
+                List<FacNoticeModel> facNoticeModelList = new ArrayList<>();
                 for (int i=0;i<fulltest.length();i++){
                     JSONObject finalresult = fulltest.getJSONObject(i);
-                    PortionModel portionModel = new PortionModel();
-                    portionModel.setBatch(finalresult.getString("batch"));
-                    portionModel.setSubject(finalresult.getString("subject_name"));
-                    portionModel.setPortionId(finalresult.getString("portion_ID"));
-                    portionModel.setTotalTopics(finalresult.getString("no_of_topics"));
-                    portionModel.setRemainTopics(finalresult.getString("remained_topics"));
-                    portionModel.setTopic(finalresult.getString("syllabus"));
-                    portionModel.setCompleted(finalresult.getString("complete_syllabus"));
-                    portionModelList.add(portionModel);
-                }
-                FacPortionAdapter facPortionAdapter = new FacPortionAdapter (getActivity().getApplicationContext(),R.layout.fac_portionview_layout,portionModelList);
-                viewFacPortion.setAdapter(facPortionAdapter);
+                    FacNoticeModel facNoticeModel = new FacNoticeModel();
 
+                    facNoticeModel.setBatch(finalresult.getString("batch"));
+                    facNoticeModel.setDate(finalresult.getString("date"));
+                    facNoticeModel.setDescription(finalresult.getString("Description"));
+                    facNoticeModel.setTitle(finalresult.getString("title"));
+                    facNoticeModelList.add(facNoticeModel);
+                }
+                AnnounceAdapter announceAdapter = new AnnounceAdapter(getActivity().getApplicationContext(),R.layout.facannounc_view_layout,facNoticeModelList);
+                lv_facnotice.setAdapter(announceAdapter);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            super.onPostExecute(result);
+
         }
     }
-    public class FacPortionAdapter extends ArrayAdapter {
+    public class AnnounceAdapter extends ArrayAdapter {
 
-        List<PortionModel> portionModelList;
+        List<FacNoticeModel> facNoticeModelList;
         private  int resource;
         private LayoutInflater inflater;
-        public FacPortionAdapter(@NonNull Context context, int resource, @NonNull List<PortionModel> objects) {
+
+        public AnnounceAdapter(@NonNull Context context, int resource, @NonNull List<FacNoticeModel> objects) {
             super(context, resource, objects);
-            portionModelList = objects;
+            facNoticeModelList = objects;
             this.resource = resource;
             inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
         }
@@ -255,54 +247,19 @@ public class ViewFragment extends Fragment {
             if(convertView == null){
                 convertView = inflater.inflate(resource,null);
             }
+            TextView tv_Batch = (TextView)convertView.findViewById(R.id.tv_facNotBatch);
+            TextView tv_Date = (TextView)convertView.findViewById(R.id.tv_facNotDate1);
+            TextView tv_Desc = (TextView)convertView.findViewById(R.id.tv_facNotDesc);
+            TextView tv_Title = (TextView)convertView.findViewById(R.id.tv_facNotTitle1);
 
-            TextView tv_batch = (TextView)convertView.findViewById(R.id.tv_PortionBatchView);
-            TextView tv_subject = (TextView)convertView.findViewById(R.id.tv_PortionSubjView);
-            TextView tv_allPortion = (TextView)convertView.findViewById(R.id.tv_allPortion);
-            TextView tv_remPortion = (TextView)convertView.findViewById(R.id.tv_remPortion);
-            TextView tv_totalTopicsPortion = (TextView)convertView.findViewById(R.id.tv_totalTopicsPortion);
-            TextView tv_completedPortionView = (TextView)convertView.findViewById(R.id.tv_completedPortionView);
-            //ListView lv_portionView = (ListView)convertView.findViewById(R.id.lv_portionView);
-
-            tv_batch.setText(portionModelList.get(position).getBatch());
-            tv_subject.setText(portionModelList.get(position).getSubject());
-            tv_allPortion.setText(portionModelList.get(position).getTotalTopics());
-            tv_remPortion.setText(portionModelList.get(position).getRemainTopics());
-            tv_totalTopicsPortion.setText(portionModelList.get(position).getTopic());
-            tv_completedPortionView.setText(portionModelList.get(position).getCompleted());
-
-            /*String[] arrayTopics = portionModelList.get(position).getTopic().split(",");
-
-            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(),R.layout.profile_row_layout,arrayTopics);
-            arrayAdapter.add("Bravo");
-            arrayAdapter.add("Bravo");
-            arrayAdapter.add("Bravo");
-            arrayAdapter.add("Bravo");
-            lv_portionView.setAdapter(arrayAdapter);*/
-
-           /* RelativeLayout relativelayout = (RelativeLayout)convertView.findViewById(R.id.Rl_PortionView);
-
-            RelativeLayout.LayoutParams layoutparams = new RelativeLayout.LayoutParams(
-                    RelativeLayout.LayoutParams.WRAP_CONTENT,
-                    RelativeLayout. LayoutParams.WRAP_CONTENT
-            );
-
-
-            layoutparams.addRule(RelativeLayout.CENTER_IN_PARENT);
-
-TextView tv_new = new TextView(getContext());
-            tv_new.setLayoutParams(layoutparams);
-
-
-            tv_new.setText("Dynamic Button");
-
-
-            relativelayout.addView(tv_new);*/
-
-
+            tv_Batch.setText(facNoticeModelList.get(position).getBatch());
+            tv_Date.setText(facNoticeModelList.get(position).getDate());
+            tv_Desc.setText(facNoticeModelList.get(position).getDescription());
+            tv_Title.setText(facNoticeModelList.get(position).getTitle());
 
 
             return convertView;
+
         }
     }
 }

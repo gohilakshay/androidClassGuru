@@ -18,5 +18,20 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string name="Fee_activity">Fee Details</string>
+    <string name="Attendance_activity">Attendance</string>
+    <string name="Test_activity">Test Details</string>
+    <string name="Assignment_activity">Assignment</string>
+    <string name="Portion_activity">Portion Details</string>
+
+    <string name="FacSalaryActivity">Salary Details</string>
+    <string name="FacAttendActivity">Attendance</string>
+    <string name="FacStudAttendActivity">Mark Attendance</string>
+    <string name="FacAnnouncActivity">Announcement</string>
+    <string name="FacPortionTabActivity">Portion Details</string>
+    <string name="Fac_Announc_tabbActivity">Announcement</string>
+
+    <string name="Fee_tabedActivity">Fee Details</string>
+
 
 </resources>

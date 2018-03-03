@@ -10,4 +10,5 @@
     <item android:id="@+id/portion_details" android:title="Portion Details" android:icon="@drawable/ic_testdetails"/>
     <item android:id="@+id/announcements" android:title="Announcements" android:icon="@drawable/ic_announcement"/>-->
     <item android:id="@+id/logout" android:icon="@drawable/ic_logout" android:title="Logout" android:onClick="OnLogout" />
+
 </menu>

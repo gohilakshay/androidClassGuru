@@ -18,7 +18,7 @@
             android:layout_alignParentTop="true"
             android:layout_weight="1"
             android:text="Date"
-            android:textAlignment="center"
+            android:textAlignment="viewStart"
             android:textStyle="bold" />
 
         <TextView
@@ -30,7 +30,7 @@
             android:layout_alignParentTop="true"
             android:layout_weight="1"
             android:text="Attendance"
-            android:textAlignment="center"
+            android:textAlignment="viewStart"
             android:textStyle="bold" />
 
     </RelativeLayout>

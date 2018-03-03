@@ -198,7 +198,8 @@ public class AddFragment extends Fragment {
                             +URLEncoder.encode("totalTopics","UTF-8")+"="+URLEncoder.encode(totalTopics,"UTF-8")+"&"
                             +URLEncoder.encode("userId","UTF-8")+"="+URLEncoder.encode(mParam1,"UTF-8")+"&"
                             +URLEncoder.encode("syllabus","UTF-8")+"="+URLEncoder.encode(totalTopicsName,"UTF-8")+"&"
-                            +URLEncoder.encode("completeTopics","UTF-8")+"="+URLEncoder.encode(compTopicsName,"UTF-8");
+                            +URLEncoder.encode("completeTopics","UTF-8")+"="+URLEncoder.encode(compTopicsName,"UTF-8")+"&"
+                            +URLEncoder.encode("add","UTF-8")+"="+URLEncoder.encode("123","UTF-8");
                     bufferedWriter.write(post_data);
                     bufferedWriter.flush();
                     bufferedWriter.close();
@@ -245,7 +246,7 @@ public class AddFragment extends Fragment {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-
+                        getActivity().finish();
                         startActivity(getActivity().getIntent());
 
                     }

@@ -12,7 +12,8 @@
         android:layout_height="300dp">
 
         <LinearLayout
-            android:background="@drawable/db_profile_header"
+            android:background="#4052b5"
+
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="265dp">
@@ -22,6 +23,8 @@
                 android:layout_height="30dp"
                 android:src="@drawable/ic_navigation"/>-->
             <de.hdodenhof.circleimageview.CircleImageView
+                app:civ_border_color="@color/white"
+                app:civ_border_width="3dp"
                 android:id="@+id/iv_profile"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
@@ -43,6 +46,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
+                android:fontFamily="@font/allerta_stencil"
                 android:text="Akshay Gohil"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
@@ -65,10 +69,12 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:background="#4af9fcfd"
+
                 android:id="@+id/iv_nav"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+                android:background="#4a000000"
+                android:cropToPadding="true"
                 android:src="@drawable/ic_navigation" />
         </android.support.v7.widget.CardView>
         <android.support.v7.widget.CardView
@@ -103,7 +109,7 @@
                         android:layout_gravity="center"
                         android:text="Xth-A"
                         android:textColor="#4a4a4a"
-                        android:textSize="24dp"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -127,7 +133,7 @@
                         android:layout_gravity="center"
                         android:text="Morning"
                         android:textColor="#4a4a4a"
-                        android:textSize="24dp"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -151,7 +157,7 @@
                         android:layout_gravity="center"
                         android:text="2018"
                         android:textColor="#4a4a4a"
-                        android:textSize="24dp"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -185,7 +191,18 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Name"
-                    android:textAlignment="gravity"
+                    android:textAlignment="viewEnd"
+                    android:textColor="#4a4a4a"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:gravity="end" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text=":"
+                    android:textAlignment="center"
                     android:textColor="#4a4a4a"
                     android:textSize="15sp"
                     android:textStyle="bold" />
@@ -194,12 +211,11 @@
                     android:id="@+id/tvName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
+                    android:layout_weight="1"
                     android:text="Akshay"
                     android:textAlignment="gravity"
                     android:textColor="#4a4a4a"
-                    android:textSize="15sp"
-                     />
+                    android:textSize="15sp" />
             </TableRow>
             <TableRow
                 android:padding="10dp"
@@ -212,16 +228,25 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Father"
-                    android:textAlignment="gravity"
+                    android:textAlignment="viewEnd"
                     android:textColor="#4a4a4a"
                     android:textSize="15sp"
-                    android:textStyle="bold"/>
-
+                    android:textStyle="bold"
+                    android:gravity="end" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text=":"
+                    android:textAlignment="center"
+                    android:textColor="#4a4a4a"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
                 <TextView
                     android:id="@+id/tvFather"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
+                    android:layout_weight="1"
                     android:text="Yogesh"
                     android:textAlignment="gravity"
                     android:textColor="#4a4a4a"
@@ -239,16 +264,25 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Mother"
-                    android:textAlignment="gravity"
+                    android:textAlignment="viewEnd"
                     android:textColor="#4a4a4a"
                     android:textSize="15sp"
-                    android:textStyle="bold"/>
-
+                    android:textStyle="bold"
+                    android:gravity="end" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text=":"
+                    android:textAlignment="center"
+                    android:textColor="#4a4a4a"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
                 <TextView
                     android:id="@+id/tvMother"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
+                    android:layout_weight="1"
                     android:text="Neeta"
                     android:textAlignment="gravity"
                     android:textColor="#4a4a4a"
@@ -266,16 +300,25 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Contact P"
-                    android:textAlignment="gravity"
+                    android:textAlignment="viewEnd"
                     android:textColor="#4a4a4a"
                     android:textSize="15sp"
-                    android:textStyle="bold"/>
-
+                    android:textStyle="bold"
+                    android:gravity="end" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text=":"
+                    android:textAlignment="center"
+                    android:textColor="#4a4a4a"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
                 <TextView
                     android:id="@+id/tvContact"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
+                    android:layout_weight="1"
                     android:text="9029307960"
                     android:textAlignment="gravity"
                     android:textColor="#4a4a4a"
@@ -287,21 +330,32 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Gender"
-                    android:textAlignment="gravity"
+                    android:textAlignment="textEnd"
                     android:textColor="#4a4a4a"
                     android:textSize="15sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:gravity="end" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text=":"
+                    android:textAlignment="center"
+                    android:textColor="#4a4a4a"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tvGender"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
+                    android:layout_weight="1"
                     android:text="Male"
                     android:textAlignment="gravity"
                     android:textColor="#4a4a4a"
@@ -318,16 +372,25 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="DOB"
-                    android:textAlignment="gravity"
+                    android:textAlignment="textEnd"
                     android:textColor="#4a4a4a"
                     android:textSize="15sp"
-                    android:textStyle="bold"/>
-
+                    android:textStyle="bold"
+                    android:gravity="end" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text=":"
+                    android:textAlignment="center"
+                    android:textColor="#4a4a4a"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
                 <TextView
                     android:id="@+id/tvBirth"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
+                    android:layout_weight="1"
                     android:text="29/4/1995"
                     android:textAlignment="gravity"
                     android:textColor="#4a4a4a"
@@ -366,20 +429,29 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:textAlignment="textEnd"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Course Type"
-                    android:textAlignment="gravity"
                     android:textColor="#4a4a4a"
                     android:textSize="15sp"
-                    android:textStyle="bold"/>
-
+                    android:textStyle="bold"
+                    android:gravity="end" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text=":"
+                    android:textAlignment="center"
+                    android:textColor="#4a4a4a"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
                 <TextView
                     android:id="@+id/tvCourseType"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
+                    android:layout_weight="1"
                     android:text="Regular"
                     android:textAlignment="gravity"
                     android:textColor="#4a4a4a"
@@ -392,20 +464,29 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:textAlignment="textEnd"
                     android:textColor="#4a4a4a"
                     android:textSize="15sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Course"
-                    android:textAlignment="gravity"
-                    android:textStyle="bold"/>
-
+                    android:textStyle="bold"
+                    android:gravity="end" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text=":"
+                    android:textAlignment="center"
+                    android:textColor="#4a4a4a"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
                 <TextView
                     android:id="@+id/tvCourse"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
+                    android:layout_weight="1"
                     android:text="Xth Sum"
                     android:textAlignment="gravity"
                     android:textColor="#4a4a4a"
@@ -418,20 +499,29 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:textAlignment="textEnd"
                     android:textColor="#4a4a4a"
                     android:textSize="15sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Standard"
-                    android:textAlignment="gravity"
-                    android:textStyle="bold"/>
-
+                    android:textStyle="bold"
+                    android:gravity="end" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text=":"
+                    android:textAlignment="center"
+                    android:textColor="#4a4a4a"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
                 <TextView
                     android:id="@+id/tvStandard"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
+                    android:layout_weight="1"
                     android:text="10th"
                     android:textAlignment="gravity"
                     android:textColor="#4a4a4a"
