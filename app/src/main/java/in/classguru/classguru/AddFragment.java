@@ -1,5 +1,6 @@
 package in.classguru.classguru;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -94,6 +95,7 @@ public class AddFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View rootView = inflater.inflate(R.layout.fragment_add, container, false);
         portionBatchSpinner = (Spinner)rootView.findViewById(R.id.portionBatchSpinner);
         portionSubjSpinner = (Spinner)rootView.findViewById(R.id.portionSubjSpinner);
@@ -116,8 +118,15 @@ public class AddFragment extends Fragment {
                 String et_remTopicN = et_remTopicName.getText().toString();
 
                 String[] splitBatch = portionBatchSelect.split(" ");
-                AddPortion_post addPortion_post = new AddPortion_post(getContext());
-                addPortion_post.execute("FacPortionAdd",et_totalTop,et_remTop,splitBatch[0],portionSubjSelect,et_totalTopicN,et_remTopicN);
+                if(!et_totalTop.equals("") && !et_remTop.equals("") && !splitBatch[0].equals("Select batch") && !portionSubjSelect.equals("Select Subject") && !et_totalTopicN.equals("")&& !et_totalTopicN.equals(" ") && !et_remTopicN.equals("") && !et_remTopicN.equals(" ")){
+                    AddPortion_post addPortion_post = new AddPortion_post(getContext());
+                    addPortion_post.execute("FacPortionAdd",et_totalTop,et_remTop,splitBatch[0],portionSubjSelect,et_totalTopicN,et_remTopicN);
+                }else{
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+                    alertDialogBuilder.setMessage("Enter all Fields");
+                    alertDialogBuilder.show();
+                }
+
             }
         });
         // Inflate the layout for this fragment

@@ -1,5 +1,6 @@
 package in.classguru.classguru;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -128,8 +129,15 @@ public class AnnouncAddFragment extends Fragment {
                 String title = tv_title.getText().toString();
                 String description = tv_description.getText().toString();
                 String date = year_x+"-"+month_x+"-"+day_x;
-                AddAnnoc_post addAnnoc_post = new AddAnnoc_post(getContext());
-                addAnnoc_post.execute("FacAnnouncAdd",title,description,date,batch_newId,mParam1);
+                if(!title.equals(" ") && !title.equals("") && !description.equals(" ") && !description.equals("") && !date.equals("Click to select Text") && !batch_newId.equals("Select batch")){
+                    AddAnnoc_post addAnnoc_post = new AddAnnoc_post(getContext());
+                    addAnnoc_post.execute("FacAnnouncAdd",title,description,date,batch_newId,mParam1);
+                }else{
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+                    alertDialogBuilder.setMessage("Enter all Fields");
+                    alertDialogBuilder.show();
+                }
+
             }
         });
         return rootView;

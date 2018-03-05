@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -56,7 +57,7 @@ public class FacStudAttendActivity extends Faculty_Home_Activity {
     TextView et_datepicker;
     int year_x,month_x,day_x;
     static final int DILOG_ID = 0;
-    Button btn_markStud;
+    //Button btn_markStud;
     LinearLayout Ll_StudDetails;
     public ListView lv_facStudMark;
     public Button btn_markAbsent;
@@ -83,14 +84,14 @@ public class FacStudAttendActivity extends Faculty_Home_Activity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         spinner = (Spinner) findViewById(R.id.spinner);
-        btn_markStud = (Button)findViewById(R.id.btn_markStud);
+        //btn_markStud = (Button)findViewById(R.id.btn_markStud);
         btn_markAbsent = (Button)findViewById(R.id.btn_markAbsent);
         Ll_StudDetails = (LinearLayout)findViewById(R.id.Ll_StudDetails);
 
         Ll_StudDetails.setVisibility(Ll_StudDetails.INVISIBLE);
 
         lv_facStudMark = (ListView)findViewById(R.id.lv_facStudMark);
-        btn_markStud.setOnClickListener(new View.OnClickListener() {
+        /*btn_markStud.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Ll_StudDetails.setVisibility(Ll_StudDetails.VISIBLE);
@@ -98,7 +99,29 @@ public class FacStudAttendActivity extends Faculty_Home_Activity {
                 batch_id = spinner.getSelectedItem().toString();
                 facStudAttend_fetchbatch.execute("facultyBatch", batch_id,globaldbname);
             }
+        });*/
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // your code here
+                if(!spinner.getSelectedItem().toString().equals("Select batch")){
+                    Ll_StudDetails.setVisibility(Ll_StudDetails.VISIBLE);
+                    FacStudAttend_fetchbatch facStudAttend_fetchbatch = new FacStudAttend_fetchbatch(FacStudAttendActivity.this);
+                    batch_id = spinner.getSelectedItem().toString();
+                    facStudAttend_fetchbatch.execute("facultyBatch", batch_id,globaldbname);
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+
         });
+
+
         FacStudAttend_fetch facStudAttend_fetch = new FacStudAttend_fetch(this);
         facStudAttend_fetch.execute("faculty",globalid,globalpermissin,globaldbname);
 

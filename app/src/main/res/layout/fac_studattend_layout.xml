@@ -29,7 +29,7 @@
                 android:layout_weight="1" />
         </TableRow>
 
-        <TableRow android:layout_marginTop="10dp">
+       <!-- <TableRow android:layout_marginTop="10dp">
 
             <Button
                 android:id="@+id/btn_markStud"
@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Mark" />
-        </TableRow>
+        </TableRow>-->
     </TableLayout>
 
 
