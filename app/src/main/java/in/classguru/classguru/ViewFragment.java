@@ -1,5 +1,6 @@
 package in.classguru.classguru;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -249,9 +250,10 @@ public class ViewFragment extends Fragment {
             this.resource = resource;
             inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
         }
+        @SuppressLint("ResourceType")
         @NonNull
         @Override
-        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
             if(convertView == null){
                 convertView = inflater.inflate(resource,null);
             }
@@ -260,16 +262,48 @@ public class ViewFragment extends Fragment {
             TextView tv_subject = (TextView)convertView.findViewById(R.id.tv_PortionSubjView);
             TextView tv_allPortion = (TextView)convertView.findViewById(R.id.tv_allPortion);
             TextView tv_remPortion = (TextView)convertView.findViewById(R.id.tv_remPortion);
-            TextView tv_totalTopicsPortion = (TextView)convertView.findViewById(R.id.tv_totalTopicsPortion);
-            TextView tv_completedPortionView = (TextView)convertView.findViewById(R.id.tv_completedPortionView);
+            //TextView tv_totalTopicsPortion = (TextView)convertView.findViewById(R.id.tv_totalTopicsPortion);
+            //TextView tv_completedPortionView = (TextView)convertView.findViewById(R.id.tv_completedPortionView);
             //ListView lv_portionView = (ListView)convertView.findViewById(R.id.lv_portionView);
+
+            RelativeLayout Rl_PortionView = convertView.findViewById(R.id.Rl_PortionView);
+            RelativeLayout.LayoutParams buttonParam = new RelativeLayout.LayoutParams(
+                    RelativeLayout.LayoutParams.WRAP_CONTENT,
+                    RelativeLayout.LayoutParams.WRAP_CONTENT);
+            Button myButton1 = new Button(getContext());  // create a new Button
+            myButton1.setText("View"); // set Text in the Button
+            myButton1.setId(1);
+            myButton1.setLayoutParams(buttonParam); // set defined layout params to Button
+            buttonParam.addRule(RelativeLayout.ALIGN_PARENT_END);
+            buttonParam.addRule(RelativeLayout.BELOW,R.id.tv_remPortion);
+           // buttonParam.addRule(RelativeLayout.ALIGN_BASELINE,R.id.tv_tot);
+            buttonParam.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+            Rl_PortionView.addView(myButton1); // add Button in RelativeLayout
+
+
+
 
             tv_batch.setText(portionModelList.get(position).getBatch());
             tv_subject.setText(portionModelList.get(position).getSubject());
             tv_allPortion.setText(portionModelList.get(position).getTotalTopics());
             tv_remPortion.setText(portionModelList.get(position).getRemainTopics());
-            tv_totalTopicsPortion.setText(portionModelList.get(position).getTopic());
-            tv_completedPortionView.setText(portionModelList.get(position).getCompleted());
+            //tv_totalTopicsPortion.setText(portionModelList.get(position).getTopic());
+           // tv_completedPortionView.setText(portionModelList.get(position).getCompleted());
+
+            final String s = portionModelList.get(position).getTopic();
+            final String s1 = portionModelList.get(position).getCompleted();
+            myButton1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    /*AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setMessage(s);
+                    builder.show();*/
+                    Intent intent = new Intent(getContext(),Fac_PortionListView_Activity.class);
+                    intent.putExtra("portionList",s);
+                    intent.putExtra("portionComplete",s1);
+                    startActivity(intent);
+                }
+            });
 
             /*String[] arrayTopics = portionModelList.get(position).getTopic().split(",");
 
@@ -298,6 +332,20 @@ TextView tv_new = new TextView(getContext());
 
 
             relativelayout.addView(tv_new);*/
+
+           /*Button myButton2 = new Button(getContext());
+            RelativeLayout.LayoutParams buttonParam1 = new RelativeLayout.LayoutParams(
+                    RelativeLayout.LayoutParams.WRAP_CONTENT,
+                    RelativeLayout.LayoutParams.WRAP_CONTENT);
+            myButton2.setText("View");
+            myButton2.setLayoutParams(buttonParam1);
+            buttonParam1.addRule(RelativeLayout.RIGHT_OF,R.id.textView11);
+            buttonParam1.addRule(RelativeLayout.BELOW,1);
+            buttonParam1.addRule(RelativeLayout.ALIGN_START,R.id.tv_remPortion);
+            buttonParam1.addRule(RelativeLayout.ALIGN_BASELINE,R.id.textView11);
+
+           // buttonParam1.setMargins(0, 20, 0, 0);
+            Rl_PortionView.addView(myButton2);*/
 
 
 

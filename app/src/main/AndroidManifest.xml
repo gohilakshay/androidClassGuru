@@ -91,9 +91,10 @@
             android:label="@string/Fac_Announc_tabbActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:screenOrientation="portrait"
             android:name=".Fee_tabedActivity"
-            android:label="@string/Fee_tabedActivity"></activity>
+            android:label="@string/Fee_tabedActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".Fac_PortionListView_Activity"></activity>
     </application>
 
 </manifest>

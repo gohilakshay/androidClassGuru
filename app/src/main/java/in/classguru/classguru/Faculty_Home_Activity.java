@@ -75,9 +75,9 @@ public class Faculty_Home_Activity extends AppCompatActivity {
     public TextView tvFacSideName;
     public TextView tvFacSideNumb;
     public ListView lv_profile;
-    public ImageView profile_image;
+   // public ImageView profile_image;
     private Toolbar toolbar;
-    private CollapsingToolbarLayout collapsingToolbarLayout;
+  //  private CollapsingToolbarLayout collapsingToolbarLayout;
     public ImageView im_facProfile;
 
 
@@ -127,9 +127,9 @@ public class Faculty_Home_Activity extends AppCompatActivity {
         im_facProfile = (ImageView)findViewById(R.id.iv_FacProfile);
 
         lv_profile = (ListView)findViewById(R.id.lv_profile);
-        profile_image = (ImageView)findViewById(R.id.profile_image);
+        /*profile_image = (ImageView)findViewById(R.id.profile_image);
         profile_image.setScaleType(ImageView.ScaleType.FIT_XY);
-        profile_image.setColorFilter(Color.argb(255, 118, 118, 188), PorterDuff.Mode.LIGHTEN);
+        profile_image.setColorFilter(Color.argb(255, 118, 118, 188), PorterDuff.Mode.LIGHTEN);*/
         mDrawerLayout = (DrawerLayout)findViewById(R.id.Facdrawer);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
         mDrawerLayout.addDrawerListener(mToggle);
@@ -137,13 +137,14 @@ public class Faculty_Home_Activity extends AppCompatActivity {
 
 
         toolbar = (Toolbar) findViewById(R.id.toolbar1);
-        collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.CollapsingToolbarLayout1);
+
+       // collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.CollapsingToolbarLayout1);
         //setSupportActionBar(toolbar);
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        collapsingToolbarLayout.setTitle("ClassGuru");
+       // collapsingToolbarLayout.setTitle("ClassGuru");
 
-        collapsingToolbarLayout.setContentScrimColor(ContextCompat.getColor(this,R.color.startblue));
+       // collapsingToolbarLayout.setContentScrimColor(ContextCompat.getColor(this,R.color.startblue));
         ImageView img = (ImageView)findViewById(R.id.iv_nav);
         img.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -326,7 +327,7 @@ public class Faculty_Home_Activity extends AppCompatActivity {
                     }
                     if(im_facProfile != null){
                         ImageLoader.getInstance().displayImage("https://classes.classguru.in/"+facultyProfile, im_facProfile);
-                        ImageLoader.getInstance().displayImage("https://classes.classguru.in/"+facultyProfile, profile_image);
+                      //  ImageLoader.getInstance().displayImage("https://classes.classguru.in/"+facultyProfile, profile_image);
                     }
                 }else{
                     alertDialog.setMessage("Please Login Correctly Faculty");
