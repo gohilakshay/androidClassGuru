@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:weightSum="2"
     tools:context="in.classguru.classguru.Fac_PortionListView_Activity">
 
     <!--<TextView
@@ -13,7 +14,18 @@
         android:layout_height="match_parent"
         android:text="BRavo"/>-->
     <ListView
+
         android:id="@+id/lv_portionList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_weight=".2">
+
+    </ListView>
+
+    <Button
+        android:id="@+id/btn_updatePortionTab1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1.8"
+        android:text="Update" />
 </LinearLayout>

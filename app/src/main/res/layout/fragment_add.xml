@@ -1,4 +1,4 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
 
     android:layout_width="match_parent"
@@ -164,10 +164,10 @@
             android:id="@+id/btn_addportionFrag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/et_remTopicName"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="16dp"
+            android:layout_marginTop="18dp"
             android:text="Add Portion" />
     </RelativeLayout>
 
-</FrameLayout>
+</ScrollView>

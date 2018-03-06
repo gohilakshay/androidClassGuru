@@ -292,6 +292,7 @@ public class ViewFragment extends Fragment {
 
             final String s = portionModelList.get(position).getTopic();
             final String s1 = portionModelList.get(position).getCompleted();
+            final String s2 = portionModelList.get(position).getPortionId();
             myButton1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -301,56 +302,14 @@ public class ViewFragment extends Fragment {
                     Intent intent = new Intent(getContext(),Fac_PortionListView_Activity.class);
                     intent.putExtra("portionList",s);
                     intent.putExtra("portionComplete",s1);
+                    intent.putExtra("portionId",s2);
+                    intent.putExtra("globaldbname",mParam2);
+                    intent.putExtra("globalid",mParam1);
                     startActivity(intent);
                 }
             });
 
-            /*String[] arrayTopics = portionModelList.get(position).getTopic().split(",");
-
-            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(),R.layout.profile_row_layout,arrayTopics);
-            arrayAdapter.add("Bravo");
-            arrayAdapter.add("Bravo");
-            arrayAdapter.add("Bravo");
-            arrayAdapter.add("Bravo");
-            lv_portionView.setAdapter(arrayAdapter);*/
-
-           /* RelativeLayout relativelayout = (RelativeLayout)convertView.findViewById(R.id.Rl_PortionView);
-
-            RelativeLayout.LayoutParams layoutparams = new RelativeLayout.LayoutParams(
-                    RelativeLayout.LayoutParams.WRAP_CONTENT,
-                    RelativeLayout. LayoutParams.WRAP_CONTENT
-            );
-
-
-            layoutparams.addRule(RelativeLayout.CENTER_IN_PARENT);
-
-TextView tv_new = new TextView(getContext());
-            tv_new.setLayoutParams(layoutparams);
-
-
-            tv_new.setText("Dynamic Button");
-
-
-            relativelayout.addView(tv_new);*/
-
-           /*Button myButton2 = new Button(getContext());
-            RelativeLayout.LayoutParams buttonParam1 = new RelativeLayout.LayoutParams(
-                    RelativeLayout.LayoutParams.WRAP_CONTENT,
-                    RelativeLayout.LayoutParams.WRAP_CONTENT);
-            myButton2.setText("View");
-            myButton2.setLayoutParams(buttonParam1);
-            buttonParam1.addRule(RelativeLayout.RIGHT_OF,R.id.textView11);
-            buttonParam1.addRule(RelativeLayout.BELOW,1);
-            buttonParam1.addRule(RelativeLayout.ALIGN_START,R.id.tv_remPortion);
-            buttonParam1.addRule(RelativeLayout.ALIGN_BASELINE,R.id.textView11);
-
-           // buttonParam1.setMargins(0, 20, 0, 0);
-            Rl_PortionView.addView(myButton2);*/
-
-
-
-
-            return convertView;
+             return convertView;
         }
     }
 }
