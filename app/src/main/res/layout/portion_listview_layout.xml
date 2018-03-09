@@ -4,37 +4,36 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
     <LinearLayout
-
+        android:id="@+id/ll_portionLayout"
         android:layout_marginTop="10dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/tv_Portionsubject"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="Subject"
-            android:textAlignment="center"
-            android:textSize="15sp"
-             />
+            android:textAlignment="viewStart"
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/tv_topic"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_weight=".5"
             android:text="Topic Name"
-            android:textAlignment="center" />
+            android:textAlignment="viewStart" />
 
         <TextView
             android:id="@+id/tv_complete"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_weight=".5"
             android:text="Completed"
-            android:textAlignment="center" />
+            android:textAlignment="viewStart" />
 
     </LinearLayout>
 

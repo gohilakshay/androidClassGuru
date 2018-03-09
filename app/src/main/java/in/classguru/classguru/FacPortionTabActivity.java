@@ -117,8 +117,8 @@ public class FacPortionTabActivity extends Faculty_Home_Activity implements AddF
 
     @Override
     public void applyTexts(String portiontotal, String portionremain, String portionBatchSelect, String portionSubjSelect, String globalPortionid) {
-        FacPortionUpdate_fetch facPortionUpdate_fetch = new FacPortionUpdate_fetch(this);
-        facPortionUpdate_fetch.execute("PortionUpdate",portiontotal,portionremain,portionBatchSelect,portionSubjSelect,globalPortionid);
+       /* FacPortionUpdate_fetch facPortionUpdate_fetch = new FacPortionUpdate_fetch(this);
+        facPortionUpdate_fetch.execute("PortionUpdate",portiontotal,portionremain,portionBatchSelect,portionSubjSelect,globalPortionid);*/
     }
 
     /**
@@ -176,21 +176,21 @@ public class FacPortionTabActivity extends Faculty_Home_Activity implements AddF
                 case 1 :
                     fragment = AddFragment.newInstance(globalid,globaldbname);
                     break;
-                case 2 :
+                /*case 2 :
                     fragment = UpdateFragment.newInstance(globalid,globaldbname);
-                    break;
+                    break;*/
             }
             return  fragment;
         }
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
-            return 3;
+            // Show 2 total pages.
+            return 2;
         }
     }
 
-    public class FacPortionUpdate_fetch extends AsyncTask<String,Void,String> {
+   /* public class FacPortionUpdate_fetch extends AsyncTask<String,Void,String> {
         Context context;
         android.app.AlertDialog alertDialog;
         FacPortionUpdate_fetch (Context ctx){
@@ -284,5 +284,5 @@ public class FacPortionTabActivity extends Faculty_Home_Activity implements AddF
         }
 
 
-    }
+    }*/
 }

@@ -94,7 +94,8 @@
             android:name=".Fee_tabedActivity"
             android:label="@string/Fee_tabedActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".Fac_PortionListView_Activity"></activity>
+        <activity android:name=".Fac_PortionListView_Activity" />
+        <activity android:name=".Stud_portionList_Activity"></activity>
     </application>
 
 </manifest>

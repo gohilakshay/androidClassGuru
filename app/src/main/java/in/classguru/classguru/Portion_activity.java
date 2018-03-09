@@ -1,6 +1,8 @@
 package in.classguru.classguru;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,8 +16,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -67,6 +72,7 @@ public class Portion_activity extends Home_activity {
 
         tvSidename = (TextView)nav.findViewById(R.id.tvSideName);
         tvSidenumb = (TextView)nav.findViewById(R.id.tvSideNumb);
+
 
         mDrawerLayout = (DrawerLayout)findViewById(R.id.portionDrawer);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
@@ -129,6 +135,9 @@ public class Portion_activity extends Home_activity {
                         portionModel.setSubject(finalObject.getString("subject_name"));
                         portionModel.setTopic(finalObject.getString("syllabus"));
                         portionModel.setCompleted(finalObject.getString("complete_syllabus"));
+                        portionModel.setPortionId(finalObject.getString("portion_ID"));
+                        portionModel.setTotalTopics(finalObject.getString("no_of_topics"));
+                        portionModel.setRemainTopics(finalObject.getString("remained_topics"));
                         portionList.add(portionModel);
                     }
                     bufferedReader.close();
@@ -182,7 +191,8 @@ public class Portion_activity extends Home_activity {
             this.resource = resource;
             inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         }
-        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        @SuppressLint("ResourceType")
+        public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
             if (convertView == null) {
                 convertView = inflater.inflate(resource, null);
             }
@@ -191,8 +201,33 @@ public class Portion_activity extends Home_activity {
             TextView tv_completed = (TextView)convertView.findViewById(R.id.tv_complete);
 
             tv_subject.setText(portionModelList.get(position).getSubject());
-            tv_topic.setText(portionModelList.get(position).getTopic());
-            tv_completed.setText(portionModelList.get(position).getCompleted());
+            tv_topic.setText(portionModelList.get(position).getTotalTopics());
+            tv_completed.setText(portionModelList.get(position).getRemainTopics());
+
+            LinearLayout ll_portionLayout = (LinearLayout)convertView.findViewById(R.id.ll_portionLayout);
+            Button button = new Button(getContext());
+            button.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            button.setText("View");
+            button.setId(1);
+            ll_portionLayout.addView(button);
+
+
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    /*AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setMessage(s);
+                    builder.show();*/
+                    Intent intent = new Intent(getContext(),Stud_portionList_Activity.class);
+                    intent.putExtra("portionList",portionModelList.get(position).getTopic());
+                    intent.putExtra("portionComplete",portionModelList.get(position).getCompleted());
+                    intent.putExtra("portionId",portionModelList.get(position).getPortionId());
+                    intent.putExtra("globaldbname",globaldbname);
+                    intent.putExtra("globalid",globalid);
+                    startActivity(intent);
+                }
+            });
+
             return convertView;
         }
 

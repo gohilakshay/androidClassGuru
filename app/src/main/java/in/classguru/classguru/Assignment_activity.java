@@ -197,13 +197,13 @@ public class Assignment_activity extends Home_activity {
                 convertView = inflater.inflate(resource,null);
             }
 
-            TextView tv_uploadId = (TextView)convertView.findViewById(R.id.tv_uploadId);
+            //TextView tv_uploadId = (TextView)convertView.findViewById(R.id.tv_uploadId);
             TextView tv_fileName = (TextView)convertView.findViewById(R.id.tv_fileName);
             TextView tv_desc = (TextView)convertView.findViewById(R.id.tv_Desc);
             TextView tv_facultyName = (TextView)convertView.findViewById(R.id.tv_Faculty);
             TextView tv_update = (TextView)convertView.findViewById(R.id.tv_UploadDate);
 
-            tv_uploadId.setText(assignModelList.get(position).getTv_uploadId());
+            //tv_uploadId.setText(assignModelList.get(position).getTv_uploadId());
             tv_fileName.setText(assignModelList.get(position).getTv_fileName());
             tv_desc.setText(assignModelList.get(position).getTv_Desc());
             tv_facultyName.setText(assignModelList.get(position).getTv_Faculty());

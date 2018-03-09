@@ -10,15 +10,16 @@
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <TableRow android:padding="10dp">
+            <TableRow >
 
                 <TextView
 
                     android:id="@+id/tv_testDate"
                     android:layout_width="100dp"
                     android:layout_height="match_parent"
-                    android:text="Test \n Date"
-                    android:textAlignment="center" />
+                    android:text="Test Date"
+                    android:textAlignment="viewStart"
+                    android:gravity="start" />
 
                 <TextView
 
@@ -27,7 +28,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="Batch \n Id"
-                    android:textAlignment="center" />
+                    android:textAlignment="viewStart"
+                    android:gravity="start" />
 
                 <TextView
 
@@ -36,7 +38,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="Obtained \n Marks"
-                    android:textAlignment="center" />
+                    android:textAlignment="viewStart"
+                    android:gravity="start" />
 
                 <TextView
 
@@ -45,7 +48,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="Total \n Marks"
-                    android:textAlignment="center" />
+                    android:textAlignment="viewStart"
+                    android:gravity="start" />
 
                 <TextView
 
@@ -54,7 +58,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="Passing"
-                    android:textAlignment="center" />
+                    android:textAlignment="viewStart"
+                    android:gravity="start" />
 
                 <TextView
 
@@ -63,7 +68,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="Subject"
-                    android:textAlignment="center" />
+                    android:textAlignment="viewStart"
+                    android:gravity="start" />
             </TableRow>
         </TableLayout>
     </RelativeLayout>

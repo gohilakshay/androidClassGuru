@@ -229,17 +229,17 @@ public class Fac_PortionListView_Activity extends AppCompatActivity {
 
         @Override
         protected void onPreExecute() {
-            alertDialog = new android.app.AlertDialog.Builder(context).create();
+            /*alertDialog = new android.app.AlertDialog.Builder(context).create();
             this.dialog.setMessage("Please wait");
-            this.dialog.show();
+            this.dialog.show();*/
             super.onPreExecute();
         }
 
         @Override
         protected void onPostExecute(String result) {
             if(result.equals(" updated info  ")){
-                alertDialog.setMessage("Portion Updated successfully");
-                alertDialog.show();
+                /*alertDialog.setMessage("Portion Updated successfully");
+                alertDialog.show();*/
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -247,6 +247,7 @@ public class Fac_PortionListView_Activity extends AppCompatActivity {
                         Intent intent = new Intent(Fac_PortionListView_Activity.this,FacPortionTabActivity.class);
                         intent.putExtra("id",globalid);
                         intent.putExtra("dbname",globaldbname);
+                        intent.putExtra("permission","faculty");
                         startActivity(intent);
                         finish();
 
