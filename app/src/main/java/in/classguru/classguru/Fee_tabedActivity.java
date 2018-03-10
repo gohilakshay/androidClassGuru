@@ -1,6 +1,8 @@
 package in.classguru.classguru;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -73,6 +75,8 @@ public class Fee_tabedActivity extends Home_activity implements Fee_Frag1.OnFrag
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        android.support.v7.app.ActionBar bar = getSupportActionBar();
+        bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#148388")));
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.navSideBar);
         View nav = navigationView.getHeaderView(0);

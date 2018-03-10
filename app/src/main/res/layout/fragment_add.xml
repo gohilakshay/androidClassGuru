@@ -161,6 +161,8 @@
             android:inputType="textPersonName" />
 
         <Button
+            android:textColor="@color/white"
+            android:backgroundTint="#09B0B9"
             android:id="@+id/btn_addportionFrag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

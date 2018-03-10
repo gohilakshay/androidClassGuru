@@ -2,6 +2,8 @@ package in.classguru.classguru;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.support.design.widget.NavigationView;
@@ -73,6 +75,8 @@ public class FacPortionUpdateActivity extends Faculty_Home_Activity {
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        android.support.v7.app.ActionBar bar = getSupportActionBar();
+        bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#148388")));
 
         Intent data = getIntent();
         String id = data.getStringExtra("id");

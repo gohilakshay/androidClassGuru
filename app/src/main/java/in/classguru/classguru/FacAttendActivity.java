@@ -1,6 +1,8 @@
 package in.classguru.classguru;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -63,6 +65,8 @@ public class FacAttendActivity extends Faculty_Home_Activity {
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        android.support.v7.app.ActionBar bar = getSupportActionBar();
+        bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#148388")));
 
         Fac_attend_fetch fac_attend_fetch = new Fac_attend_fetch(this);
         fac_attend_fetch.execute("faculty",globalid,globalpermissin,globaldbname);

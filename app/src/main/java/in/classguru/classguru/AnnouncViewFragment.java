@@ -7,11 +7,13 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -249,14 +251,54 @@ public class AnnouncViewFragment extends Fragment {
             }
             TextView tv_Batch = (TextView)convertView.findViewById(R.id.tv_facNotBatch);
             TextView tv_Date = (TextView)convertView.findViewById(R.id.tv_facNotDate1);
-            TextView tv_Desc = (TextView)convertView.findViewById(R.id.tv_facNotDesc);
+            final TextView tv_Desc = (TextView)convertView.findViewById(R.id.tv_facNotDesc);
             TextView tv_Title = (TextView)convertView.findViewById(R.id.tv_facNotTitle1);
+            final TextView plus = (TextView)convertView.findViewById(R.id.tv_readMore);
+            final TextView minus = (TextView)convertView.findViewById(R.id.tv_readLess);
+            RelativeLayout relativeLayout = (RelativeLayout)convertView.findViewById(R.id.Rl_anncView);
 
             tv_Batch.setText(facNoticeModelList.get(position).getBatch());
             tv_Date.setText(facNoticeModelList.get(position).getDate());
             tv_Desc.setText(facNoticeModelList.get(position).getDescription());
             tv_Title.setText(facNoticeModelList.get(position).getTitle());
 
+            minus.setVisibility(View.GONE);
+            plus.setVisibility(View.GONE);
+            tv_Desc.post(new Runnable() {
+                @Override
+                public void run() {
+                    int lineCount = tv_Desc.getLineCount();
+                    if(lineCount > 2){
+                        minus.setVisibility(View.GONE);
+                        plus.setVisibility(View.VISIBLE);
+                        tv_Desc.setMaxLines(2);
+
+                    }
+                }
+            });
+            plus.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+
+                    plus.setVisibility(View.GONE);
+                    minus.setVisibility(View.VISIBLE);
+                    tv_Desc.setMaxLines(Integer.MAX_VALUE);
+
+                }
+            });
+
+            minus.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+
+                    minus.setVisibility(View.GONE);
+                    plus.setVisibility(View.VISIBLE);
+                    tv_Desc.setMaxLines(2);
+
+                }
+            });
 
             return convertView;
 

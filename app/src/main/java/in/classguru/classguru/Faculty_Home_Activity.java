@@ -1,11 +1,13 @@
 package in.classguru.classguru;
 
+import android.app.ActionBar;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.ColorDrawable;
 import android.media.Image;
 import android.os.AsyncTask;
 import android.provider.ContactsContract;
@@ -87,6 +89,7 @@ public class Faculty_Home_Activity extends AppCompatActivity {
         //getSupportActionBar().hide();
         setContentView(R.layout.activity_faculty__home_);
 
+
         DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
                 .cacheInMemory(true)
                 .cacheOnDisk(true)
@@ -134,7 +137,6 @@ public class Faculty_Home_Activity extends AppCompatActivity {
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
-
 
         toolbar = (Toolbar) findViewById(R.id.toolbar1);
 

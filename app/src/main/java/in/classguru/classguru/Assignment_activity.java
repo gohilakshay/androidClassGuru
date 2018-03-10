@@ -1,6 +1,8 @@
 package in.classguru.classguru;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -70,6 +72,8 @@ public class Assignment_activity extends Home_activity {
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        android.support.v7.app.ActionBar bar = getSupportActionBar();
+        bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#148388")));
 
     }
 
@@ -199,15 +203,54 @@ public class Assignment_activity extends Home_activity {
 
             //TextView tv_uploadId = (TextView)convertView.findViewById(R.id.tv_uploadId);
             TextView tv_fileName = (TextView)convertView.findViewById(R.id.tv_fileName);
-            TextView tv_desc = (TextView)convertView.findViewById(R.id.tv_Desc);
+            final TextView tv_desc = (TextView)convertView.findViewById(R.id.tv_Desc);
             TextView tv_facultyName = (TextView)convertView.findViewById(R.id.tv_Faculty);
             TextView tv_update = (TextView)convertView.findViewById(R.id.tv_UploadDate);
+            final TextView plus = (TextView)convertView.findViewById(R.id.tv_readMore1);
+            final TextView minus = (TextView)convertView.findViewById(R.id.tv_readLess1);
 
             //tv_uploadId.setText(assignModelList.get(position).getTv_uploadId());
             tv_fileName.setText(assignModelList.get(position).getTv_fileName());
             tv_desc.setText(assignModelList.get(position).getTv_Desc());
             tv_facultyName.setText(assignModelList.get(position).getTv_Faculty());
             tv_update.setText(assignModelList.get(position).getTv_UploadDate());
+            minus.setVisibility(View.GONE);
+            plus.setVisibility(View.GONE);
+            tv_desc.post(new Runnable() {
+                @Override
+                public void run() {
+                    int lineCount = tv_desc.getLineCount();
+                    if(lineCount > 2){
+                        minus.setVisibility(View.GONE);
+                        plus.setVisibility(View.VISIBLE);
+                        tv_desc.setMaxLines(2);
+
+                    }
+                }
+            });
+            plus.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+
+                    plus.setVisibility(View.GONE);
+                    minus.setVisibility(View.VISIBLE);
+                    tv_desc.setMaxLines(Integer.MAX_VALUE);
+
+                }
+            });
+
+            minus.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+
+                    minus.setVisibility(View.GONE);
+                    plus.setVisibility(View.VISIBLE);
+                    tv_desc.setMaxLines(2);
+
+                }
+            });
             return convertView;
 
         }

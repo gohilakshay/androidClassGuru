@@ -14,6 +14,7 @@
         app:contentPadding="5sp">
 
         <RelativeLayout
+            android:id="@+id/Rl_anncView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="10dp">
@@ -82,6 +83,20 @@
                 android:layout_below="@+id/textView16"
                 android:layout_marginTop="14dp"
                 android:text="TextView" />
+            <!--<com.borjabravo.readmoretextview.ReadMoreTextView
+                android:id="@+id/tv_facNotDesc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/textView16"
+                android:layout_alignStart="@+id/textView16"
+                android:layout_below="@+id/textView16"
+                android:layout_marginTop="14dp"
+                android:text="TextView"
+                app:trimExpandedText="Read More"
+                app:trimCollapsedText="Read Less"
+                app:trimMode="trimModeLine"
+                app:colorClickableText="#9e9d9d"
+                />-->
 
             <TextView
                 android:id="@+id/tv_facNotDate1"
@@ -107,6 +122,25 @@
                 android:text="Date :"
                 android:textSize="16sp"
                 android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_readMore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/textView16"
+                android:layout_toEndOf="@+id/textView16"
+                android:layout_toRightOf="@+id/textView16"
+                android:text="Read More" />
+
+            <TextView
+                android:id="@+id/tv_readLess"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/textView16"
+                android:layout_toEndOf="@+id/textView16"
+                android:layout_toRightOf="@+id/textView16"
+                android:text="Read Less" />
+
         </RelativeLayout>
     </android.support.v7.widget.CardView>
 

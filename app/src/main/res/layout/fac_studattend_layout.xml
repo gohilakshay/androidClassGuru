@@ -96,6 +96,7 @@
             android:layout_height="248dp" />
 
         <Button
+            android:backgroundTint="#09B0B9"
             android:id="@+id/btn_markAbsent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
