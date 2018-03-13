@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -76,6 +78,18 @@ public class Stud_portionList_Activity extends AppCompatActivity {
         }
         return true;
     }
+    @Override
+    public void onBackPressed()
+    {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(getApplicationContext(),"Press Back To LogOut",Toast.LENGTH_SHORT).show();
+                finish();
+
+            }
+        }, 500);
+    }
     public class FacPortionAdapter extends ArrayAdapter {
 
         List<PortionListModel> PortionListModelList;
@@ -97,18 +111,13 @@ public class Stud_portionList_Activity extends AppCompatActivity {
 
             TextView text1 = (TextView)convertView.findViewById(R.id.text1);
             CheckBox check = (CheckBox)convertView.findViewById(R.id.text2) ;
-            /*TextView tv_subject = (TextView)convertView.findViewById(R.id.tv_PortionSubjView);
-            TextView tv_allPortion = (TextView)convertView.findViewById(R.id.tv_allPortion);
-            TextView tv_remPortion = (TextView)convertView.findViewById(R.id.tv_remPortion);*/
+            check.setClickable(false);
 
             text1.setText(PortionListModelList.get(position).getTopics());
             if(PortionListModelList.get(position).getCompleted() == 1){
                 check.setChecked(true);
             }
             check.setTag(PortionListModelList.get(position).getTopics());
-            //tv_totalTopicsPortion.setText(portionModelList.get(position).getTopic());
-            // tv_completedPortionView.setText(portionModelList.get(position).getCompleted());
-
 
             return convertView;
         }

@@ -10,6 +10,7 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.media.Image;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.provider.ContactsContract;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -21,6 +22,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,6 +30,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -130,9 +133,7 @@ public class Faculty_Home_Activity extends AppCompatActivity {
         im_facProfile = (ImageView)findViewById(R.id.iv_FacProfile);
 
         lv_profile = (ListView)findViewById(R.id.lv_profile);
-        /*profile_image = (ImageView)findViewById(R.id.profile_image);
-        profile_image.setScaleType(ImageView.ScaleType.FIT_XY);
-        profile_image.setColorFilter(Color.argb(255, 118, 118, 188), PorterDuff.Mode.LIGHTEN);*/
+
         mDrawerLayout = (DrawerLayout)findViewById(R.id.Facdrawer);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
         mDrawerLayout.addDrawerListener(mToggle);
@@ -140,13 +141,6 @@ public class Faculty_Home_Activity extends AppCompatActivity {
 
         toolbar = (Toolbar) findViewById(R.id.toolbar1);
 
-       // collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.CollapsingToolbarLayout1);
-        //setSupportActionBar(toolbar);
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-       // collapsingToolbarLayout.setTitle("ClassGuru");
-
-       // collapsingToolbarLayout.setContentScrimColor(ContextCompat.getColor(this,R.color.startblue));
         ImageView img = (ImageView)findViewById(R.id.iv_nav);
         img.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -155,27 +149,6 @@ public class Faculty_Home_Activity extends AppCompatActivity {
                 mDrawerLayout.openDrawer(Gravity.LEFT);
             }
         });
-
-       /* AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.app_bar_layout);
-        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
-            @Override
-            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-                if (Math.abs(verticalOffset) == appBarLayout.getTotalScrollRange()) {
-                    // If collapsed, then do this
-                    im_facProfile.setVisibility(View.GONE);
-                   // imageViewSmallLogo.setVisibility(View.VISIBLE);
-                } else if (verticalOffset == 0) {
-                    // If expanded, then do this
-                    im_facProfile.setVisibility(View.VISIBLE);
-                   // imageViewSmallLogo.setVisibility(View.GONE);
-                } else {
-                    // Somewhere in between
-                    // Do according to your requirement
-                }
-            }
-
-        });*/
-
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -372,6 +345,19 @@ public class Faculty_Home_Activity extends AppCompatActivity {
         AlertDialog alert=builder.create();
         alert.show();
     }
+    @Override
+    public void onBackPressed()
+    {
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(Faculty_Home_Activity.this,"Press Back To exit",Toast.LENGTH_SHORT).show();
+                finish();
+
+            }
+        }, 500);
+    }
     public void OnFacProfile(MenuItem item) {
         Intent intent = new Intent(this,Faculty_Home_Activity.class);
         intent.putExtra("id",globalid);
@@ -421,12 +407,4 @@ public class Faculty_Home_Activity extends AppCompatActivity {
         finish();
     }
 
-    /*public void OnFacAnnouncTab(MenuItem item){
-        Intent intent = new Intent(this,Fac_Announc_tabbActivity.class);
-        intent.putExtra("id",globalid);
-        intent.putExtra("permission",globalpermissin);
-        intent.putExtra("dbname",globaldbname);
-        startActivity(intent);
-        finish();
-    }*/
 }

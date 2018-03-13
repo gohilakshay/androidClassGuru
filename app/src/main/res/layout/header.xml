@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="160dp"
-    android:background="#0891c7"
+    android:background="#09B0B9"
     android:padding="20dp">
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/iv_sProfile"

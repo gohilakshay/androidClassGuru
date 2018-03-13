@@ -214,6 +214,8 @@ public class Portion_activity extends Home_activity {
             button.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             button.setText("View");
             button.setId(1);
+            button.setTextColor(Color.WHITE);
+            button.setBackgroundColor(Color.parseColor("#09B0B9"));
             ll_portionLayout.addView(button);
 
 
