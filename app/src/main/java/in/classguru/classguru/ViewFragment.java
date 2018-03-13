@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -273,6 +274,8 @@ public class ViewFragment extends Fragment {
             Button myButton1 = new Button(getContext());  // create a new Button
             myButton1.setText("View"); // set Text in the Button
             myButton1.setId(1);
+            myButton1.setTextColor(Color.WHITE);
+            myButton1.setBackgroundColor(Color.parseColor("#09B0B9"));
             myButton1.setLayoutParams(buttonParam); // set defined layout params to Button
             buttonParam.addRule(RelativeLayout.ALIGN_PARENT_END);
             buttonParam.addRule(RelativeLayout.BELOW,R.id.tv_remPortion);

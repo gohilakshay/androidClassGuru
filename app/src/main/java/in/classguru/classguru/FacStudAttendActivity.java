@@ -288,7 +288,8 @@ public class FacStudAttendActivity extends Faculty_Home_Activity {
                     facStudAttendModelList.add(reader1.getString("batch_ID") +" "+reader1.getString("batch_name") );
                   //  facStudAttendModelList.add(reader1.getString("batch_name"));
                 }
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),R.layout.support_simple_spinner_dropdown_item,facStudAttendModelList);
+
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(context,R.layout.support_simple_spinner_dropdown_item,facStudAttendModelList);
                 adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
                 spinner.setAdapter(adapter);
 
