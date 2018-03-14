@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
@@ -175,7 +176,16 @@ public class FacStudAttendActivity extends Faculty_Home_Activity {
         }
         return super.onOptionsItemSelected(item);
     }
-
+    @Override
+    public void onBackPressed()
+    {
+        Intent intent = new Intent(this,Faculty_Home_Activity.class);
+        intent.putExtra("id",globalid);
+        intent.putExtra("permission",globalpermissin);
+        intent.putExtra("dbname",globaldbname);
+        startActivity(intent);
+        finish();
+    }
     public void showDialogOnClick(){
         et_datepicker = (TextView)findViewById(R.id.et_datePicker);
 

@@ -2,6 +2,7 @@ package in.classguru.classguru;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -112,7 +113,16 @@ public class FacPortionTabActivity extends Faculty_Home_Activity implements AddF
 
         return super.onOptionsItemSelected(item);
     }
-
+    @Override
+    public void onBackPressed()
+    {
+        Intent intent = new Intent(this,Faculty_Home_Activity.class);
+        intent.putExtra("id",globalid);
+        intent.putExtra("permission",globalpermissin);
+        intent.putExtra("dbname",globaldbname);
+        startActivity(intent);
+        finish();
+    }
     @Override
     public void onFragmentInteraction(Uri uri) {
 

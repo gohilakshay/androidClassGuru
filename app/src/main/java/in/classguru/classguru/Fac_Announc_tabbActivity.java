@@ -2,6 +2,7 @@ package in.classguru.classguru;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -107,7 +108,16 @@ public class Fac_Announc_tabbActivity extends Faculty_Home_Activity implements A
         }
         return super.onOptionsItemSelected(item);
     }
-
+    @Override
+    public void onBackPressed()
+    {
+        Intent intent = new Intent(this,Faculty_Home_Activity.class);
+        intent.putExtra("id",globalid);
+        intent.putExtra("permission",globalpermissin);
+        intent.putExtra("dbname",globaldbname);
+        startActivity(intent);
+        finish();
+    }
 
     @Override
     public void onFragmentInteraction(Uri uri) {

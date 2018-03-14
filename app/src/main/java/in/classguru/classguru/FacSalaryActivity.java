@@ -2,9 +2,11 @@ package in.classguru.classguru;
 
 import android.app.ActionBar;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
@@ -22,6 +24,7 @@ import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -109,7 +112,16 @@ public class FacSalaryActivity extends Faculty_Home_Activity {
         }
         return super.onOptionsItemSelected(item);
     }
-
+    @Override
+    public void onBackPressed()
+    {
+        Intent intent = new Intent(this,Faculty_Home_Activity.class);
+        intent.putExtra("id",globalid);
+        intent.putExtra("permission",globalpermissin);
+        intent.putExtra("dbname",globaldbname);
+        startActivity(intent);
+        finish();
+    }
     public class Fac_Salary_fetch extends AsyncTask<String,Void,String> {
 
         Context context;

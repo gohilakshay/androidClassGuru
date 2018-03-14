@@ -374,6 +374,7 @@ public class AnnouncAddFragment extends Fragment {
                     }
                 }, 500);
 
+
             }else{
                 alertDialog.setMessage("Error Occured"+result);
                 alertDialog.show();

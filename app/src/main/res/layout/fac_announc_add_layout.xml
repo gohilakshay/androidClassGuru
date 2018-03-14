@@ -113,14 +113,16 @@
         android:inputType="textMultiLine" />
 
         <Button
-            android:backgroundTint="#09B0B9"
             android:id="@+id/btn_FacAddAnnounc"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/et_notDesc"
+            android:layout_marginLeft="100dp"
             android:layout_marginTop="44dp"
-            android:text="Add Announcment" />
+            android:backgroundTint="#09B0B9"
+            android:text="Add Announcment"
+            android:textColor="@color/white" />
     </RelativeLayout>
 </ScrollView>

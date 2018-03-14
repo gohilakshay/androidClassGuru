@@ -1,6 +1,7 @@
 package in.classguru.classguru;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
@@ -83,6 +84,16 @@ public class Assignment_activity extends Home_activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public void onBackPressed()
+    {
+        Intent intent = new Intent(this,Home_activity.class);
+        intent.putExtra("id",globalid);
+        intent.putExtra("permission",globalpermissin);
+        intent.putExtra("dbname",globaldbname);
+        startActivity(intent);
+        finish();
     }
     public class Assign_fetch extends AsyncTask<String,Void,List<AssignModel>> {
 

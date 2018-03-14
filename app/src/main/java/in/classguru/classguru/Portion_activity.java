@@ -93,6 +93,16 @@ public class Portion_activity extends Home_activity {
         }
         return super.onOptionsItemSelected(item);
     }
+    @Override
+    public void onBackPressed()
+    {
+        Intent intent = new Intent(this,Home_activity.class);
+        intent.putExtra("id",globalid);
+        intent.putExtra("permission",globalpermissin);
+        intent.putExtra("dbname",globaldbname);
+        startActivity(intent);
+        finish();
+    }
 
     public class Portion_fetch extends AsyncTask<String,Void,List<PortionModel>>{
 

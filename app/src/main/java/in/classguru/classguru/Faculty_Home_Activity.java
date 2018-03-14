@@ -345,19 +345,6 @@ public class Faculty_Home_Activity extends AppCompatActivity {
         AlertDialog alert=builder.create();
         alert.show();
     }
-    @Override
-    public void onBackPressed()
-    {
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(Faculty_Home_Activity.this,"Press Back To exit",Toast.LENGTH_SHORT).show();
-                finish();
-
-            }
-        }, 500);
-    }
     public void OnFacProfile(MenuItem item) {
         Intent intent = new Intent(this,Faculty_Home_Activity.class);
         intent.putExtra("id",globalid);
@@ -405,6 +392,26 @@ public class Faculty_Home_Activity extends AppCompatActivity {
         intent.putExtra("dbname",globaldbname);
         startActivity(intent);
         finish();
+    }
+    boolean doubleBackToExitPressedOnce = false;
+
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Press Back Again to Logout", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce=false;
+            }
+        }, 2000);
     }
 
 }

@@ -78,18 +78,7 @@ public class Stud_portionList_Activity extends AppCompatActivity {
         }
         return true;
     }
-    @Override
-    public void onBackPressed()
-    {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(getApplicationContext(),"Press Back To LogOut",Toast.LENGTH_SHORT).show();
-                finish();
 
-            }
-        }, 500);
-    }
     public class FacPortionAdapter extends ArrayAdapter {
 
         List<PortionListModel> PortionListModelList;

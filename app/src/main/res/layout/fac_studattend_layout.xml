@@ -20,6 +20,7 @@
             android:layout_marginStart="43dp"
             android:gravity="center"
             android:text="Select Date"
+            android:textColor="@color/startblue"
             android:textSize="14sp"
             android:textStyle="bold" />
 
