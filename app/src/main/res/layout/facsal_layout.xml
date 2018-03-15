@@ -5,7 +5,7 @@
 
         <TextView
             android:id="@+id/tv_FacAmt"
-            android:layout_width="80dp"
+            android:layout_width="110dp"
             android:layout_height="40dp"
             android:padding="10dp"
             android:text="Amt"
@@ -13,7 +13,7 @@
 
         <TextView
             android:id="@+id/tv_FacPayMode"
-            android:layout_width="80dp"
+            android:layout_width="110dp"
             android:layout_height="40dp"
             android:padding="10dp"
             android:text="PayMode"
@@ -29,7 +29,7 @@
 
     <TextView
         android:id="@+id/tv_FacChqNo"
-        android:layout_width="80dp"
+        android:layout_width="110dp"
         android:layout_height="40dp"
         android:padding="10dp"
         android:text="ChqNo."
@@ -37,7 +37,7 @@
 
     <TextView
         android:id="@+id/tv_FacChqDate"
-        android:layout_width="80dp"
+        android:layout_width="110dp"
         android:layout_height="40dp"
         android:padding="10dp"
         android:text="ChqDate"
@@ -45,7 +45,7 @@
 
     <TextView
         android:id="@+id/tv_FacBankName"
-        android:layout_width="80dp"
+        android:layout_width="110dp"
         android:layout_height="40dp"
         android:padding="10dp"
         android:text="BankName"
@@ -53,7 +53,7 @@
 
     <TextView
         android:id="@+id/tv_FacTrancID"
-        android:layout_width="80dp"
+        android:layout_width="110dp"
         android:layout_height="40dp"
         android:padding="10dp"
         android:text="TrancID"

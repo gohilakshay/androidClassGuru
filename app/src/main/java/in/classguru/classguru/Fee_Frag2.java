@@ -221,28 +221,6 @@ public class Fee_Frag2 extends Fragment {
                     JSONArray fulltest = reader.getJSONArray("student_fees");
                     JSONObject finalresult = fulltest.getJSONObject(0);
 
-
-                    /*String install_option = finalresult.getString("installment_option");
-                    tv_option.setText(install_option);
-                    String type = finalresult.getString("installment_type");
-                    tv_type.setText(type);
-                    String total = finalresult.getString("total_fee");
-                    tv_total.setText(total);
-                    String discount = finalresult.getString("discount");
-                    tv_dicount.setText(discount);
-                    String finalamt = finalresult.getString("final_fee");
-                    tv_final.setText(finalamt);
-                    String received = finalresult.getString("recieved_fee");
-                    tv_received.setText(received);
-                    String balance = finalresult.getString("balance_fee");
-                    tv_balance.setText(balance);
-                    String amtpinstall = finalresult.getString("amountper_installment");
-                    tv_ampintall.setText(amtpinstall);*/
-
-                    /*tvSidename.setText(globalname);
-                    tvSidenumb.setText(globalnumb);*/
-                   /* Log.i("Tag","Global is "+ globalname);*/
-                    //ivsprofile = (ImageView)rootView.findViewById(R.id.iv_sProfile);
                     List<FeeModal> feeModalList = new ArrayList<>();
 
 
@@ -250,12 +228,16 @@ public class Fee_Frag2 extends Fragment {
                         JSONObject finalresult1 = fulltest.getJSONObject(i);
                         FeeModal feeModal = new FeeModal();
                         feeModal.setPay_mode(finalresult1.getString("payment_mode"));
-                        if(!finalresult1.getString("paydate").equals(""))
-                            feeModal.setPay_date(finalresult1.getString("paydate"));
+                        if(!finalresult1.getString("paydate").equals("")){
+                            String[] date = finalresult1.getString("paydate").split("-");
+                            feeModal.setPay_date(date[2]+"-"+date[1]+"-"+date[0]);
+                        }
                         else
                             feeModal.setPay_date("-");
-                        if(!finalresult1.getString("chq_date").equals(""))
-                            feeModal.setChq_date(finalresult1.getString("chq_date"));
+                        if(!finalresult1.getString("chq_date").equals("")){
+                            String[] date = finalresult1.getString("chq_date").split("-");
+                            feeModal.setChq_date(date[2]+"-"+date[1]+"-"+date[0]);
+                        }
                         else
                             feeModal.setChq_date("-");
 

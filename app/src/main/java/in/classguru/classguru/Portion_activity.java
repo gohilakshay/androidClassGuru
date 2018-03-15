@@ -13,6 +13,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -143,18 +144,21 @@ public class Portion_activity extends Home_activity {
                     }
                     List<PortionModel> portionList = new ArrayList<>();
                     JSONObject reader = new JSONObject(result);
-                    JSONArray fullportion = reader.getJSONArray("portion_details");
-                    for (int i=0;i<fullportion.length();i++) {
-                        JSONObject finalObject = fullportion.getJSONObject(i);
-                        PortionModel portionModel = new PortionModel();
-                        portionModel.setSubject(finalObject.getString("subject_name"));
-                        portionModel.setTopic(finalObject.getString("syllabus"));
-                        portionModel.setCompleted(finalObject.getString("complete_syllabus"));
-                        portionModel.setPortionId(finalObject.getString("portion_ID"));
-                        portionModel.setTotalTopics(finalObject.getString("no_of_topics"));
-                        portionModel.setRemainTopics(finalObject.getString("remained_topics"));
-                        portionList.add(portionModel);
+                    if(!reader.getString("portion_details").equals("student batch id not found")){
+                        JSONArray fullportion = reader.getJSONArray("portion_details");
+                        for (int i=0;i<fullportion.length();i++) {
+                            JSONObject finalObject = fullportion.getJSONObject(i);
+                            PortionModel portionModel = new PortionModel();
+                            portionModel.setSubject(finalObject.getString("subject_name"));
+                            portionModel.setTopic(finalObject.getString("syllabus"));
+                            portionModel.setCompleted(finalObject.getString("complete_syllabus"));
+                            portionModel.setPortionId(finalObject.getString("portion_ID"));
+                            portionModel.setTotalTopics(finalObject.getString("no_of_topics"));
+                            portionModel.setRemainTopics(finalObject.getString("remained_topics"));
+                            portionList.add(portionModel);
+                        }
                     }
+
                     bufferedReader.close();
                     inputStream.close();
                     httpURLConnection.disconnect();
@@ -214,22 +218,23 @@ public class Portion_activity extends Home_activity {
             TextView tv_subject = (TextView)convertView.findViewById(R.id.tv_Portionsubject);
             TextView tv_topic = (TextView)convertView.findViewById(R.id.tv_topic);
             TextView tv_completed = (TextView)convertView.findViewById(R.id.tv_complete);
+            Button btn_portionViewId = (Button)convertView.findViewById(R.id.btn_portionViewId);
 
             tv_subject.setText(portionModelList.get(position).getSubject());
             tv_topic.setText(portionModelList.get(position).getTotalTopics());
             tv_completed.setText(portionModelList.get(position).getRemainTopics());
 
-            LinearLayout ll_portionLayout = (LinearLayout)convertView.findViewById(R.id.ll_portionLayout);
+            /*LinearLayout ll_portionLayout = (LinearLayout)convertView.findViewById(R.id.ll_portionLayout);
             Button button = new Button(getContext());
             button.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             button.setText("View");
             button.setId(1);
             button.setTextColor(Color.WHITE);
             button.setBackgroundColor(Color.parseColor("#09B0B9"));
-            ll_portionLayout.addView(button);
+            ll_portionLayout.addView(button);*/
 
 
-            button.setOnClickListener(new View.OnClickListener() {
+            btn_portionViewId.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     /*AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());

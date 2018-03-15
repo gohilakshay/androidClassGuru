@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Layout;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -237,7 +238,8 @@ public class Home_activity extends AppCompatActivity {
                     String gender = finalresult.getString("stud_gender");
                     tvgender.setText(gender);
                     String dob = finalresult.getString("stud_dob");
-                    tvdob.setText(dob);
+                    String[] date = dob.split("-");
+                    tvdob.setText(date[2]+"-"+date[1]+"-"+date[0]);
                     String couType = finalresult.getString("course_type");
                     tvcouType.setText(couType);
                     String standard = finalresult.getString("standard_name");
@@ -252,11 +254,16 @@ public class Home_activity extends AppCompatActivity {
                     tvbatch.setText(batchname);
                     String batchtime = batch.getString("batch_timing");
                     tvtiming.setText(batchtime);
+                    if(!reader.getString("course_details").equals("student batch id not found")){
+                        String course_details = reader.getString("course_details");
+                        JSONObject course = new JSONObject(course_details);
+                        String coursename = course.getString("course_name");
+                        tvcourse.setText(coursename);
+                    }else{
 
-                    String course_details = reader.getString("course_details");
-                    JSONObject course = new JSONObject(course_details);
-                    String coursename = course.getString("course_name");
-                    tvcourse.setText(coursename);
+                        tvcourse.setText("Not Assigned Yet");
+                    }
+
                     im_profile = (ImageView)findViewById(R.id.iv_profile);
                     iv_sProfile = (ImageView)findViewById(R.id.iv_sProfile);
                     if (im_profile != null ){

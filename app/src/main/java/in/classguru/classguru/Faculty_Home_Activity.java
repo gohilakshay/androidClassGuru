@@ -242,18 +242,20 @@ public class Faculty_Home_Activity extends AppCompatActivity {
                     //tv_facname.setText(t_name);
                     String t_fathername = finalresult.getString("t_fathername");
                     //tv_facfather.setText(t_fathername);
-                    String t_surname = finalresult.getString("t_surname");
+                    String t_surname = finalresult.getString("t_fathername");
                     String t_fullName = t_name+" "+t_surname;
                     tv_fullname.setText(t_fullName);
                     String  t_numb = finalresult.getString("t_contact");
-                    //tv_facnumb.setText(t_numb);
+                    tv_facnumb.setText(t_numb);
                     String t_gender = finalresult.getString("t_gender");
                     //tv_facgender.setText(t_gender);
                     String t_dob = finalresult.getString("t_dob");
+                    String[] date = t_dob.split("-");
                     //tv_facdob.setText(t_dob);
                     String t_quali = finalresult.getString("qualification");
                     //tv_facqualification.setText(t_quali);
                     String t_join = finalresult.getString("join_date");
+                    String[] date1 = t_join.split("-");
                     //tv_facjoin.setText(t_join);
                     String t_salary = finalresult.getString("salary");
                     //tv_facsalary.setText(t_salary);
@@ -261,12 +263,12 @@ public class Faculty_Home_Activity extends AppCompatActivity {
                     //tv_facpaystatus.setText(t_paystatus);
 
                     HashMap<String, String> profile = new HashMap<>();
-                    profile.put("Student Name",t_name);
-                    profile.put("Father Name",t_fathername);
+                    profile.put("Name",t_name);
+                    profile.put("Surname",t_surname);
                     profile.put("Gender",t_gender);
-                    profile.put("Date of Birth",t_dob);
+                    profile.put("Date of Birth",date[2]+"-"+date[1]+"-"+date[0]);
                     profile.put("Qualification",t_quali);
-                    profile.put("Joining Date",t_join);
+                    profile.put("Joining Date",date1[2]+"-"+date1[1]+"-"+date1[0]);
                     profile.put("Salary",t_salary);
                     profile.put("Pay Status",t_paystatus);
 
@@ -382,6 +384,9 @@ public class Faculty_Home_Activity extends AppCompatActivity {
         intent.putExtra("id",globalid);
         intent.putExtra("permission",globalpermissin);
         intent.putExtra("dbname",globaldbname);
+        intent.putExtra("globalname",globalname);
+        intent.putExtra("globalnumb",globalnumb);
+        intent.putExtra("globalurl",globalurl);
         startActivity(intent);
         finish();
     }
@@ -390,6 +395,9 @@ public class Faculty_Home_Activity extends AppCompatActivity {
         intent.putExtra("id",globalid);
         intent.putExtra("permission",globalpermissin);
         intent.putExtra("dbname",globaldbname);
+        intent.putExtra("globalname",globalname);
+        intent.putExtra("globalnumb",globalnumb);
+        intent.putExtra("globalurl",globalurl);
         startActivity(intent);
         finish();
     }

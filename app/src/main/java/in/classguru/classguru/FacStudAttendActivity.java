@@ -290,6 +290,7 @@ public class FacStudAttendActivity extends Faculty_Home_Activity {
             try {
                 reader = new JSONObject(result);
                 JSONArray fulltest = reader.getJSONArray("batch_details");
+                ArrayList newBatch = new ArrayList();
                 List<String> facStudAttendModelList = new ArrayList<>();
                 facStudAttendModelList.add("Select batch");
                 for(int i =0;i<fulltest.length();i++){
@@ -390,6 +391,7 @@ public class FacStudAttendActivity extends Faculty_Home_Activity {
                 if(reader1.equals("student batch id not found")){
                     alertDialog.setMessage("No students in selected Batch");
                     alertDialog.show();
+                    Ll_StudDetails.setVisibility(Ll_StudDetails.INVISIBLE);
                 }else{
                     JSONArray fulltest = reader.getJSONArray("stud_details");
                     List<FacStudAttendModel> facStudAttendModelList = new ArrayList<>();
@@ -521,7 +523,7 @@ public class FacStudAttendActivity extends Faculty_Home_Activity {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-
+                        finish();
                         startActivity(getIntent());
 
                     }

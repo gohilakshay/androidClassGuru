@@ -3,12 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
     <LinearLayout
         android:id="@+id/ll_portionLayout"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/tv_Portionsubject"
@@ -34,6 +35,15 @@
             android:layout_weight=".5"
             android:text="Completed"
             android:textAlignment="viewStart" />
+
+        <Button
+            android:id="@+id/btn_portionViewId"
+            android:layout_width="15dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:backgroundTint="#09B0B9"
+            android:text="View"
+            android:textColor="@color/white" />
 
     </LinearLayout>
 

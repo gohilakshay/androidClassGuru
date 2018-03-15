@@ -226,7 +226,10 @@ public class FacAttendActivity extends Faculty_Home_Activity {
             TextView tv_facdate = (TextView)convertView.findViewById(R.id.tv_FacDate);
             TextView tv_facattend = (TextView)convertView.findViewById(R.id.tv_FacAttend);
 
-            tv_facdate.setText(facAttendModelList.get(position).getAttendDate());
+            String[] date = facAttendModelList.get(position).getAttendDate().split("-");
+            tv_facdate.setText(date[2]+"-"+date[1]+"-"+date[0]);
+
+
             tv_facattend.setText(facAttendModelList.get(position).getAttend());
 
             return convertView;

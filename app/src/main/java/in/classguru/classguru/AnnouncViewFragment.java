@@ -210,21 +210,25 @@ public class AnnouncViewFragment extends Fragment {
 
             try {
                 JSONObject reader = new JSONObject(result);
-                JSONArray fulltest = reader.getJSONArray("teacher_notice");
+                if(!reader.getString("teacher_notice").equals("teacher id not found")){
+                    JSONArray fulltest = reader.getJSONArray("teacher_notice");
 
-                List<FacNoticeModel> facNoticeModelList = new ArrayList<>();
-                for (int i=0;i<fulltest.length();i++){
-                    JSONObject finalresult = fulltest.getJSONObject(i);
-                    FacNoticeModel facNoticeModel = new FacNoticeModel();
+                    List<FacNoticeModel> facNoticeModelList = new ArrayList<>();
+                    for (int i=0;i<fulltest.length();i++){
+                        JSONObject finalresult = fulltest.getJSONObject(i);
+                        FacNoticeModel facNoticeModel = new FacNoticeModel();
 
-                    facNoticeModel.setBatch(finalresult.getString("batch"));
-                    facNoticeModel.setDate(finalresult.getString("date"));
-                    facNoticeModel.setDescription(finalresult.getString("Description"));
-                    facNoticeModel.setTitle(finalresult.getString("title"));
-                    facNoticeModelList.add(facNoticeModel);
+                        facNoticeModel.setBatch(finalresult.getString("batch"));
+                        facNoticeModel.setDate(finalresult.getString("date"));
+                        facNoticeModel.setDescription(finalresult.getString("Description"));
+                        facNoticeModel.setTitle(finalresult.getString("title"));
+                        facNoticeModelList.add(facNoticeModel);
+                    }
+                    AnnounceAdapter announceAdapter = new AnnounceAdapter(getActivity().getApplicationContext(),R.layout.facannounc_view_layout,facNoticeModelList);
+                    lv_facnotice.setAdapter(announceAdapter);
+
                 }
-                AnnounceAdapter announceAdapter = new AnnounceAdapter(getActivity().getApplicationContext(),R.layout.facannounc_view_layout,facNoticeModelList);
-                lv_facnotice.setAdapter(announceAdapter);
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -258,6 +262,7 @@ public class AnnouncViewFragment extends Fragment {
             RelativeLayout relativeLayout = (RelativeLayout)convertView.findViewById(R.id.Rl_anncView);
 
             tv_Batch.setText(facNoticeModelList.get(position).getBatch());
+            Log.i("Tag12",facNoticeModelList.get(position).getDate());
             tv_Date.setText(facNoticeModelList.get(position).getDate());
             tv_Desc.setText(facNoticeModelList.get(position).getDescription());
             tv_Title.setText(facNoticeModelList.get(position).getTitle());

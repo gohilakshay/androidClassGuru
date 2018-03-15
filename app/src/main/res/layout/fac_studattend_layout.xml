@@ -93,12 +93,13 @@
             android:layout_height="248dp" />
 
         <Button
-            android:backgroundTint="#09B0B9"
             android:id="@+id/btn_markAbsent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Mark Absent" />
+            android:backgroundTint="#09B0B9"
+            android:text="Mark Absent"
+            android:textColor="@color/white" />
     </LinearLayout>
 
 </LinearLayout>

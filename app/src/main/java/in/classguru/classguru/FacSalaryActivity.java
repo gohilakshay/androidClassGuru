@@ -192,28 +192,44 @@ public class FacSalaryActivity extends Faculty_Home_Activity {
             super.onPostExecute(result);
             try {
                 JSONObject reader = new JSONObject(result);
-                JSONArray fulltest = reader.getJSONArray("t_expense");
+                if(!reader.getString("t_expense").equals("teacher id not found")){
+                    JSONArray fulltest = reader.getJSONArray("t_expense");
 
-                List<FacSalaryModel> facSalaryModelList = new ArrayList<>();
+                    List<FacSalaryModel> facSalaryModelList = new ArrayList<>();
 
-                for (int i=0;i<fulltest.length();i++){
-                    JSONObject finalresult = fulltest.getJSONObject(i);
-                    FacSalaryModel facSalaryModel = new FacSalaryModel();
+                    for (int i=0;i<fulltest.length();i++){
+                        JSONObject finalresult = fulltest.getJSONObject(i);
+                        FacSalaryModel facSalaryModel = new FacSalaryModel();
 
-                    facSalaryModel.setAmt(finalresult.getString("salary"));
-                    facSalaryModel.setBankNo(finalresult.getString("bank_name"));
-                    facSalaryModel.setChqDate(finalresult.getString("chq_date"));
-                    facSalaryModel.setChqNo(finalresult.getString("chq_no"));
-                    facSalaryModel.setPayDate(finalresult.getString("payment_date"));
-                    facSalaryModel.setPayMode(finalresult.getString("payment_mode"));
-                    facSalaryModel.setTrancID(finalresult.getString("transc_id"));
-                    facSalaryModelList.add(facSalaryModel);
+                        facSalaryModel.setAmt(finalresult.getString("salary"));
+                        if(!finalresult.getString("bank_name").equals(""))
+                            facSalaryModel.setBankNo(finalresult.getString("bank_name"));
+                        else
+                            facSalaryModel.setBankNo("-");
+                        if(!finalresult.getString("chq_date").equals(""))
+                            facSalaryModel.setChqDate(finalresult.getString("chq_date"));
+                        else
+                            facSalaryModel.setChqDate("-");
+                        if(!finalresult.getString("chq_no").equals(""))
+                            facSalaryModel.setChqNo(finalresult.getString("chq_no"));
+                        else
+                            facSalaryModel.setChqNo("-");
+                        facSalaryModel.setPayDate(finalresult.getString("payment_date"));
+                        facSalaryModel.setPayMode(finalresult.getString("payment_mode"));
+                        if(!finalresult.getString("transc_id").equals(""))
+                            facSalaryModel.setTrancID(finalresult.getString("transc_id"));
+                        else
+                            facSalaryModel.setTrancID("-");
+                        facSalaryModelList.add(facSalaryModel);
+                    }
+                    FacSalaryActivity.SalaryAdapter salaryAdapter = new FacSalaryActivity.SalaryAdapter(getApplicationContext(),R.layout.facsal_layout,facSalaryModelList);
+                    lv_facSalary.setAdapter(salaryAdapter);
                 }
-                FacSalaryActivity.SalaryAdapter salaryAdapter = new FacSalaryActivity.SalaryAdapter(getApplicationContext(),R.layout.facsal_layout,facSalaryModelList);
-                lv_facSalary.setAdapter(salaryAdapter);
+
 
                 tv_sName.setText(globalname);
                 tv_sNumb.setText(globalnumb);
+
 
                 //String salary = finalresult.getString("salary");
                 //alertDialog.setMessage(salary);
@@ -253,8 +269,12 @@ public class FacSalaryActivity extends Faculty_Home_Activity {
 
             tv_amt.setText(facSalaryModelList.get(position).getAmt());
             tv_paymode.setText(facSalaryModelList.get(position).getPayMode());
-            tv_paydate.setText(facSalaryModelList.get(position).getPayDate());
+
+            String[] date = facSalaryModelList.get(position).getPayDate().split("-");
+            tv_paydate.setText(date[2]+"-"+date[1]+"-"+date[0]);
+
             tv_chqno.setText(facSalaryModelList.get(position).getChqNo());
+
             tv_chqdate.setText(facSalaryModelList.get(position).getChqDate());
             tv_bankname.setText(facSalaryModelList.get(position).getBankNo());
             tv_trancid.setText(facSalaryModelList.get(position).getTrancID());

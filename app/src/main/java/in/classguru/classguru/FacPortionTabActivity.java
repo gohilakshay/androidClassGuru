@@ -92,7 +92,11 @@ public class FacPortionTabActivity extends Faculty_Home_Activity implements AddF
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
 
-
+        Intent data = getIntent();
+        String globalname1 = data.getStringExtra("globalname");
+        String globalnumb1 = data.getStringExtra("globalnumb");
+        tv_sName.setText(globalname1);
+        tv_sNumb.setText(globalnumb1);
 
     }
 

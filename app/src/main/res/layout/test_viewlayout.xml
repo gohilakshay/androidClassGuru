@@ -24,32 +24,32 @@
                 <TextView
 
                     android:id="@+id/tv_testBatch"
-                    android:layout_width="50dp"
+                    android:layout_width="60dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:gravity="start"
                     android:text="Batch \n Id"
-                    android:textAlignment="viewStart"
-                    android:gravity="start" />
+                    android:textAlignment="viewStart" />
 
                 <TextView
 
                     android:id="@+id/tv_Obtain"
-                    android:layout_width="60dp"
+                    android:layout_width="120dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:gravity="start"
                     android:text="Obtained \n Marks"
-                    android:textAlignment="viewStart"
-                    android:gravity="start" />
+                    android:textAlignment="viewStart" />
 
                 <TextView
 
                     android:id="@+id/tv_Total"
-                    android:layout_width="60dp"
+                    android:layout_width="80dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:gravity="start"
                     android:text="Total \n Marks"
-                    android:textAlignment="viewStart"
-                    android:gravity="start" />
+                    android:textAlignment="viewStart" />
 
                 <TextView
 
@@ -64,12 +64,12 @@
                 <TextView
 
                     android:id="@+id/tv_Subject"
-                    android:layout_width="60dp"
+                    android:layout_width="100dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:gravity="start"
                     android:text="Subject"
-                    android:textAlignment="viewStart"
-                    android:gravity="start" />
+                    android:textAlignment="viewStart" />
             </TableRow>
         </TableLayout>
     </RelativeLayout>

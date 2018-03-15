@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.os.PersistableBundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -92,6 +94,12 @@ public class Fac_Announc_tabbActivity extends Faculty_Home_Activity implements A
         month_x = cal.get(Calendar.MONTH);
         day_x = cal.get(Calendar.DAY_OF_MONTH);
 
+        Intent data = getIntent();
+        String globalname1 = data.getStringExtra("globalname");
+        String globalnumb1 = data.getStringExtra("globalnumb");
+        tv_sName.setText(globalname1);
+        tv_sNumb.setText(globalnumb1);
+
     }
 
 
@@ -153,6 +161,7 @@ public class Fac_Announc_tabbActivity extends Faculty_Home_Activity implements A
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fac_announc_add_layout, container, false);
+
             //textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
             return rootView;
         }
@@ -214,5 +223,4 @@ public class Fac_Announc_tabbActivity extends Faculty_Home_Activity implements A
             return 2;
         }
     }
-
 }

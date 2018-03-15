@@ -22,17 +22,7 @@
                     android:layout_width="100dp"
                     android:layout_height="match_parent"
                     android:gravity="start"
-                    android:text="Test \n Date"
-                    android:textAlignment="viewStart"
-                    android:textStyle="bold" />
-
-                <TextView
-
-                    android:layout_width="50dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="start"
-                    android:text="Batch \n Id"
+                    android:text="Test Date"
                     android:textAlignment="viewStart"
                     android:textStyle="bold" />
 
@@ -42,17 +32,27 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="start"
-                    android:text="Obtained \n Marks"
+                    android:text="Batch Id"
                     android:textAlignment="viewStart"
                     android:textStyle="bold" />
 
                 <TextView
 
-                    android:layout_width="60dp"
+                    android:layout_width="120dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="start"
-                    android:text="Total \n Marks"
+                    android:text="Obtained Marks"
+                    android:textAlignment="viewStart"
+                    android:textStyle="bold" />
+
+                <TextView
+
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:text="Total Marks"
                     android:textAlignment="viewStart"
                     android:textStyle="bold" />
 
@@ -68,7 +68,7 @@
 
                 <TextView
 
-                    android:layout_width="60dp"
+                    android:layout_width="100dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="start"

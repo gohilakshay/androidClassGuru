@@ -224,7 +224,10 @@ public class Assignment_activity extends Home_activity {
             tv_fileName.setText(assignModelList.get(position).getTv_fileName());
             tv_desc.setText(assignModelList.get(position).getTv_Desc());
             tv_facultyName.setText(assignModelList.get(position).getTv_Faculty());
-            tv_update.setText(assignModelList.get(position).getTv_UploadDate());
+
+            String[] date = assignModelList.get(position).getTv_UploadDate().split("-");
+            tv_update.setText(date[2]+"-"+date[1]+"-"+date[0]);
+
             minus.setVisibility(View.GONE);
             plus.setVisibility(View.GONE);
             tv_desc.post(new Runnable() {

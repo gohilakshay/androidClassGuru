@@ -12,6 +12,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -138,32 +139,35 @@ public class Test_activity extends Home_activity {
                     //String checkResult = reader.getString("std_attendance");
                     /*reader.getJSONArray("std_attendance");*/
                     List<TestModel> testList = new ArrayList<>();
-                    JSONArray fulltest = reader.getJSONArray("std_test");
+                    if(!reader.getString("std_test").equals("null")){
 
-                    for (int i=0;i<fulltest.length();i++){
-                        JSONObject finalObject = fulltest.getJSONObject(i);
-                        TestModel testModel = new TestModel();
-                        testModel.setTv_testDate(finalObject.getString("test_date"));
-                        testModel.setTv_testBatch(finalObject.getString("batch_id"));
+                        JSONArray fulltest = reader.getJSONArray("std_test");
+                        for (int i=0;i<fulltest.length();i++){
+                            JSONObject finalObject = fulltest.getJSONObject(i);
+                            TestModel testModel = new TestModel();
+                            testModel.setTv_testDate(finalObject.getString("test_date"));
+                            testModel.setTv_testBatch(finalObject.getString("batch_id"));
 
-                        String studIds = finalObject.getString("stud_id");
-                        String marks = finalObject.getString("marks_obtained");
+                            String studIds = finalObject.getString("stud_id");
+                            String marks = finalObject.getString("marks_obtained");
 
-                        separatedStud = studIds.split(",");
-                        separatedMarks = marks.split(",");
-                        for(int j=0;j<separatedStud.length;j++){
-                            if(separatedStud[j].equals(globalid)){
-                                testModel.setTv_Obtain(separatedMarks[j]);
+                            separatedStud = studIds.split(",");
+                            separatedMarks = marks.split(",");
+                            for(int j=0;j<separatedStud.length;j++){
+                                if(separatedStud[j].equals(globalid)){
+                                    testModel.setTv_Obtain(separatedMarks[j]);
+                                }
+
                             }
-
-                        }
                         /*testModel.setTv_Obtain(globalid);*/
 
-                        testModel.setTv_Total(finalObject.getString("total_marks"));
-                        testModel.setTv_Passing(finalObject.getString("passing_marks"));
-                        testModel.setTv_Subject(finalObject.getString("subject_name"));
-                        testList.add(testModel);
+                            testModel.setTv_Total(finalObject.getString("total_marks"));
+                            testModel.setTv_Passing(finalObject.getString("passing_marks"));
+                            testModel.setTv_Subject(finalObject.getString("subject_name"));
+                            testList.add(testModel);
+                        }
                     }
+
 
                     bufferedReader.close();
                     inputStream.close();
@@ -241,7 +245,9 @@ public class Test_activity extends Home_activity {
             tv_Total = (TextView)convertView.findViewById(R.id.tv_Total);
             tv_Passing = (TextView)convertView.findViewById(R.id.tv_Passing);
             tv_Subject = (TextView)convertView.findViewById(R.id.tv_Subject);
-            tv_testDate.setText(testModelList.get(position).getTv_testDate());
+
+            String[] date = testModelList.get(position).getTv_testDate().split("-");
+            tv_testDate.setText(date[2]+"-"+date[1]+"-"+date[0]);
             tv_testBatch.setText(testModelList.get(position).getTv_testBatch());
             tv_Obtain.setText(testModelList.get(position).getTv_Obtain());
             tv_Total.setText(testModelList.get(position).getTv_Total());

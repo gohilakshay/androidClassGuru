@@ -219,7 +219,10 @@ public class Attendance_activity extends Home_activity {
             tv_attend = (TextView)convertView.findViewById(R.id.tv_Attend);
             tv_date = (TextView)convertView.findViewById(R.id.tv_Date);
             tv_attend.setText(attendanceModelList.get(position).getAttendance());
-            tv_date.setText(attendanceModelList.get(position).getDate());
+
+
+            String[] date = attendanceModelList.get(position).getDate().split("-");
+            tv_date.setText(date[2]+"-"+date[1]+"-"+date[0]);
             return convertView;
 
         }
