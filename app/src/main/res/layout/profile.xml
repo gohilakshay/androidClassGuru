@@ -47,7 +47,6 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/allerta_stencil"
-                android:text="Akshay Gohil"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 
@@ -57,7 +56,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="8dp"
-                android:text="7208121247"
                 android:textColor="@color/white" />
 
 
@@ -102,7 +100,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="Xth-A"
                         android:textColor="#4a4a4a"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -126,7 +123,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="Morning"
                         android:textColor="#4a4a4a"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -150,7 +146,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="2018"
                         android:textColor="#4a4a4a"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -207,7 +202,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Akshay"
                     android:textAlignment="gravity"
                     android:textColor="#4a4a4a"
                     android:textSize="15sp" />
@@ -237,16 +231,15 @@
                     android:textColor="#4a4a4a"
                     android:textSize="15sp"
                     android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/tvFather"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Yogesh"
                     android:textAlignment="gravity"
                     android:textColor="#4a4a4a"
-                    android:textSize="15sp"
-                    />
+                    android:textSize="15sp" />
             </TableRow>
             <TableRow
                 android:padding="10dp"
@@ -273,16 +266,15 @@
                     android:textColor="#4a4a4a"
                     android:textSize="15sp"
                     android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/tvMother"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Neeta"
                     android:textAlignment="gravity"
                     android:textColor="#4a4a4a"
-                    android:textSize="15sp"
-                    />
+                    android:textSize="15sp" />
             </TableRow>
             <TableRow
                 android:padding="10dp"
@@ -309,15 +301,15 @@
                     android:textColor="#4a4a4a"
                     android:textSize="15sp"
                     android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/tvContact"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="9029307960"
                     android:textAlignment="gravity"
                     android:textColor="#4a4a4a"
-                    android:textSize="15sp"/>
+                    android:textSize="15sp" />
             </TableRow>
             <TableRow
                 android:padding="10dp"
@@ -351,10 +343,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Male"
                     android:textAlignment="gravity"
                     android:textColor="#4a4a4a"
-                    android:textSize="15sp"/>
+                    android:textSize="15sp" />
             </TableRow>
             <TableRow
                 android:padding="10dp"
@@ -381,15 +372,15 @@
                     android:textColor="#4a4a4a"
                     android:textSize="15sp"
                     android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/tvBirth"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="29/4/1995"
                     android:textAlignment="gravity"
                     android:textColor="#4a4a4a"
-                    android:textSize="15sp"/>
+                    android:textSize="15sp" />
             </TableRow>
             <!--<TableRow
             android:padding="10dp"
@@ -442,15 +433,15 @@
                     android:textColor="#4a4a4a"
                     android:textSize="15sp"
                     android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/tvCourseType"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Regular"
                     android:textAlignment="gravity"
                     android:textColor="#4a4a4a"
-                    android:textSize="15sp"/>
+                    android:textSize="15sp" />
             </TableRow>
             <TableRow
                 android:padding="10dp"
@@ -477,15 +468,15 @@
                     android:textColor="#4a4a4a"
                     android:textSize="15sp"
                     android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/tvCourse"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Xth Sum"
                     android:textAlignment="gravity"
                     android:textColor="#4a4a4a"
-                    android:textSize="15sp"/>
+                    android:textSize="15sp" />
             </TableRow>
             <TableRow
                 android:padding="10dp"

@@ -94,8 +94,7 @@
                 android:layout_marginLeft="19dp"
                 android:layout_marginStart="19dp"
                 android:layout_toEndOf="@+id/textView30"
-                android:layout_toRightOf="@+id/textView30"
-                android:text="TextView" />
+                android:layout_toRightOf="@+id/textView30" />
 
             <TextView
                 android:id="@+id/tv_Faculty"
@@ -104,8 +103,7 @@
                 android:layout_alignBaseline="@+id/textView32"
                 android:layout_alignBottom="@+id/textView32"
                 android:layout_alignLeft="@+id/tv_fileName"
-                android:layout_alignStart="@+id/tv_fileName"
-                android:text="TextView" />
+                android:layout_alignStart="@+id/tv_fileName" />
 
             <TextView
                 android:id="@+id/tv_UploadDate"
@@ -113,8 +111,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/textView33"
                 android:layout_alignLeft="@+id/tv_Faculty"
-                android:layout_alignStart="@+id/tv_Faculty"
-                android:text="TextView" />
+                android:layout_alignStart="@+id/tv_Faculty" />
 
             <TextView
                 android:id="@+id/textView38"
@@ -143,8 +140,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/tv_UploadDate"
                 android:layout_alignStart="@+id/tv_UploadDate"
-                android:layout_alignTop="@+id/textView39"
-                android:text="TextView" />
+                android:layout_alignTop="@+id/textView39" />
 
             <TextView
                 android:id="@+id/tv_readMore1"
@@ -153,8 +149,7 @@
                 android:layout_alignLeft="@+id/tv_Desc"
                 android:layout_alignStart="@+id/tv_Desc"
                 android:layout_below="@+id/tv_Desc"
-                android:layout_marginTop="14dp"
-                android:text="ReadMore" />
+                android:layout_marginTop="14dp" />
 
             <TextView
                 android:id="@+id/tv_readLess1"
@@ -162,8 +157,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignEnd="@+id/tv_readMore1"
                 android:layout_alignRight="@+id/tv_readMore1"
-                android:layout_alignTop="@+id/tv_readMore1"
-                android:text="ReadLess" />
+                android:layout_alignTop="@+id/tv_readMore1" />
 
             <!--<com.borjabravo.readmoretextview.ReadMoreTextView
                 android:id="@+id/tv_Desc"

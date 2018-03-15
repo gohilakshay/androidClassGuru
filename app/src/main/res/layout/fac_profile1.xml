@@ -69,7 +69,6 @@
                     android:layout_toEndOf="@+id/iv_FacProfile"
                     android:layout_toRightOf="@+id/iv_FacProfile"
                     android:fontFamily="@font/allerta_stencil"
-                    android:text="User Name"
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -84,7 +83,6 @@
                     android:layout_marginLeft="13dp"
                     android:layout_marginStart="13dp"
                     android:layout_marginTop="12dp"
-                    android:text="7208121247"
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     android:textStyle="bold" />

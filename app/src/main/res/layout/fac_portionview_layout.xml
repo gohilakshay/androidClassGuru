@@ -54,8 +54,7 @@
                 android:layout_marginLeft="22dp"
                 android:layout_marginStart="22dp"
                 android:layout_toEndOf="@+id/textView4"
-                android:layout_toRightOf="@+id/textView4"
-                android:text="10" />
+                android:layout_toRightOf="@+id/textView4" />
 
             <TextView
                 android:id="@+id/tv_PortionSubjView"
@@ -64,8 +63,7 @@
                 android:layout_alignBaseline="@+id/textView8"
                 android:layout_alignBottom="@+id/textView8"
                 android:layout_alignLeft="@+id/tv_allPortion"
-                android:layout_alignStart="@+id/tv_allPortion"
-                android:text="10" />
+                android:layout_alignStart="@+id/tv_allPortion" />
 
             <TextView
                 android:id="@+id/textView8"
@@ -98,8 +96,7 @@
                 android:layout_alignBaseline="@+id/textView9"
                 android:layout_alignBottom="@+id/textView9"
                 android:layout_alignLeft="@+id/tv_PortionBatchView"
-                android:layout_alignStart="@+id/tv_PortionBatchView"
-                android:text="TextView" />
+                android:layout_alignStart="@+id/tv_PortionBatchView" />
 
             <TextView
                 android:id="@+id/textView12"
@@ -118,8 +115,7 @@
                 android:layout_alignBaseline="@+id/textView12"
                 android:layout_alignBottom="@+id/textView12"
                 android:layout_alignLeft="@+id/tv_allPortion"
-                android:layout_alignStart="@+id/tv_allPortion"
-                android:text="TextView" />
+                android:layout_alignStart="@+id/tv_allPortion" />
 
         </RelativeLayout>
 

@@ -46,10 +46,10 @@
                 android:id="@+id/textView16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/textView15"
-                android:layout_alignStart="@+id/textView15"
-                android:layout_below="@+id/textView15"
-                android:layout_marginTop="26dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/tv_facNotDate1"
+                android:layout_marginTop="24dp"
                 android:text="Description :"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -60,8 +60,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@+id/textView14"
                 android:layout_toEndOf="@+id/textView15"
-                android:layout_toRightOf="@+id/textView15"
-                android:text="TextView" />
+                android:layout_toRightOf="@+id/textView15" />
 
             <TextView
                 android:id="@+id/tv_facNotBatch"
@@ -71,8 +70,7 @@
                 android:layout_marginLeft="12dp"
                 android:layout_marginStart="12dp"
                 android:layout_toEndOf="@+id/textView15"
-                android:layout_toRightOf="@+id/textView15"
-                android:text="TextView" />
+                android:layout_toRightOf="@+id/textView15" />
 
             <TextView
                 android:id="@+id/tv_facNotDesc"
@@ -107,18 +105,16 @@
                 android:layout_marginStart="13dp"
                 android:layout_toEndOf="@+id/textView21"
                 android:layout_toRightOf="@+id/textView21"
-                android:text="TextView"
                 android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/textView21"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/tv_facNotBatch"
-                android:layout_marginLeft="30dp"
-                android:layout_marginStart="30dp"
-                android:layout_toEndOf="@+id/tv_facNotBatch"
-                android:layout_toRightOf="@+id/tv_facNotBatch"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/textView15"
+                android:layout_marginTop="24dp"
                 android:text="Date :"
                 android:textSize="16sp"
                 android:textStyle="bold" />

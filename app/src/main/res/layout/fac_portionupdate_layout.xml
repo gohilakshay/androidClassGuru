@@ -47,8 +47,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginStart="20dp"
                 android:layout_toEndOf="@+id/textView8"
-                android:layout_toRightOf="@+id/textView8"
-                android:text="10" />
+                android:layout_toRightOf="@+id/textView8" />
 
             <TextView
                 android:id="@+id/tv_PortionSubjView"
@@ -57,8 +56,7 @@
                 android:layout_alignBaseline="@+id/textView8"
                 android:layout_alignBottom="@+id/textView8"
                 android:layout_alignLeft="@+id/tv_allPortion"
-                android:layout_alignStart="@+id/tv_allPortion"
-                android:text="10" />
+                android:layout_alignStart="@+id/tv_allPortion" />
 
             <TextView
                 android:id="@+id/textView8"
@@ -89,8 +87,7 @@
                 android:layout_alignBaseline="@+id/textView9"
                 android:layout_alignBottom="@+id/textView9"
                 android:layout_alignLeft="@+id/tv_PortionBatchView"
-                android:layout_alignStart="@+id/tv_PortionBatchView"
-                android:text="TextView" />
+                android:layout_alignStart="@+id/tv_PortionBatchView" />
 
             <TextView
                 android:id="@+id/textView12"
@@ -108,8 +105,7 @@
                 android:layout_alignBaseline="@+id/textView12"
                 android:layout_alignBottom="@+id/textView12"
                 android:layout_alignLeft="@+id/tv_allPortion"
-                android:layout_alignStart="@+id/tv_allPortion"
-                android:text="TextView" />
+                android:layout_alignStart="@+id/tv_allPortion" />
 
             <TextView
                 android:id="@+id/tv_tot"
@@ -129,8 +125,7 @@
                 android:layout_alignBaseline="@+id/tv_tot"
                 android:layout_alignBottom="@+id/tv_tot"
                 android:layout_alignLeft="@+id/tv_remPortion"
-                android:layout_alignStart="@+id/tv_remPortion"
-                android:text="TextView" />
+                android:layout_alignStart="@+id/tv_remPortion" />
 
             <TextView
                 android:id="@+id/textView11"
@@ -149,8 +144,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/tv_totalTopicsPortion"
                 android:layout_alignStart="@+id/tv_totalTopicsPortion"
-                android:layout_alignTop="@+id/textView11"
-                android:text="TextView" />
+                android:layout_alignTop="@+id/textView11" />
 
             <Button
                 android:backgroundTint="#09B0B9"
