@@ -240,6 +240,7 @@ public class Portion_activity extends Home_activity {
                     /*AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                     builder.setMessage(s);
                     builder.show();*/
+                    finish();
                     Intent intent = new Intent(getContext(),Stud_portionList_Activity.class);
                     intent.putExtra("portionList",portionModelList.get(position).getTopic());
                     intent.putExtra("portionComplete",portionModelList.get(position).getCompleted());
@@ -247,6 +248,7 @@ public class Portion_activity extends Home_activity {
                     intent.putExtra("globaldbname",globaldbname);
                     intent.putExtra("globalid",globalid);
                     startActivity(intent);
+
                 }
             });
 

@@ -1,23 +1,28 @@
 package in.classguru.classguru;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -28,6 +33,8 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -38,7 +45,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import in.classguru.classguru.models.AssignModel;
 import in.classguru.classguru.models.TestModel;
@@ -220,6 +230,15 @@ public class Assignment_activity extends Home_activity {
             final TextView plus = (TextView)convertView.findViewById(R.id.tv_readMore1);
             final TextView minus = (TextView)convertView.findViewById(R.id.tv_readLess1);
 
+            /*Button btn_download = (Button)convertView.findViewById(R.id.btn_download);
+            btn_download.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    new DownloadFromUrl(getApplication()).execute("https://www.antennahouse.com/XSLsample/pdf/sample-link_1.pdf");
+                }
+            });*/
+
             //tv_uploadId.setText(assignModelList.get(position).getTv_uploadId());
             tv_fileName.setText(assignModelList.get(position).getTv_fileName());
             tv_desc.setText(assignModelList.get(position).getTv_Desc());
@@ -269,4 +288,67 @@ public class Assignment_activity extends Home_activity {
 
         }
     }
+
+    /*public class DownloadFromUrl extends AsyncTask<String,Void,String>{
+
+        Context context;
+        android.app.AlertDialog alertDialog;
+
+        DownloadFromUrl (Context ctx){
+            context = ctx;
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            String url1 = params[0];
+            try {
+
+                URL url = new URL(url1);
+
+                HttpURLConnection c = (HttpURLConnection) url.openConnection();
+                c.setRequestMethod("GET");
+                c.setDoOutput(true);
+                c.connect();
+
+                String Path = Environment.getExternalStorageDirectory() + "/download/";
+                Log.v("PortfolioManger", "PATH: " + Path);
+                File file = new File(Path);
+                file.mkdirs();
+                FileOutputStream fos = new FileOutputStream("IMG_4717.JPG");
+
+                InputStream is = c.getInputStream();
+
+                byte[] buffer = new byte[702];
+                int len1 = 0;
+                while ((len1 = is.read(buffer)) != -1) {
+                    fos.write(buffer, 0, len1);
+                }
+                fos.close();
+                is.close();
+            } catch (IOException e) {
+                Log.d("PortfolioManger", "Error: " + e);
+            }
+            Log.v("PortfolioManger", "Check: ");
+
+            return null;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            alertDialog = new android.app.AlertDialog.Builder(context).create();
+
+            super.onPreExecute();
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+            super.onProgressUpdate(values);
+        }
+    }*/
 }

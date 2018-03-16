@@ -15,6 +15,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -50,7 +51,10 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import in.classguru.classguru.models.FacStudAttendModel;
 
@@ -68,6 +72,7 @@ public class FacStudAttendActivity extends Faculty_Home_Activity {
     public String batch_id;
     public TextView tv_sName;
     public TextView tv_sNumb;
+    private HashMap<String, String> spinnerMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,8 +118,9 @@ public class FacStudAttendActivity extends Faculty_Home_Activity {
                 if(!spinner.getSelectedItem().toString().equals("Select batch")){
                     Ll_StudDetails.setVisibility(Ll_StudDetails.VISIBLE);
                     FacStudAttend_fetchbatch facStudAttend_fetchbatch = new FacStudAttend_fetchbatch(FacStudAttendActivity.this);
-                    batch_id = spinner.getSelectedItem().toString();
+                    batch_id = spinnerMap.get(spinner.getSelectedItem().toString());
                     facStudAttend_fetchbatch.execute("facultyBatch", batch_id,globaldbname);
+
                 }
 
             }
@@ -293,10 +299,12 @@ public class FacStudAttendActivity extends Faculty_Home_Activity {
                 ArrayList newBatch = new ArrayList();
                 List<String> facStudAttendModelList = new ArrayList<>();
                 facStudAttendModelList.add("Select batch");
+                spinnerMap = new HashMap<String, String>();
                 for(int i =0;i<fulltest.length();i++){
 
                     JSONObject reader1 = new JSONObject(fulltest.getString(i));
-                    facStudAttendModelList.add(reader1.getString("batch_ID") +" "+reader1.getString("batch_name") );
+                    facStudAttendModelList.add(reader1.getString("batch_name"));
+                    spinnerMap.put(reader1.getString("batch_name"),reader1.getString("batch_ID"));
                   //  facStudAttendModelList.add(reader1.getString("batch_name"));
                 }
 

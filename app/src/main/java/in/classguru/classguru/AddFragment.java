@@ -32,6 +32,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -60,6 +61,7 @@ public class AddFragment extends Fragment {
     public EditText et_remTopicTab;
     public EditText et_totalTopicName;
     public EditText et_remTopicName;
+    private HashMap<String, String> spinnerMap;
 
     public AddFragment() {
         // Required empty public constructor
@@ -110,17 +112,16 @@ public class AddFragment extends Fragment {
         btn_addPortion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String portionBatchSelect = portionBatchSpinner.getSelectedItem().toString();
+                String portionBatchSelect = spinnerMap.get(portionBatchSpinner.getSelectedItem().toString());
                 String portionSubjSelect = portionSubjSpinner.getSelectedItem().toString();
                 String et_totalTop = et_totalTopicTab.getText().toString();
                 String et_remTop = et_remTopicTab.getText().toString();
                 String et_totalTopicN = et_totalTopicName.getText().toString();
                 String et_remTopicN = et_remTopicName.getText().toString();
 
-                String[] splitBatch = portionBatchSelect.split(" ");
-                if(!et_totalTop.equals("") && !et_remTop.equals("") && !splitBatch[0].equals("Select batch") && !portionSubjSelect.equals("Select Subject") && !et_totalTopicN.equals("")&& !et_totalTopicN.equals(" ") && !et_remTopicN.equals("") && !et_remTopicN.equals(" ")){
+                if(!et_totalTop.equals("") && !et_remTop.equals("") && !portionBatchSelect.equals("Select batch") && !portionSubjSelect.equals("Select Subject") && !et_totalTopicN.equals("")&& !et_totalTopicN.equals(" ") && !et_remTopicN.equals("") && !et_remTopicN.equals(" ")){
                     AddPortion_post addPortion_post = new AddPortion_post(getContext());
-                    addPortion_post.execute("FacPortionAdd",et_totalTop,et_remTop,splitBatch[0],portionSubjSelect,et_totalTopicN,et_remTopicN);
+                    addPortion_post.execute("FacPortionAdd",et_totalTop,et_remTop,portionBatchSelect,portionSubjSelect,et_totalTopicN,et_remTopicN);
                 }else{
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
                     alertDialogBuilder.setMessage("Enter all Fields");
@@ -340,10 +341,12 @@ public class AddFragment extends Fragment {
                 JSONArray fulltest = reader.getJSONArray("batch_details");
                 List<String> facStudAttendModelList = new ArrayList<>();
                 facStudAttendModelList.add("Select batch");
+                spinnerMap = new HashMap<String, String>();
                 for(int i =0;i<fulltest.length();i++){
 
                     JSONObject reader1 = new JSONObject(fulltest.getString(i));
-                    facStudAttendModelList.add(reader1.getString("batch_ID") +" "+reader1.getString("batch_name") );
+                    facStudAttendModelList.add(reader1.getString("batch_name") );
+                    spinnerMap.put(reader1.getString("batch_name"),reader1.getString("batch_ID"));
                     //  facStudAttendModelList.add(reader1.getString("batch_name"));
                 }
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(context,R.layout.support_simple_spinner_dropdown_item,facStudAttendModelList);

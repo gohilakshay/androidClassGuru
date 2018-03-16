@@ -309,6 +309,7 @@ public class ViewFragment extends Fragment {
                     intent.putExtra("globaldbname",mParam2);
                     intent.putExtra("globalid",mParam1);
                     startActivity(intent);
+                    getActivity().finish();
                 }
             });
 

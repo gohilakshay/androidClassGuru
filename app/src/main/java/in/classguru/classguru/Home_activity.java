@@ -370,6 +370,14 @@ public class Home_activity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+    public void OnAnnounc(MenuItem item){
+        Intent intent = new Intent(Home_activity.this,Announc_Activity.class);
+        intent.putExtra("id",globalid);
+        intent.putExtra("permission",globalpermissin);
+        intent.putExtra("dbname",globaldbname);
+        startActivity(intent);
+        finish();
+    }
 
 
     boolean doubleBackToExitPressedOnce = false;

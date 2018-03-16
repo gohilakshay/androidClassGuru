@@ -7,8 +7,8 @@
     <item android:id="@+id/assignment" android:title="Assignment" android:icon="@drawable/ic_assignment" android:onClick="OnAssign"/>
     <item android:id="@+id/portion" android:title="Portion" android:icon="@drawable/ic_assignment" android:onClick="OnPortion"/>
     <!--<item android:id="@+id/t_attend" android:title="Teacher Attendance" android:icon="@drawable/ic_teacher_attend"/>
-    <item android:id="@+id/portion_details" android:title="Portion Details" android:icon="@drawable/ic_testdetails"/>
-    <item android:id="@+id/announcements" android:title="Announcements" android:icon="@drawable/ic_announcement"/>-->
+    <item android:id="@+id/portion_details" android:title="Portion Details" android:icon="@drawable/ic_testdetails"/>-->
+    <item android:id="@+id/announcements" android:title="Announcements" android:icon="@drawable/ic_announcement" android:onClick="OnAnnounc"/>
     <item android:id="@+id/logout" android:icon="@drawable/ic_logout" android:title="Logout" android:onClick="OnLogout" />
 
 </menu>

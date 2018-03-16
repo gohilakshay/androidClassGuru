@@ -37,6 +37,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -70,6 +71,7 @@ public class AnnouncAddFragment extends Fragment {
     public TextView tv_sNumb;
 
     private OnFragmentInteractionListener mListener;
+    private HashMap<String, String> spinnerMap;
 
     public AnnouncAddFragment() {
         // Required empty public constructor
@@ -123,15 +125,14 @@ public class AnnouncAddFragment extends Fragment {
         btn_facAddAnnounc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                batch_id = spinner2.getSelectedItem().toString();
-                String[] batchSeperate = batch_id.split(" ");
-                String batch_newId = batchSeperate[0];
+                batch_id = spinnerMap.get(spinner2.getSelectedItem().toString());
+
                 String title = tv_title.getText().toString();
                 String description = tv_description.getText().toString();
                 String date = year_x+"-"+month_x+"-"+day_x;
-                if(!title.equals(" ") && !title.equals("") && !description.equals(" ") && !description.equals("") && !date.equals("Click to select Text") && !batch_newId.equals("Select batch")){
+                if(!title.equals(" ") && !title.equals("") && !description.equals(" ") && !description.equals("") && !date.equals("Click to select Text") && !batch_id.equals("Select batch")){
                     AddAnnoc_post addAnnoc_post = new AddAnnoc_post(getContext());
-                    addAnnoc_post.execute("FacAnnouncAdd",title,description,date,batch_newId,mParam1);
+                    addAnnoc_post.execute("FacAnnouncAdd",title,description,date,batch_id,mParam1);
                 }else{
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
                     alertDialogBuilder.setMessage("Enter all Fields");
@@ -267,10 +268,12 @@ public class AnnouncAddFragment extends Fragment {
                 JSONArray fulltest = reader.getJSONArray("batch_details");
                 List<String> facStudAttendModelList = new ArrayList<>();
                 facStudAttendModelList.add("Select batch");
+                spinnerMap = new HashMap<String, String>();
                 for(int i =0;i<fulltest.length();i++){
 
                     JSONObject reader1 = new JSONObject(fulltest.getString(i));
-                    facStudAttendModelList.add(reader1.getString("batch_ID") +" "+reader1.getString("batch_name") );
+                    facStudAttendModelList.add(reader1.getString("batch_name") );
+                    spinnerMap.put(reader1.getString("batch_name"),reader1.getString("batch_ID"));
                     //  facStudAttendModelList.add(reader1.getString("batch_name"));
                 }
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext().getApplicationContext(),R.layout.support_simple_spinner_dropdown_item,facStudAttendModelList);
