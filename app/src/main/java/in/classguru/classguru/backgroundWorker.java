@@ -38,7 +38,7 @@ public class backgroundWorker extends AsyncTask<String,Void,String> {
     @Override
     protected String doInBackground(String... params) {
         String type = params[0];
-        String login_url = "https://classes.classguru.in/api/select_user.php";
+        String login_url = "https://www.classguru.in/class/api/select_user.php";
         if(type.equals("login")){
             try {
                 String user_name = params[1];

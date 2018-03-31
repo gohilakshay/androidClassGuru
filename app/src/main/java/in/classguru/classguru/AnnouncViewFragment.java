@@ -153,7 +153,7 @@ public class AnnouncViewFragment extends Fragment {
             String type = params[0];
             String id = params[1];
             String dbname = params[2];
-            String login_url = "https://classes.classguru.in/api/teacher_details.php";
+            String login_url = "https://www.classguru.in/class/api/teacher_details.php";
             if(type.equals("facultyAnnounce")){
                 try {
                     URL profile_url = new URL(login_url);

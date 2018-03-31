@@ -155,7 +155,7 @@ public class Home_activity extends AppCompatActivity {
             String id = params[1];
             String permission = params[2];
             String dbname = params[3];
-            String login_url = "https://classes.classguru.in/api/student_details.php";
+            String login_url = "https://www.classguru.in/class/api/student_details.php";
             if(permission.equals("student")){
                 try {
                     URL profile_url = new URL(login_url);
