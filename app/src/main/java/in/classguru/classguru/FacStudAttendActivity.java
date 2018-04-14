@@ -61,7 +61,7 @@ import in.classguru.classguru.models.FacStudAttendModel;
 public class FacStudAttendActivity extends Faculty_Home_Activity {
 
     public Spinner spinner;
-    TextView et_datepicker;
+    public TextView et_datepicker;
     int year_x,month_x,day_x;
     static final int DILOG_ID = 0;
     //Button btn_markStud;
@@ -140,7 +140,9 @@ public class FacStudAttendActivity extends Faculty_Home_Activity {
         year_x = cal.get(Calendar.YEAR);
         month_x = cal.get(Calendar.MONTH);
         day_x = cal.get(Calendar.DAY_OF_MONTH);
-
+        TextView et_datePicker = findViewById(R.id.et_datePicker);
+        //et_datePicker.setText(year_x+"-"+month_x+"-"+day_x);
+        et_datePicker.setText(day_x+"/"+month_x+"/"+year_x);
         showDialogOnClick();
 
         btn_markAbsent.setOnClickListener(new View.OnClickListener() {
@@ -163,12 +165,12 @@ public class FacStudAttendActivity extends Faculty_Home_Activity {
                 String idsAbsent = android.text.TextUtils.join(",", studAbsentList);
                 String studIds = android.text.TextUtils.join(",",studlist);
                 String attendDate = year_x+"-"+month_x+"-"+day_x;
-                 MarkAbset_post markAbset_post = new MarkAbset_post(FacStudAttendActivity.this);
-                 markAbset_post.execute("markAttend",batch_id,attendDate,studIds,idsAbsent,globaldbname);
+                 /*MarkAbset_post markAbset_post = new MarkAbset_post(FacStudAttendActivity.this);
+                 markAbset_post.execute("markAttend",batch_id,attendDate,studIds,idsAbsent,globaldbname);*/
 
-                /*new AlertDialog.Builder( FacStudAttendActivity.this )
-                .setMessage(batch_id)
-                .show();*/
+                new AlertDialog.Builder( FacStudAttendActivity.this )
+                .setMessage(attendDate)
+                .show();
 
             }
         });
@@ -469,7 +471,7 @@ public class FacStudAttendActivity extends Faculty_Home_Activity {
              String idsAbsent = params[4];
              String dbname = params[5];
             String login_url = "https://www.classguru.in/class/api/FacmarkStudAttend.php";
-            if(type.equals("markAttend")){
+            if(!attendDate.equals("Select Date")){
                 try {
                     URL profile_url = new URL(login_url);
                     HttpURLConnection httpURLConnection = (HttpURLConnection) profile_url.openConnection();
@@ -506,7 +508,7 @@ public class FacStudAttendActivity extends Faculty_Home_Activity {
                 }
                 return "Stud";
             }else{
-                return "faculty";
+                return "enterdate";
             }
             //return null;
         }
@@ -536,6 +538,9 @@ public class FacStudAttendActivity extends Faculty_Home_Activity {
 
                     }
                 }, 500);
+            }else if(result.equals("enterdate")){
+                alertDialog.setMessage("Enter Date to Mark");
+                alertDialog.show();
             }else{
                 alertDialog.setMessage("Error Occured");
                 alertDialog.show();
