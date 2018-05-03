@@ -158,8 +158,9 @@ public class Announc_Activity extends Home_activity {
         }
         @Override
         protected void onPostExecute(String result) {
-            /*alertDialog.setMessage(result);
-            alertDialog.show();*/
+            alertDialog.setMessage(result);
+            alertDialog.show();
+            Log.i("Tag", "onPostExecute: "+ result);
             super.onPostExecute(result);
 
             try {

@@ -191,7 +191,7 @@ public class AddFragment extends Fragment {
             String totalTopicsName = params[5];
             String compTopicsName = params[6];
 
-            String login_url = "https://www.classguru.in/class/api/addFacPortion.php";
+            String login_url = "https://www.classguru.in/class/api//addFacPortion.php";
             if(type.equals("FacPortionAdd")){
                 try {
                     URL profile_url = new URL(login_url);
@@ -282,7 +282,7 @@ public class AddFragment extends Fragment {
             String type = params[0];
             String id = params[1];
             String dbname = params[2];
-            String login_url = "https://www.classguru.in/class/api/teacher_details.php";
+            String login_url = "https://www.classguru.in/class/api//teacher_details.php";
             if(type.equals("faculty")){
                 try {
                     URL profile_url = new URL(login_url);
