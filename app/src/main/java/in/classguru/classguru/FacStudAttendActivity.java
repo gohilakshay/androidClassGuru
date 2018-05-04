@@ -165,12 +165,12 @@ public class FacStudAttendActivity extends Faculty_Home_Activity {
                 String idsAbsent = android.text.TextUtils.join(",", studAbsentList);
                 String studIds = android.text.TextUtils.join(",",studlist);
                 String attendDate = year_x+"-"+month_x+"-"+day_x;
-                 /*MarkAbset_post markAbset_post = new MarkAbset_post(FacStudAttendActivity.this);
-                 markAbset_post.execute("markAttend",batch_id,attendDate,studIds,idsAbsent,globaldbname);*/
+                 MarkAbset_post markAbset_post = new MarkAbset_post(FacStudAttendActivity.this);
+                 markAbset_post.execute("markAttend",batch_id,attendDate,studIds,idsAbsent,globaldbname);
 
-                new AlertDialog.Builder( FacStudAttendActivity.this )
+                /*new AlertDialog.Builder( FacStudAttendActivity.this )
                 .setMessage(attendDate)
-                .show();
+                .show();*/
 
             }
         });
