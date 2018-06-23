@@ -107,7 +107,7 @@ public class Announc_Activity extends Home_activity {
             String type = params[0];
             String id = params[1];
             String dbname = params[2];
-            String login_url = "https://www.classguru.in/class/api/student_details.php";
+            String login_url = "http://206.189.231.53/admin/api/student_details.php";
             if(type.equals("facultyAnnounce")){
                 try {
                     URL profile_url = new URL(login_url);

@@ -241,7 +241,7 @@ public class FacStudAttendActivity extends Faculty_Home_Activity {
             String id = params[1];
             String permission = params[2];
             String dbname = params[3];
-            String login_url = "https://www.classguru.in/class/api/teacher_details.php";
+            String login_url = "http://206.189.231.53/admin/api/teacher_details.php";
             if(permission.equals("faculty")){
                 try {
                     URL profile_url = new URL(login_url);
@@ -339,7 +339,7 @@ public class FacStudAttendActivity extends Faculty_Home_Activity {
             String id = params[1];
            // String permission = params[2];
             String dbname = params[2];
-            String login_url = "https://www.classguru.in/class/api/student_batch_mapping.php";
+            String login_url = "http://206.189.231.53/admin/api/student_batch_mapping.php";
             if(type.equals("facultyBatch")){
                 try {
                     URL profile_url = new URL(login_url);
@@ -470,7 +470,7 @@ public class FacStudAttendActivity extends Faculty_Home_Activity {
              String studIds = params[3];
              String idsAbsent = params[4];
              String dbname = params[5];
-            String login_url = "https://www.classguru.in/class/api/FacmarkStudAttend.php";
+            String login_url = "http://206.189.231.53/admin/api/FacmarkStudAttend.php";
             if(!attendDate.equals("Select Date")){
                 try {
                     URL profile_url = new URL(login_url);

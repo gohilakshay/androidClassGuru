@@ -178,7 +178,7 @@ public class FacPortionUpdateActivity extends Faculty_Home_Activity {
             String portion_id = params[1];
             String alltopic = params[2];
             String selectedtopic = params[3];
-            String login_url = "https://www.classguru.in/class/api/addFacPortion.php";
+            String login_url = "http://206.189.231.53/admin/api/addFacPortion.php";
             if (type.equals("FacPortionUpdate")) {
                 try {
                     URL profile_url = new URL(login_url);

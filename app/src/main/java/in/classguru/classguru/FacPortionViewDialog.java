@@ -82,7 +82,7 @@ public class FacPortionViewDialog extends AppCompatDialogFragment {
             String permission = params[2];
             String dbname = params[3];
             String portion_view = "Now";
-            String login_url = "https://www.classguru.in/class/api/addFacPortion.php";
+            String login_url = "http://206.189.231.53/admin/api/addFacPortion.php";
             if(type.equals("FacPortionView")){
                 try {
                     URL profile_url = new URL(login_url);

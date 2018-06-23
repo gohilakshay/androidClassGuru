@@ -164,7 +164,7 @@ public class UpdateFragment extends Fragment implements portionDialog.PortionAdd
             String type = params[0];
             String id = params[1];
             String db = params[2];
-            String login_url = "https://www.classguru.in/class/api/teacher_details.php";
+            String login_url = "http://206.189.231.53/admin/api/teacher_details.php";
             if (type.equals("PortionView")) {
                 try {
                     URL profile_url = new URL(login_url);

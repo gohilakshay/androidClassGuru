@@ -209,7 +209,7 @@ public class AnnouncAddFragment extends Fragment {
             String type = params[0];
             String id = params[1];
             String dbname = params[2];
-            String login_url = "https://www.classguru.in/class/api/teacher_details.php";
+            String login_url = "http://206.189.231.53/admin/api/teacher_details.php";
             if(type.equals("faculty")){
                 try {
                     URL profile_url = new URL(login_url);
@@ -309,7 +309,7 @@ public class AnnouncAddFragment extends Fragment {
             String date = params[3];
             String batch_id = params[4];
             String dbname = params[5];
-            String login_url = "https://www.classguru.in/class/api/FacmarkNotice.php";
+            String login_url = "http://206.189.231.53/admin/api/FacmarkNotice.php";
             if(type.equals("FacAnnouncAdd")){
                 try {
                     URL profile_url = new URL(login_url);

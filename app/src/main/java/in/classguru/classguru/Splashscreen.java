@@ -11,6 +11,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 
 public class Splashscreen extends Activity {
 
@@ -32,7 +33,7 @@ public class Splashscreen extends Activity {
     private void StartAnimations() {
         Animation anim = AnimationUtils.loadAnimation(this, R.anim.alpha);
         anim.reset();
-        LinearLayout l=(LinearLayout) findViewById(R.id.lin_lay);
+        RelativeLayout l=(RelativeLayout) findViewById(R.id.lin_lay);
         l.clearAnimation();
         l.startAnimation(anim);
 
@@ -53,7 +54,7 @@ public class Splashscreen extends Activity {
                         waited +=10;
                         sleep(1000);
                         mProgress.setProgress(waited);
-                        Log.i("Tag","wait is = "+waited);
+                       /* Log.i("Tag","wait is = "+waited);*/
 
                     }
                     Intent intent = new Intent(Splashscreen.this,

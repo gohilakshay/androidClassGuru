@@ -185,7 +185,7 @@ public class Fac_PortionListView_Activity extends AppCompatActivity {
             String syllabus = params[3];
             String completeTopics = params[2];
             Log.i("TageeErroro","id = "+id+" syllabus = "+syllabus+" completeTopics = "+ completeTopics);
-            String login_url = "https://www.classguru.in/class/api/addFacPortion.php";
+            String login_url = "http://206.189.231.53/admin/api/addFacPortion.php";
             if (type.equals("PortionUpdate")) {
                 try {
                     URL profile_url = new URL(login_url);

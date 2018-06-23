@@ -109,7 +109,7 @@ public class Test_activity extends Home_activity {
             String id = params[1];
             String permission = params[2];
             String dbname = params[3];
-            String login_url = "https://www.classguru.in/class/api/student_details.php";
+            String login_url = "http://206.189.231.53/admin/api/student_details.php";
             if(permission.equals("student")){
                 try {
                     URL profile_url = new URL(login_url);
