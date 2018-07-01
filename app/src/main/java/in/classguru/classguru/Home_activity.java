@@ -58,15 +58,15 @@ public class Home_activity extends AppCompatActivity {
     private TextView tvbatch;
     private TextView tvtiming;
     private TextView tvyear;
-    private TextView tvfather;
-    private TextView tvmother;
+    //private TextView tvfather;
+    //private TextView tvmother;
     private TextView tvcontact;
     private TextView tvcourse;
     private TextView tvfullname;
     private TextView tvScontact;
     private TextView tvgender;
     private TextView tvdob;
-    private TextView tvcouType;
+    //private TextView tvcouType;
     private TextView tvstandard;
     private TextView tvSidename;
     private TextView tvSidenumb;
@@ -103,13 +103,13 @@ public class Home_activity extends AppCompatActivity {
         tvbatch = (TextView)findViewById(R.id.tvBatch);
         tvtiming = (TextView)findViewById(R.id.tvTiming);
         tvyear = (TextView)findViewById(R.id.tvYear);
-        tvfather = (TextView)findViewById(R.id.tvFather);
-        tvmother = (TextView)findViewById(R.id.tvMother);
+        //tvfather = (TextView)findViewById(R.id.tvFather);
+        //tvmother = (TextView)findViewById(R.id.tvMother);
         tvcontact = (TextView)findViewById(R.id.tvContact);
         tvcourse = (TextView)findViewById(R.id.tvCourse);
         tvgender = (TextView)findViewById(R.id.tvGender);
         tvdob = (TextView)findViewById(R.id.tvBirth);
-        tvcouType = (TextView)findViewById(R.id.tvCourseType);
+        //tvcouType = (TextView)findViewById(R.id.tvCourseType);
         tvstandard = (TextView)findViewById(R.id.tvStandard);
 
         tvfullname = (TextView)findViewById(R.id.tv_name);
@@ -217,11 +217,11 @@ public class Home_activity extends AppCompatActivity {
                     JSONObject finalresult = new JSONObject(checkResult);
                     String surname = finalresult.getString("stud_surname");
                     String stud_name = finalresult.getString("stud_name");
-                    tvname.setText(stud_name);
+
                     String father = finalresult.getString("father_name");
-                    tvfather.setText(father);
+                    //tvfather.setText(father);
                     String mother = finalresult.getString("mother_name");
-                    tvmother.setText(mother);
+                    //tvmother.setText(mother);
                     String pcontact = finalresult.getString("pcontactnumber");
                     tvcontact.setText(pcontact);
                     String year = finalresult.getString("admission_year");
@@ -235,13 +235,15 @@ public class Home_activity extends AppCompatActivity {
                     tvSidename.setText(fullname);
                     globalname = fullname;
 
+                    String final_name = stud_name + ' ' + father + ' ' + surname + ' ' + mother;
+                    tvname.setText(final_name);
                     String gender = finalresult.getString("stud_gender");
                     tvgender.setText(gender);
                     String dob = finalresult.getString("stud_dob");
                     String[] date = dob.split("-");
                     tvdob.setText(date[2]+"-"+date[1]+"-"+date[0]);
                     String couType = finalresult.getString("course_type");
-                    tvcouType.setText(couType);
+                    //tvcouType.setText(couType);
                     String standard = finalresult.getString("standard_name");
                     tvstandard.setText(standard);
 
@@ -258,7 +260,8 @@ public class Home_activity extends AppCompatActivity {
                         String course_details = reader.getString("course_details");
                         JSONObject course = new JSONObject(course_details);
                         String coursename = course.getString("course_name");
-                        tvcourse.setText(coursename);
+                        String full_course = coursename + '('+couType+')';
+                        tvcourse.setText(full_course);
                     }else{
 
                         tvcourse.setText("Not Assigned Yet");
@@ -269,8 +272,8 @@ public class Home_activity extends AppCompatActivity {
                     if (im_profile != null ){
 
                         // Then later, when you want to display image
-                        ImageLoader.getInstance().displayImage("https://classes.classguru.in/"+profile, im_profile);
-                        ImageLoader.getInstance().displayImage("https://classes.classguru.in/"+profile, iv_sProfile);
+                        ImageLoader.getInstance().displayImage("http://206.189.231.53/admin/"+profile, im_profile);
+                        ImageLoader.getInstance().displayImage("http://206.189.231.53/admin/"+profile, iv_sProfile);
                     }
 
 

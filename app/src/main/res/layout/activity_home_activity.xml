@@ -8,7 +8,7 @@
     android:id="@+id/drawer"
     tools:context="in.classguru.classguru.Home_activity">
 
-<include layout="@layout/profile" />
+<include layout="@layout/profile2" />
 
     <android.support.design.widget.NavigationView
 
