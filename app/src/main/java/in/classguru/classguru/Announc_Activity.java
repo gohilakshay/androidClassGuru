@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -53,6 +55,7 @@ public class Announc_Activity extends Home_activity {
     public TextView tvSidename;
     private ListView announceViewList;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +64,7 @@ public class Announc_Activity extends Home_activity {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.announcDrawer);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.navSideBar);
+        navigationView.setItemIconTintList(null);
         View nav = navigationView.getHeaderView(0);
 
         tvSidename = (TextView)nav.findViewById(R.id.tvSideName);
@@ -69,9 +73,9 @@ public class Announc_Activity extends Home_activity {
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        android.support.v7.app.ActionBar bar = getSupportActionBar();
-        bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#148388")));
+        android.support.v7.widget.Toolbar mtoolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbarAnnounc);
+        mtoolbar.setNavigationIcon(R.drawable.ic_navigation);
+        setSupportActionBar(mtoolbar);
 
         Announc_fetch fac_announc_fetch = new Announc_fetch(this);
         fac_announc_fetch.execute("facultyAnnounce",globalid,globaldbname);
@@ -162,7 +166,12 @@ public class Announc_Activity extends Home_activity {
             alertDialog.show();
             Log.i("Tag", "onPostExecute: "+ result);*/
             super.onPostExecute(result);
+            tvSidename.setText(globalname);
+            tvSidenumb.setText(globalnumb);
+            ImageView ivsprofile = (ImageView)findViewById(R.id.iv_sProfile);
 
+            // Then later, when you want to display image
+            ImageLoader.getInstance().displayImage("http://206.189.231.53/admin/"+globalurl, ivsprofile);
             try {
                 JSONObject reader = new JSONObject(result);
                 if(!reader.getString("announc_details").equals("student batch id not found")){
@@ -183,12 +192,7 @@ public class Announc_Activity extends Home_activity {
                     announceViewList.setAdapter(announceAdapter);
 
                 }
-                tvSidename.setText(globalname);
-                tvSidenumb.setText(globalnumb);
-                ImageView ivsprofile = (ImageView)findViewById(R.id.iv_sProfile);
 
-                // Then later, when you want to display image
-                ImageLoader.getInstance().displayImage("https://classes.classguru.in/"+globalurl, ivsprofile);
 
             } catch (JSONException e) {
                 e.printStackTrace();

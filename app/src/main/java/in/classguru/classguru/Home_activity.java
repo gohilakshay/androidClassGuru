@@ -1,11 +1,16 @@
 package in.classguru.classguru;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Handler;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -20,6 +25,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -72,6 +78,8 @@ public class Home_activity extends AppCompatActivity {
     private TextView tvSidenumb;
 
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -118,22 +126,26 @@ public class Home_activity extends AppCompatActivity {
         profile_activity.execute("student",id,permission,dbname);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.navSideBar);
+        navigationView.setItemIconTintList(null);
         View nav = navigationView.getHeaderView(0);
         tvSidename = (TextView)nav.findViewById(R.id.tvSideName);
         tvSidenumb = (TextView)nav.findViewById(R.id.tvSideNumb);
 
-        ImageView img = (ImageView)findViewById(R.id.iv_nav);
-        img.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer);
-                mDrawerLayout.openDrawer(Gravity.LEFT);
-            }
-        });
-
-
+        mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer);
+        mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
+        mDrawerLayout.addDrawerListener(mToggle);
+        mToggle.syncState();
+        android.support.v7.widget.Toolbar mtoolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar);
+        mtoolbar.setNavigationIcon(R.drawable.ic_navigation);
+        setSupportActionBar(mtoolbar);
     }
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(mToggle.onOptionsItemSelected(item)){
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     /**
      * Created by a2z on 1/25/2018.

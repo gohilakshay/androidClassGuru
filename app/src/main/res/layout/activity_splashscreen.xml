@@ -10,7 +10,8 @@
         android:id="@+id/imageView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/splash_img7" />
+        android:background="@drawable/splash_img7"
+        android:scaleType="matrix" />
 
     <ImageView
         android:id="@+id/splash"

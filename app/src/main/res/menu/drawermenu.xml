@@ -5,7 +5,7 @@
     <item android:id="@+id/attend" android:title="Attendance" android:icon="@drawable/ic_attendance" android:onClick="OnAttend"/>
     <item android:id="@+id/test" android:title="Test Details" android:icon="@drawable/ic_testdetails" android:onClick="OnTest"/>
     <item android:id="@+id/assignment" android:title="Assignment" android:icon="@drawable/ic_assignment" android:onClick="OnAssign"/>
-    <item android:id="@+id/portion" android:title="Portion" android:icon="@drawable/ic_assignment" android:onClick="OnPortion"/>
+    <item android:id="@+id/portion" android:title="Portion" android:icon="@drawable/ic_portion" android:onClick="OnPortion"/>
     <!--<item android:id="@+id/t_attend" android:title="Teacher Attendance" android:icon="@drawable/ic_teacher_attend"/>
     <item android:id="@+id/portion_details" android:title="Portion Details" android:icon="@drawable/ic_testdetails"/>-->
     <item android:id="@+id/announcements" android:title="Announcements" android:icon="@drawable/ic_announcement" android:onClick="OnAnnounc"/>

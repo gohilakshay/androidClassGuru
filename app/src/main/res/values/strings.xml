@@ -6,7 +6,7 @@
     <string name="login">Login</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
-    <string name="title_activity_home_activity">Home_activity</string>
+    <string name="title_activity_home_activity">Profile</string>
     <string name="title_activity_attendance_activity">Attendance_activity</string>
     <string name="title_activity_fac_portion_tab">FacPortionTabActivity</string>
     <string name="tab_text_1">View</string>

@@ -7,8 +7,20 @@
     android:layout_height="match_parent"
     android:id="@+id/drawer"
     tools:context="in.classguru.classguru.Home_activity">
-
-<include layout="@layout/profile2" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:minHeight="?attr/actionBarSize"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:titleTextColor="@android:color/white"
+            android:background="?attr/colorPrimary">
+        </android.support.v7.widget.Toolbar>
+        <include layout="@layout/profile2" />
+    </LinearLayout>
 
     <android.support.design.widget.NavigationView
 
@@ -19,7 +31,6 @@
         android:background="@color/white"
         app:headerLayout="@layout/header"
         app:itemIconTint="@color/darkgrey"
-        app:itemTextColor="@color/darkgrey"
         app:menu="@menu/drawermenu">
 
     </android.support.design.widget.NavigationView>

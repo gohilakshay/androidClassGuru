@@ -1,9 +1,12 @@
 package in.classguru.classguru;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -52,6 +55,8 @@ public class Fee_tabedActivity extends Home_activity implements Fee_Frag1.OnFrag
     public TextView tvSidenumb;
     public ImageView ivsprofile;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,11 +79,17 @@ public class Fee_tabedActivity extends Home_activity implements Fee_Frag1.OnFrag
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        android.support.v7.widget.Toolbar mtoolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbarFee);
+        mtoolbar.setNavigationIcon(R.drawable.ic_navigation);
+        setSupportActionBar(mtoolbar);
+
+        /*getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         android.support.v7.app.ActionBar bar = getSupportActionBar();
-        bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#148388")));
+        bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#148388")));*/
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.navSideBar);
+        navigationView.setItemIconTintList(null);
         View nav = navigationView.getHeaderView(0);
 
         tvSidename = (TextView)nav.findViewById(R.id.tvSideName);
@@ -97,7 +108,7 @@ public class Fee_tabedActivity extends Home_activity implements Fee_Frag1.OnFrag
         tvSidename.setText(globalname1);
         tvSidenumb.setText(globalnumb1);
         ivsprofile = (ImageView)nav.findViewById(R.id.iv_sProfile);
-        ImageLoader.getInstance().displayImage("https://classes.classguru.in/"+globalurl1, ivsprofile);
+        ImageLoader.getInstance().displayImage("http://206.189.231.53/admin/"+globalurl1, ivsprofile);
 
     }
 

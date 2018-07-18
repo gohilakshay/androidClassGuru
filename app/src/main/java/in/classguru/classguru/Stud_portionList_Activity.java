@@ -39,9 +39,9 @@ public class Stud_portionList_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stud_portion_list_);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        android.support.v7.app.ActionBar bar = getSupportActionBar();
-        bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#148388")));
+        /*android.support.v7.widget.Toolbar mtoolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbarPortion);
+        mtoolbar.setNavigationIcon(R.drawable.ic_navigation);
+        setSupportActionBar(mtoolbar);*/
 
         Intent intent = getIntent();
         String portionList = intent.getStringExtra("portionList");

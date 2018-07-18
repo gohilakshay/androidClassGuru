@@ -5,13 +5,16 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -52,6 +55,7 @@ public class Attendance_activity extends Home_activity {
     public TextView tvSidenumb;
     public TextView tvSidename;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +68,7 @@ public class Attendance_activity extends Home_activity {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.attendDrawer);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.navSideBar);
+        navigationView.setItemIconTintList(null);
         View nav = navigationView.getHeaderView(0);
 
         tvSidename = (TextView)nav.findViewById(R.id.tvSideName);
@@ -72,9 +77,9 @@ public class Attendance_activity extends Home_activity {
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        android.support.v7.app.ActionBar bar = getSupportActionBar();
-        bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#148388")));
+        android.support.v7.widget.Toolbar mtoolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbarAttend);
+        mtoolbar.setNavigationIcon(R.drawable.ic_navigation);
+        setSupportActionBar(mtoolbar);
     }
     public boolean onOptionsItemSelected(MenuItem item) {
         if(mToggle.onOptionsItemSelected(item)){
@@ -186,7 +191,7 @@ public class Attendance_activity extends Home_activity {
             ImageView ivsprofile = (ImageView)findViewById(R.id.iv_sProfile);
 
             // Then later, when you want to display image
-            ImageLoader.getInstance().displayImage("https://classes.classguru.in/"+globalurl, ivsprofile);
+            ImageLoader.getInstance().displayImage("http://206.189.231.53/admin/"+globalurl, ivsprofile);
 
         }
 
@@ -218,8 +223,13 @@ public class Attendance_activity extends Home_activity {
             TextView tv_date;
             tv_attend = (TextView)convertView.findViewById(R.id.tv_Attend);
             tv_date = (TextView)convertView.findViewById(R.id.tv_Date);
-            tv_attend.setText(attendanceModelList.get(position).getAttendance());
-
+            String attendanceColor = attendanceModelList.get(position).getAttendance();
+            if(attendanceColor.equals("Present") )
+                tv_attend.setTextColor(Color.parseColor("#04d315"));
+            else
+                tv_attend.setTextColor(Color.parseColor("#d22903"));
+            tv_attend.setText(attendanceColor);
+            //Log.i("Tag",attendanceModelList.get(position).getAttendance());
 
             String[] date = attendanceModelList.get(position).getDate().split("-");
             tv_date.setText(date[2]+"-"+date[1]+"-"+date[0]);

@@ -3,32 +3,41 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <RelativeLayout
-        android:padding="10dp"
+        android:padding="8dp"
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1">
 
         <TextView
+            android:paddingLeft="10dp"
+            android:fontFamily="@font/aldrich"
             android:id="@+id/tv_Date"
             android:layout_width="150dp"
-            android:layout_height="40dp"
+            android:layout_height="30dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_weight="1"
             android:text="Date"
-            android:textAlignment="viewStart" />
+            android:textAlignment="viewStart"
+            android:gravity="start"
+            android:textSize="16sp"/>
 
         <TextView
+            android:paddingLeft="10dp"
+            android:fontFamily="@font/aldrich"
             android:id="@+id/tv_Attend"
             android:layout_width="150dp"
-            android:layout_height="40dp"
+            android:layout_height="30dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:layout_weight="1"
             android:text="Attendance"
-            android:textAlignment="viewStart" />
+            android:textAlignment="viewStart"
+            android:gravity="start"
+            android:textSize="16sp"/>
 
     </RelativeLayout>
 </LinearLayout>
